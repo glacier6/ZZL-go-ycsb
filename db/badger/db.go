@@ -18,15 +18,14 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dgraph-io/badger"
-	"github.com/dgraph-io/badger/options"
+	"github.com/dgraph-io/badger/v4"
 	"github.com/magiconair/properties"
 	"github.com/pingcap/go-ycsb/pkg/prop"
 	"github.com/pingcap/go-ycsb/pkg/util"
 	"github.com/pingcap/go-ycsb/pkg/ycsb"
 )
 
-//  properties
+// properties
 const (
 	badgerDir                     = "badger.dir"
 	badgerValueDir                = "badger.valuedir"
@@ -90,42 +89,53 @@ func (c badgerCreator) Create(p *properties.Properties) (ycsb.DB, error) {
 }
 
 func getOptions(p *properties.Properties) badger.Options {
-	opts := badger.DefaultOptions
-	opts.Dir = p.GetString(badgerDir, "/tmp/badger")
+	dir := p.GetString(badgerDir, "/tmp/badger")
+	opts := badger.DefaultOptions(dir)
+
 	opts.ValueDir = p.GetString(badgerValueDir, opts.Dir)
 
 	opts.SyncWrites = p.GetBool(badgerSyncWrites, false)
 	opts.NumVersionsToKeep = p.GetInt(badgerNumVersionsToKeep, 1)
-	opts.MaxTableSize = p.GetInt64(badgerMaxTableSize, 64<<20)
+
+	// opts.MaxTableSize = p.GetInt64(badgerMaxTableSize, 64<<20)
+	opts.MemTableSize = p.GetInt64(badgerMaxTableSize, 64<<20)
+
 	opts.LevelSizeMultiplier = p.GetInt(badgerLevelSizeMultiplier, 10)
 	opts.MaxLevels = p.GetInt(badgerMaxLevels, 7)
-	opts.ValueThreshold = p.GetInt(badgerValueThreshold, 32)
+
+	// opts.ValueThreshold = p.GetInt(badgerValueThreshold, 32)
+
 	opts.NumMemtables = p.GetInt(badgerNumMemtables, 5)
 	opts.NumLevelZeroTables = p.GetInt(badgerNumLevelZeroTables, 5)
-	opts.NumLevelZeroTablesStall = p.GetInt(badgerNumLevelZeroTablesStall, 10)
-	opts.LevelOneSize = p.GetInt64(badgerLevelOneSize, 256<<20)
-	opts.ValueLogFileSize = p.GetInt64(badgerValueLogFileSize, 1<<30)
+	opts.NumLevelZeroTablesStall = p.GetInt(badgerNumLevelZeroTablesStall, 15) // V1是10,但是V4默认就是15了
+
+	// opts.LevelOneSize = p.GetInt64(badgerLevelOneSize, 256<<20)
+	opts.BaseLevelSize = p.GetInt64(badgerLevelOneSize, 10<<20) // 由于原来的设定L0大小改为了设定LBase（就是倒立漏斗拐角层的大小，也是倒立漏斗上面那部分）
+
+	opts.ValueLogFileSize = p.GetInt64(badgerValueLogFileSize, 1<<30-1)
 	opts.ValueLogMaxEntries = uint32(p.GetUint64(badgerValueLogMaxEntries, 1000000))
-	opts.NumCompactors = p.GetInt(badgerNumCompactors, 3)
-	opts.DoNotCompact = p.GetBool(badgerDoNotCompact, false)
-	if b := p.GetString(badgerTableLoadingMode, "LoadToRAM"); len(b) > 0 {
-		if b == "FileIO" {
-			opts.TableLoadingMode = options.FileIO
-		} else if b == "LoadToRAM" {
-			opts.TableLoadingMode = options.LoadToRAM
-		} else if b == "MemoryMap" {
-			opts.TableLoadingMode = options.MemoryMap
-		}
+	opts.NumCompactors = p.GetInt(badgerNumCompactors, 4)
+	if p.GetBool(badgerDoNotCompact, false) {
+		opts.NumCompactors = 0
 	}
-	if b := p.GetString(badgerValueLogLoadingMode, "MemoryMap"); len(b) > 0 {
-		if b == "FileIO" {
-			opts.ValueLogLoadingMode = options.FileIO
-		} else if b == "LoadToRAM" {
-			opts.ValueLogLoadingMode = options.LoadToRAM
-		} else if b == "MemoryMap" {
-			opts.ValueLogLoadingMode = options.MemoryMap
-		}
-	}
+	// if b := p.GetString(badgerTableLoadingMode, "LoadToRAM"); len(b) > 0 {
+	// 	if b == "FileIO" {
+	// 		opts.TableLoadingMode = options.FileIO
+	// 	} else if b == "LoadToRAM" {
+	// 		opts.TableLoadingMode = options.LoadToRAM
+	// 	} else if b == "MemoryMap" {
+	// 		opts.TableLoadingMode = options.MemoryMap
+	// 	}
+	// }
+	// if b := p.GetString(badgerValueLogLoadingMode, "MemoryMap"); len(b) > 0 {
+	// 	if b == "FileIO" {
+	// 		opts.ValueLogLoadingMode = options.FileIO
+	// 	} else if b == "LoadToRAM" {
+	// 		opts.ValueLogLoadingMode = options.LoadToRAM
+	// 	} else if b == "MemoryMap" {
+	// 		opts.ValueLogLoadingMode = options.MemoryMap
+	// 	}
+	// }
 
 	return opts
 }
@@ -153,7 +163,7 @@ func (db *badgerDB) Read(ctx context.Context, table string, key string, fields [
 		if err != nil {
 			return err
 		}
-		row, err := item.Value()
+		row, err := item.ValueCopy(nil)
 		if err != nil {
 			return err
 		}
@@ -203,7 +213,7 @@ func (db *badgerDB) Update(ctx context.Context, table string, key string, values
 			return err
 		}
 
-		value, err := item.Value()
+		value, err := item.ValueCopy(nil)
 		if err != nil {
 			return err
 		}

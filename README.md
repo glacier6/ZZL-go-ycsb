@@ -100,6 +100,7 @@ Available Commands:
 - BoltDB
 - etcd
 - DynamoDB
+- S3 (Amazon S3 / S3-compatible)
 
 ## Output configuration
 
@@ -336,7 +337,18 @@ Common configurations:
 |dynamodb.consistent.reads|false|Reads on DynamoDB provide an eventually consistent read by default. If your benchmark/use-case requires a strongly consistent read, set this option to true|
 |dynamodb.delete.after.run.stage|false|Detele the database table after the run stage|
 
+### S3
 
+|field|default value|description|
+|-|-|-|
+|s3.bucket|"ycsb"|Bucket name to use for objects|
+|s3.region|"us-east-1"|AWS region (set to `auto` for LocalStack)|
+|s3.endpoint|""|Custom endpoint URL (e.g. `http://localhost:4566` for LocalStack). Leave empty to use AWS public endpoint|
+|s3.access_key|""|Access key (falls back to environment / profile)|
+|s3.secret_key|""|Secret key|
+|s3.use_path_style|false|Set `true` for LocalStack; forces path-style requests|
+|s3.update_overwrite|true|Set `false` for update to perform a read-modify-write operation|
+|s3.scan_keys_only|false|Set `true` to have scan return only the keys of the objects|
 
 ## TODO
 
