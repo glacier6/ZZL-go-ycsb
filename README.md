@@ -1,3 +1,89 @@
+# YCSB工作原理
+YCSB（包括 go-ycsb）的工作原理其实非常像一个 “高并发的随机数据工厂”。它不是预先生成好 10GB 的文件然后导进去，而是在**运行时（Runtime）**利用算法动态生成数据，并实时发送给 BadgerDB。
+1.Key 是怎么产生的？(数学分布的魔法)
+  格式：user + <数字 ID>
+  requestdistribution 参数控制数字ID的分布范围：
+    Uniform (均匀分布)：
+      使用 Random(0, recordcount)。
+      每个 Key 被选中的概率一样。
+      效果：数据彻底打散，BadgerDB 的 Block Cache 命中率会很低。
+    Zipfian (齐夫/幂律分布)：
+      使用复杂的数学公式（Zipf 算法）。
+      效果：它会故意死盯着某几个 ID（比如 user100 ~ user200）疯狂访问，而其他的 ID 很少碰。
+      模拟：微博热搜、秒杀商品。这对测试你的 缓存优化 至关重要。
+    Latest (最新分布)：
+      它偏向于选择 最大 的那些数字。
+      效果：模拟“看最新的帖子”。
+2.Value 是怎么产生的？(随机字符串)
+  YCSB 的 Value 没有任何实际业务含义，全是 随机生成的垃圾字符 (Random Garbage)，但它遵循固定的结构。
+
+3.工作流：一个请求的诞生过程
+  threadcount参数控制请求协程的个数，每个协程跑一个死循环，如果为Read，就按照上面那个分布随机取。如果是写入，同上
+
+
+# YCSB的各个主要参数
+下面是启动样例命令
+./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties \
+    -p recordcount=1000000 \
+    -p threadcount=8
+
+./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties \
+    -p recordcount=10000 \ 
+    -p operationcount=10000 \
+    -p requestdistribution=zipfian \
+    -p threadcount=16
+
+下面是参数（使用都要如上例加一个 -p）
+1.执行控制类 (Execution Control)
+    决定压测“怎么跑”、“跑多久”、“多少人跑”。
+    参数名	            默认值	      含义与调优建议
+    threadcount	        1	        并发线程数 (在 Go 中对应 Goroutines)。重要： 测 Badger 时，建议从 8, 16, 32, 64 依次递增，直到吞吐量不再上升（找到饱和点）。过高会导致上下文切换开销，过低无法喂饱磁盘。
+    target	            无 (不限速)	 目标 QPS (Target Throughput)。用法： 如果你想测“在 1万 QPS 下的延迟是多少”，就设 target=10000。如果不设，则是“火力全开”测最大吞吐。
+    maxexecutiontime	无	        最大运行时间 (秒)。用法： 比如 -p maxexecutiontime=600，强制跑 10 分钟后停止。这比用 operationcount 更适合做稳定性测试。
+
+2.数据规模类 (Data Volume)
+    决定数据库里“有多少数据”、“要操作多少次”。
+    参数名	        默认值	含义与调优建议
+    recordcount	    0	  数据库中的总记录数 (Load 阶段用)。重要： 这决定了 LSM-Tree 的层级深度。100万条和 1亿条，Badger 的性能表现完全不同。
+    operationcount	0	  本次测试执行的操作总数 (Run 阶段用)。用法： 设大一点（如 1000万），让测试跑足够久，以便观察 Compaction 发生时的抖动。
+    insertstart	    0	  Key 的起始偏移量。用法： 如果你先 Load 了 100万，想再 Load 100万（变成200万），第二次 Load 时设 insertstart=1000000。
+
+3.数据形态类 (Data Shape)
+    决定“Key 长什么样”、“Value 长什么样”。这直接关系到 Badger 的 KV 分离机制。
+    参数名	                默认值	      含义与调优建议
+    fieldcount	            10	        字段数量。即 Value 是一个包含多少个 Key 的 Map。
+    fieldlength	            100	        每个字段的字节最大长度（单位是B）。
+    fieldlengthdistribution	constant	Value 长度分布。
+                                        （1）constant: 固定长度。
+                                        （2）uniform: 均匀分布。
+                                        （3）zipfian: 大小两极分化。
+    readallfields	        true	    读取时是否返回所有字段。
+                                        （1）true: 模拟取出完整对象（IO 压力大）。
+                                        （2）false: 模拟只查对象的一个属性。
+
+4.负载比例类 (Workload Mix)
+    决定 CRUD 的混合比例。所有比例之和应为 1.0。
+    参数名	              含义	对应 Workload
+    readproportion	    读比例	几乎所有负载都会用到。
+    updateproportion	更新比例 (修改现有 Key)	Workload A (0.5), B (0.05)
+    insertproportion	插入比例 (新增 Key)	Workload D (0.05), E (0.05)
+    scanproportion	    扫描比例 (范围查询)	Workload E (0.95)
+    readmodifywriteproportion	读改写比例 (原子操作)	Workload F (0.5)
+
+5.访问分布类 (Distribution - 核心灵魂)
+    决定“访问哪些 Key”。这是测试缓存（Block Cache）和热点处理的关键。
+    参数名	                 含义
+    requestdistribution	    请求分布模式。
+                            （1）uniform: 随机访问。最考验磁盘 IO，因为缓存很难命中。
+                            （2）zipfian: 幂律分布（20% 热点）。最考验缓存策略。验证你的“冷热分离”必须用这个。
+                            （3）latest: 总是读最近写入的。考验 MemTable/L0 性能。
+    scanlength	            扫描长度 (用于 Scan 操作)。
+                            （1）默认不固定。
+                            （2）-p scanlength=100: 每次 Scan 固定扫 100 个 Key。验证你的“索引优化”时，调整这个值（短扫 vs 长扫）。
+    insertorder	            Key 的插入顺序。
+                            （1）ordered: 顺序插入 (user1, user2...)。对 LSM 最友好，写放大最小。•
+                            （2）hashed: 哈希乱序插入。对 LSM 压力最大，写放大最高。
+
 # go-ycsb
 
 go-ycsb is a Go port of [YCSB](https://github.com/brianfrankcooper/YCSB). It fully supports all YCSB generators and the Core workload so we can do the basic CRUD benchmarks with Go.

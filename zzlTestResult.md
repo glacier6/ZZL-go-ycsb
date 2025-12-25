@@ -1,21 +1,4 @@
-TODO:给我各测试负载的组成
-
-
-
-下面是启动命令
-./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties \
-    -p recordcount=1000000 \
-    -p threadcount=8
-
-./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties \
-    -p recordcount=10000 \
-    -p operationcount=10000 \
-    -p requestdistribution=zipfian \
-    -p threadcount=16
-
-
-
-下面是逐行解析A负载测试结果的样例
+NOTE:下面是逐行解析A负载测试结果的样例
 Run finished, takes 151.030789ms
 整个测试运行只持续了 0.15 秒。
 
