@@ -1,0 +1,51 @@
+# Copyright (c) 2010 Yahoo! Inc. All rights reserved.                                                                                                                             
+#                                                                                                                                                                                 
+# Licensed under the Apache License, Version 2.0 (the "License"); you                                                                                                             
+# may not use this file except in compliance with the License. You                                                                                                                
+# may obtain a copy of the License at                                                                                                                                             
+#                                                                                                                                                                                 
+# http://www.apache.org/licenses/LICENSE-2.0                                                                                                                                      
+#                                                                                                                                                                                 
+# Unless required by applicable law or agreed to in writing, software                                                                                                             
+# distributed under the License is distributed on an "AS IS" BASIS,                                                                                                               
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or                                                                                                                 
+# implied. See the License for the specific language governing                                                                                                                    
+# permissions and limitations under the License. See accompanying                                                                                                                 
+# LICENSE file.                                                                                                                                                                   
+
+
+# Yahoo! Cloud System Benchmark
+# Workload A: Update heavy workload
+#   Application example: Session store recording recent actions
+#                        
+#   Read/update ratio: 50/50
+#   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
+#   Request distribution: zipfian
+
+# 记录总数，主要和insertstart标记数据操作的范围（即[insertstart ，insertstart+recordcount]）。在 Load 阶段，YCSB 会往数据库里灌入多少条初始数据；在 Run 阶段，YCSB 默认会在这个数据总量范围内进行随机读取或更新。所以一般 recordcount < insertstart + 此insertstart后key的数量
+recordcount=500000
+
+# 起始位置
+insertstart=500000
+
+# 操作总数，仅在Run阶段生效，代表本次压测总共要执行多少次读写扫描的操作！
+operationcount=1000000
+
+# 使用核心工作负载?
+workload=core
+# 是否读取所有字段，即是否需要把一个key对应的所有字段都读取出来（NOTE:注意badger之类的纯KV数据库是不会有多字段的，YCSB只会把所有的同Key字段当作一个大Value放进去）
+readallfields=true
+# 并发线程数，即开启几个线程去轰炸LSM
+threadcount=16
+# 新增的key是否开启HASH打乱
+# insertorder=ordered # 默认打乱，这个是不打乱
+
+# 下面是读、改、扫描、写的比例
+readproportion=1
+updateproportion=0
+scanproportion=0
+insertproportion=0
+
+# 流量分布形态 zipfian（二八定律,注意这个二是完全分散的！！并没有固定区域）  uniform（均匀分布）  latest（最新分布）
+requestdistribution=zipfian
+

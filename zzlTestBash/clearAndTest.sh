@@ -24,9 +24,9 @@ if [ $? -ne 0 ]; then
 fi
 echo "✅ 编译成功。"
 
-# 4. 执行 Load 阶段 (为了绝对防止之前那个隐形空格的 Bug，这里直接写成单行)
+# 4. 执行 Load 阶段 
 echo "📥 [3/4] 正在执行 Load 阶段 (灌入 100 万基底数据)..."
-./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties -p recordcount=1000000 -p threadcount=16
+./bin/go-ycsb load badger -P workloads/workload_isolation -P zzl_badger.properties -p threadcount=16
 if [ $? -ne 0 ]; then
     echo "❌ Load 阶段报错，停止压测！"
     exit 1
@@ -34,12 +34,14 @@ fi
 echo "✅ Load 阶段完成。"
 
 # 5. 执行 Run 阶段
-echo "🔥 [4/4] 正在执行 Run 阶段 (100万次 Zipfian 倾斜压测)..."
-./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties -p recordcount=1000000 -p operationcount=1000000 -p requestdistribution=zipfian -p threadcount=16
-if [ $? -ne 0 ]; then
-    echo "❌ Run 阶段报错！"
-    exit 1
-fi
+# echo "🔥 [4/4] 正在执行 Run 阶段 ..."
+
+./bin/go-ycsb run badger -P workloads/workload_isolation -P zzl_badger.properties -p threadcount=16
+
+# if [ $? -ne 0 ]; then
+#     echo "❌ Run 阶段报错！"
+#     exit 1
+# fi
 
 echo "=================================================="
 echo "🎉 所有压测流程执行完毕！请查看上方输出的统计数据。"

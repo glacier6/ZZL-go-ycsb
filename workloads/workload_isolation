@@ -1,0 +1,50 @@
+# Copyright (c) 2010 Yahoo! Inc. All rights reserved.                                                                                                                             
+#                                                                                                                                                                                 
+# Licensed under the Apache License, Version 2.0 (the "License"); you                                                                                                             
+# may not use this file except in compliance with the License. You                                                                                                                
+# may obtain a copy of the License at                                                                                                                                             
+#                                                                                                                                                                                 
+# http://www.apache.org/licenses/LICENSE-2.0                                                                                                                                      
+#                                                                                                                                                                                 
+# Unless required by applicable law or agreed to in writing, software                                                                                                             
+# distributed under the License is distributed on an "AS IS" BASIS,                                                                                                               
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or                                                                                                                 
+# implied. See the License for the specific language governing                                                                                                                    
+# permissions and limitations under the License. See accompanying                                                                                                                 
+# LICENSE file.                                                                                                                                                                   
+
+
+# Yahoo! Cloud System Benchmark
+# Workload A: Update heavy workload
+#   Application example: Session store recording recent actions
+#                        
+#   Read/update ratio: 50/50
+#   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
+#   Request distribution: zipfian
+
+# ==========================================
+# YCSB 读写物理隔离压测配置 (For BadgerDB Heatmap)
+# ==========================================
+
+workload=core
+readallfields=true
+
+# 1. 基础数据量
+# 假设基底数据有 50 万条 (Key 范围: user0 ~ user499999)
+recordcount=500000
+
+# 2. 读写比例分离 (核心魔改点！)
+# 50% 的流量去纯读旧数据，50% 的流量去疯狂插入新数据
+readproportion=0.5
+insertproportion=0.5
+# 绝对禁止 Update，防止写流量污染旧数据的读热区
+updateproportion=0.0
+scanproportion=0.0
+
+# 3. 流量分布形态
+# 让读操作在旧数据区间形成极度倾斜的 Zipfian 热点
+requestdistribution=zipfian
+
+# 4. 压测总流量
+# 跑 100 万次操作，足够让底层触发 Compaction 和展现热力树分化
+operationcount=1000000

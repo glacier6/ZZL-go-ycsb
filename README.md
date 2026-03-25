@@ -5,16 +5,17 @@ NOTE:论文只用YCSB负载也是可以的！！
   格式：user + <数字 ID>
   实际的例子 usertableuser2738207479313280650
   requestdistribution 参数控制数字ID的分布范围：
+  NOTE:注意这个数字ID也不是顺序增加的，YCSB本身有一个单调递增的计数器，默认是将这个计数器再进行HASH才会得出KEY的，这个HASH可以通过insertorder=ordered关掉！
     Uniform (均匀分布)：
       使用 Random(0, recordcount)。
       每个 Key 被选中的概率一样。
       效果：数据彻底打散，BadgerDB 的 Block Cache 命中率会很低。
     Zipfian (齐夫/幂律分布)：
       使用复杂的数学公式（Zipf 算法）。
-      效果：它会故意死盯着某几个 ID（比如 user100 ~ user200）疯狂访问，而其他的 ID 很少碰。
+      效果：它会故意死盯着某几个 ID疯狂访问，而其他的 ID 很少碰，NOTE:但需要注意的是，这个ID并不是局限在某一个KEY区域的！！！像雨点一样分散的！。
       模拟：微博热搜、秒杀商品。这对测试你的 缓存优化 至关重要。
     Latest (最新分布)：
-      它偏向于选择 最大 的那些数字。
+      它偏向于选择 最大 的那些数字(NOTE:注意是看对key自增器hash之前的)。
       效果：模拟“看最新的帖子”。
 
 2.Value 是怎么产生的？(随机字符串)

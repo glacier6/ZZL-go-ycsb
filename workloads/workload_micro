@@ -1,0 +1,21 @@
+# ==========================================
+# 显微镜测试配置 (Micro-benchmark)
+# ==========================================
+workload=core
+readallfields=true
+
+# 1. 极小的数据集
+recordcount=100
+
+# 2. 强制顺序生成 (user0 到 user99)
+insertorder=ordered
+
+# 3. 跑 1000 次操作 (平均每个 key 10 次，足够看出分布差异)
+operationcount=10000
+
+# 4. 纯读模式 (排除 Update 的干扰，纯粹观察读热点)
+readproportion=0.0
+updateproportion=1
+insertproportion=0.0
+
+requestdistribution=zipfian
