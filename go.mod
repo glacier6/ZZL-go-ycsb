@@ -1,4 +1,5 @@
 module github.com/pingcap/go-ycsb
+
 // 注意下面有些包因为badgerDB升级，也跟着升级了，但是目前没有报错，暂时不管
 require (
 	cloud.google.com/go/spanner v1.45.0
@@ -128,6 +129,7 @@ require (
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/tikv/pd/client v0.0.0-20220307081149-841fa61e9710 // indirect
 	github.com/twmb/murmur3 v1.1.3 // indirect
+	github.com/valyala/fastrand v1.1.0 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.1 // indirect
 	github.com/xdg-go/stringprep v1.0.3 // indirect

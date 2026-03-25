@@ -1,7 +1,9 @@
 # YCSB工作原理
 YCSB（包括 go-ycsb）的工作原理其实非常像一个 “高并发的随机数据工厂”。它不是预先生成好 10GB 的文件然后导进去，而是在**运行时（Runtime）**利用算法动态生成数据，并实时发送给 BadgerDB。
+NOTE:论文只用YCSB负载也是可以的！！
 1.Key 是怎么产生的？(数学分布的魔法)
   格式：user + <数字 ID>
+  实际的例子 usertableuser2738207479313280650
   requestdistribution 参数控制数字ID的分布范围：
     Uniform (均匀分布)：
       使用 Random(0, recordcount)。
@@ -14,24 +16,21 @@ YCSB（包括 go-ycsb）的工作原理其实非常像一个 “高并发的随�
     Latest (最新分布)：
       它偏向于选择 最大 的那些数字。
       效果：模拟“看最新的帖子”。
+
 2.Value 是怎么产生的？(随机字符串)
   YCSB 的 Value 没有任何实际业务含义，全是 随机生成的垃圾字符 (Random Garbage)，但它遵循固定的结构。
 
 3.工作流：一个请求的诞生过程
   threadcount参数控制请求协程的个数，每个协程跑一个死循环，如果为Read，就按照上面那个分布随机取。如果是写入，同上
 
+NOTE:特别注意！！每次ycsb打包会直接把所有需要的数据库程序直接打入自己的可执行程序，所以如果改了数据库代码，需要重新打一次ycsb的包！！
+
 
 # YCSB的各个主要参数
 下面是启动样例命令
-./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties \
-    -p recordcount=1000000 \
-    -p threadcount=8
+./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties -p recordcount=1000000 -p threadcount=16
 
-./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties \
-    -p recordcount=10000 \ 
-    -p operationcount=10000 \
-    -p requestdistribution=zipfian \
-    -p threadcount=16
+./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties -p recordcount=1000000 -p operationcount=1000000 -p requestdistribution=zipfian -p threadcount=16
 
 下面是参数（使用都要如上例加一个 -p）
 1.执行控制类 (Execution Control)
