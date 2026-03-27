@@ -6,6 +6,7 @@ NOTE:论文只用YCSB负载也是可以的！！
   实际的例子 usertableuser2738207479313280650
   requestdistribution 参数控制数字ID的分布范围：
   NOTE:注意这个数字ID也不是顺序增加的，YCSB本身有一个单调递增的计数器，默认是将这个计数器再进行HASH才会得出KEY的，这个HASH可以通过insertorder=ordered关掉！
+  NOTE:特别注意,读取和更新在底层是共用的同一个概率分布,所以,这两种操作的key会高度重合!
     Uniform (均匀分布)：
       使用 Random(0, recordcount)。
       每个 Key 被选中的概率一样。
@@ -17,6 +18,10 @@ NOTE:论文只用YCSB负载也是可以的！！
     Latest (最新分布)：
       它偏向于选择 最大 的那些数字(NOTE:注意是看对key自增器hash之前的)。
       效果：模拟“看最新的帖子”。
+    hotspot(热点聚集):
+      热点会聚集在一起 NOTE:必须关掉HASH,使用insertorder=ordered来直接用key
+    
+TODO:还需要看看那些有关前缀的文章如何做测试的！！
 
 2.Value 是怎么产生的？(随机字符串)
   YCSB 的 Value 没有任何实际业务含义，全是 随机生成的垃圾字符 (Random Garbage)，但它遵循固定的结构。

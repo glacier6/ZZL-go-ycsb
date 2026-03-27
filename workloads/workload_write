@@ -22,10 +22,10 @@
 #   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
 #   Request distribution: zipfian
 
-# 记录总数，主要和insertstart标记数据操作的范围（即[insertstart ，insertstart+recordcount]）。在 Load 阶段，YCSB 会往数据库里灌入多少条初始数据；在 Run 阶段，YCSB 默认会在这个数据总量范围内进行随机读取或更新。所以一般 recordcount < insertstart + 此insertstart后key的数量
+# 记录总数，主要和insertstart标记数据操作的范围（即[insertstart ，insertstart + recordcount - 1]）。在 Load 阶段，YCSB 会往数据库里灌入多少条初始数据；在 Run 阶段，YCSB 默认会在这个数据总量范围内进行随机读取或更新。所以一般 recordcount < insertstart + 此insertstart后key的数量
 recordcount=500000
 
-# 起始位置
+# 起始位置(包括读,写,更新等所有操作的起始位置)
 insertstart=500000
 
 # 操作总数，仅在Run阶段生效，代表本次压测总共要执行多少次读写扫描的操作！
