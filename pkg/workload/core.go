@@ -673,6 +673,22 @@ func (coreCreator) Create(p *properties.Properties) (ycsb.Workload, error) {
 		percentile := p.GetFloat64(prop.ExponentialPercentile, prop.ExponentialPercentileDefault)
 		frac := p.GetFloat64(prop.ExponentialFrac, prop.ExponentialFracDefault)
 		c.keyChooser = generator.NewExponential(percentile, float64(c.recordCount)*frac)
+	// zzlHACK:
+	case "mixgraph":
+		numRegions := p.GetInt64(prop.MixGraphNumRegions, prop.MixGraphNumRegionsDefault)
+		expA := p.GetFloat64(prop.MixGraphExpA, prop.MixGraphExpADefault)
+		expB := p.GetFloat64(prop.MixGraphExpB, prop.MixGraphExpBDefault)
+		expC := p.GetFloat64(prop.MixGraphExpC, prop.MixGraphExpCDefault)
+		expD := p.GetFloat64(prop.MixGraphExpD, prop.MixGraphExpDDefault)
+		keyDistA := p.GetFloat64(prop.MixGraphKeyDistA, prop.MixGraphKeyDistADefault)
+		keyDistB := p.GetFloat64(prop.MixGraphKeyDistB, prop.MixGraphKeyDistBDefault)
+
+		c.keyChooser = generator.NewPrefixMixGraphGenerator(
+			c.recordCount, numRegions,
+			expA, expB, expC, expD,
+			keyDistA, keyDistB,
+		)
+	// zzlHACK:END
 	default:
 		util.Fatalf("unknown request distribution %s", requestDistrib)
 	}

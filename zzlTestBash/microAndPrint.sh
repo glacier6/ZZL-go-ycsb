@@ -17,7 +17,7 @@ echo "✅ 旧数据清理完毕。"
 
 # 3. 执行 Load 阶段 
 echo "📥 [2/3] 正在执行 Load 阶段..."
-./bin/go-ycsb-printmicro load badger -P workloads/workloadc -P zzl_badger.properties -p threadcount=16 
+./bin/go-ycsb-printmicro load badger -P workloads/workload_micro -P zzl_badger.properties -p threadcount=16 
 if [ $? -ne 0 ]; then
     echo "❌ Load 阶段报错，停止压测！"
     exit 1
@@ -27,7 +27,7 @@ echo "✅ Load 阶段完成。"
 # 4. 执行 Run 阶段
 echo "🔥 [3/3] 正在执行 Run 阶段.."
 
-./bin/go-ycsb-printmicro run badger -P workloads/workloadc -P zzl_badger.properties -p threadcount=16
+./bin/go-ycsb-printmicro run badger -P workloads/workload_micro -P zzl_badger.properties -p threadcount=16
 
 echo "=================================================="
 echo "🎉 所有压测流程执行完毕！请查看上方输出的统计数据。"

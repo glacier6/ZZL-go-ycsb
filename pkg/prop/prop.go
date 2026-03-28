@@ -15,6 +15,25 @@ package prop
 
 // Properties
 const (
+	// zzlHACK:
+	// MixGraph 专属配置
+	MixGraphNumRegions = "mixgraph.num_regions" // 区间数量
+	MixGraphExpA       = "mixgraph.exp_a"       // 双项指数参数 a
+	MixGraphExpB       = "mixgraph.exp_b"       // 双项指数参数 b
+	MixGraphExpC       = "mixgraph.exp_c"       // 双项指数参数 c
+	MixGraphExpD       = "mixgraph.exp_d"       // 双项指数参数 d
+	MixGraphKeyDistA   = "mixgraph.key_dist_a"  // 幂律分布参数 a
+	MixGraphKeyDistB   = "mixgraph.key_dist_b"  // 幂律分布参数 b
+
+	// MixGraph 默认值 (参考 RocksDB FAST '20 论文配置)
+	MixGraphNumRegionsDefault = int64(100)
+	MixGraphExpADefault       = float64(0.5)
+	MixGraphExpBDefault       = float64(-0.1)
+	MixGraphExpCDefault       = float64(0.5)
+	MixGraphExpDDefault       = float64(-0.01)
+	MixGraphKeyDistADefault   = float64(1.0)
+	MixGraphKeyDistBDefault   = float64(0.25)
+	// zzlHACK:END
 	InsertStart        = "insertstart"
 	InsertCount        = "insertcount"
 	InsertStartDefault = int64(0)
