@@ -4,7 +4,7 @@
 workload=core
 readallfields=true
 
-# 1. 极小的数据集
+# 1. 数据集
 recordcount=1000000
 
 # 2. 强制顺序生成 (user0 到 user99)
@@ -22,8 +22,13 @@ insertproportion=0.0
 
 requestdistribution=mixgraph
 mixgraph.num_regions=100
+mixgraph.exp_a=0.5
 mixgraph.exp_b=-0.2
+mixgraph.exp_c=0.5
+mixgraph.exp_d=-0.01
 
+mixgraph.key_dist_a=1.0
+mixgraph.key_dist_b=0.25
 # 前缀补0
 zeropadding=10
 
