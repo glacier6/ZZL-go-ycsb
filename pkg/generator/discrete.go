@@ -49,16 +49,17 @@ func NewDiscrete() *Discrete {
 }
 
 // Next implements the Generator Next interface.
+// NOTE:实现的方式是轮盘赌算法
 func (d *Discrete) Next(r *rand.Rand) int64 {
 	sum := float64(0)
 
-	for _, p := range d.values {
+	for _, p := range d.values { // 计算轮盘大小
 		sum += p.Weight
 	}
 
-	val := r.Float64()
+	val := r.Float64() // 扔出飞镖
 
-	for _, p := range d.values {
+	for _, p := range d.values { // 判断在哪个扇区
 		pw := p.Weight / sum
 		if val < pw {
 			d.SetLastValue(p.Value)

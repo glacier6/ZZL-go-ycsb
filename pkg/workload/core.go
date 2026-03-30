@@ -360,19 +360,33 @@ func (c *core) DoTransaction(ctx context.Context, db ycsb.DB) error {
 	state := ctx.Value(stateKey).(*coreState)
 	r := state.r
 
-	operation := operationType(c.operationChooser.Next(r))
+	// NOTE:2026033000 扔操作类型骰子
+	// zzlHACK: 改为先决定key,然后再决定操作的顺序
+	keyNum := int64(-1) // 决定key
+	var operation operationType
+	// 使用 Go 的类型断言：判断当前使用的 keyGenerator 是不是我们手写的 MixGraph？
+	// 如果是，就去查它专属的读写比例表！
+	if mg, ok := c.keyChooser.(*generator.PrefixMixGraphGenerator); ok {
+		keyNum = c.nextKeyNum(state)
+		operation = operationType(mg.ChooseOperationForKey(keyNum, state.r))
+	} else {
+		// 如果用户没用 MixGraph（比如用的 zipfian），就退化回 YCSB 默认的全局轮盘赌
+		operation = operationType(c.operationChooser.Next(r)) // NOTE:原版的核心操作,轮盘赌得到目标操作类型
+	}
+
 	switch operation {
 	case read:
-		return c.doTransactionRead(ctx, db, state)
+		return c.doTransactionRead(ctx, db, state, keyNum)
 	case update:
-		return c.doTransactionUpdate(ctx, db, state)
+		return c.doTransactionUpdate(ctx, db, state, keyNum)
 	case insert:
 		return c.doTransactionInsert(ctx, db, state)
 	case scan:
-		return c.doTransactionScan(ctx, db, state)
+		return c.doTransactionScan(ctx, db, state, keyNum)
 	default:
-		return c.doTransactionReadModifyWrite(ctx, db, state)
+		return c.doTransactionReadModifyWrite(ctx, db, state, keyNum)
 	}
+	// zzlHACK:END
 }
 
 // DoBatchTransaction implements the Workload DoBatchTransaction interface
@@ -408,15 +422,19 @@ func (c *core) nextKeyNum(state *coreState) int64 {
 			keyNum = c.transactionInsertKeySequence.Last() - c.keyChooser.Next(r)
 		}
 	} else {
-		keyNum = c.keyChooser.Next(r)
+		keyNum = c.keyChooser.Next(r) // 得到对应访问模式的key
 	}
 	return keyNum
 }
 
-func (c *core) doTransactionRead(ctx context.Context, db ycsb.DB, state *coreState) error {
+func (c *core) doTransactionRead(ctx context.Context, db ycsb.DB, state *coreState, keyNum int64) error {
 	r := state.r
-	keyNum := c.nextKeyNum(state)
-	keyName := c.buildKeyName(keyNum)
+	// zzlHACK:
+	if keyNum == int64(-1) {
+		keyNum = c.nextKeyNum(state) // NOTE:核心操作,得到key的那个数字,内部会调用对应生成器的next函数
+	}
+	// zzlHACK:END
+	keyName := c.buildKeyName(keyNum) // NOTE:核心操作,拼上前缀,即得到最终的在badger内的那个key
 
 	var fields []string
 	if !c.readAllFields {
@@ -438,14 +456,18 @@ func (c *core) doTransactionRead(ctx context.Context, db ycsb.DB, state *coreSta
 	return nil
 }
 
-func (c *core) doTransactionReadModifyWrite(ctx context.Context, db ycsb.DB, state *coreState) error {
+func (c *core) doTransactionReadModifyWrite(ctx context.Context, db ycsb.DB, state *coreState, keyNum int64) error {
 	start := time.Now()
 	defer func() {
 		measurement.Measure("READ_MODIFY_WRITE", start, time.Now().Sub(start))
 	}()
 
 	r := state.r
-	keyNum := c.nextKeyNum(state)
+	// zzlHACK:
+	if keyNum == int64(-1) {
+		keyNum = c.nextKeyNum(state) // NOTE:核心操作,得到key的那个数字,内部会调用对应生成器的next函数
+	}
+	// zzlHACK:END
 	keyName := c.buildKeyName(keyNum)
 
 	var fields []string
@@ -491,9 +513,13 @@ func (c *core) doTransactionInsert(ctx context.Context, db ycsb.DB, state *coreS
 	return db.Insert(ctx, c.table, dbKey, values)
 }
 
-func (c *core) doTransactionScan(ctx context.Context, db ycsb.DB, state *coreState) error {
+func (c *core) doTransactionScan(ctx context.Context, db ycsb.DB, state *coreState, keyNum int64) error {
 	r := state.r
-	keyNum := c.nextKeyNum(state)
+	// zzlHACK:
+	if keyNum == int64(-1) {
+		keyNum = c.nextKeyNum(state) // NOTE:核心操作,得到key的那个数字,内部会调用对应生成器的next函数
+	}
+	// zzlHACK:END
 	startKeyName := c.buildKeyName(keyNum)
 
 	scanLen := c.scanLength.Next(r)
@@ -511,8 +537,12 @@ func (c *core) doTransactionScan(ctx context.Context, db ycsb.DB, state *coreSta
 	return err
 }
 
-func (c *core) doTransactionUpdate(ctx context.Context, db ycsb.DB, state *coreState) error {
-	keyNum := c.nextKeyNum(state)
+func (c *core) doTransactionUpdate(ctx context.Context, db ycsb.DB, state *coreState, keyNum int64) error {
+	// zzlHACK:
+	if keyNum == int64(-1) {
+		keyNum = c.nextKeyNum(state) // NOTE:核心操作,得到key的那个数字,内部会调用对应生成器的next函数
+	}
+	// zzlHACK:END
 	keyName := c.buildKeyName(keyNum)
 
 	var values map[string][]byte

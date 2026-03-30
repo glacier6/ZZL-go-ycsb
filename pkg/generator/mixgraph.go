@@ -22,6 +22,9 @@ type PrefixMixGraphGenerator struct {
 	keyDistA float64
 	keyDistB float64
 	lastVal  int64
+
+	// 每个物理区间拥有自己独立的 Discrete 生成器
+	regionChoosers []*Discrete
 }
 
 // NewPrefixMixGraphGenerator 初始化双重映射生成器 (含洗牌)
@@ -98,14 +101,45 @@ func NewPrefixMixGraphGenerator(numKeys, numRegions int64, expA, expB, expC, exp
 		regionMap[i], regionMap[pos] = regionMap[pos], regionMap[i]
 	}
 
+	// 【新增】：为每个物理区间构建专属的操作轮盘
+	choosers := make([]*Discrete, numRegions)
+
+	for i := int64(0); i < numRegions; i++ {
+		chooser := NewDiscrete()
+
+		// ----------------------------------------------------
+		// NOTE:2026033001 这里可以调配各个区间的读写比例
+		// ！！！在这里自由发挥你的学术创意 ！！！
+		// 你可以根据区间 i 的特性（热区还是冷区），配置完全不同的比例。
+		// ----------------------------------------------------
+		// 1=read, 2=update, 3=insert, 4=scan, 5=readModifyWrite
+		// 注意 update 会先get再set,会计入两次!
+		if i == 0 || i == 1 {
+			chooser.Add(1, 1) // read
+			chooser.Add(0, 2) // update
+			// chooser.Add(0.30, 3) // insert
+		} else if i >= 10 && i <= 20 {
+			chooser.Add(0.50, 1) // read
+			chooser.Add(0.50, 2) // update
+			// chooser.Add(0.35, 4) // scan
+		} else {
+			chooser.Add(0.95, 1) // read
+			chooser.Add(0.05, 2) // update
+		}
+		// 【关键修复】：把它存放在它洗牌后对应的【物理前缀索引】下！
+		physicalRegionID := regionMap[i]
+		choosers[physicalRegionID] = chooser
+	}
+
 	return &PrefixMixGraphGenerator{
-		numKeys:    numKeys,
-		numRegions: numRegions,
-		regionSize: regionSize,
-		regionCDF:  cdf,
-		regionMap:  regionMap, // 保存洗牌后的映射表
-		keyDistA:   keyDistA,
-		keyDistB:   keyDistB,
+		numKeys:        numKeys,
+		numRegions:     numRegions,
+		regionSize:     regionSize,
+		regionCDF:      cdf,
+		regionMap:      regionMap, // 保存洗牌后的映射表
+		keyDistA:       keyDistA,
+		keyDistB:       keyDistB,
+		regionChoosers: choosers,
 	}
 }
 
@@ -170,4 +204,15 @@ func (m *PrefixMixGraphGenerator) Next(r *rand.Rand) int64 {
 
 func (m *PrefixMixGraphGenerator) Last() int64 {
 	return m.lastVal
+}
+
+// 【新增】：根据 Key 获取其所在区间的操作指令
+func (m *PrefixMixGraphGenerator) ChooseOperationForKey(keyNum int64, r *rand.Rand) int64 {
+	physicalRegion := keyNum / m.regionSize
+	if physicalRegion >= m.numRegions {
+		physicalRegion = m.numRegions - 1
+	}
+
+	// 找到该区间的专属轮盘，掷骰子，返回指令 (READ, UPDATE, SCAN...)
+	return m.regionChoosers[physicalRegion].Next(r)
 }
