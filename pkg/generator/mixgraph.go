@@ -106,25 +106,36 @@ func NewPrefixMixGraphGenerator(numKeys, numRegions int64, expA, expB, expC, exp
 
 	for i := int64(0); i < numRegions; i++ {
 		chooser := NewDiscrete()
-
+		// 计算当前区间在整个 Key 空间中的位置百分比 (0.0 ~ 1.0)
+		pos := float64(i) / float64(numRegions)
 		// ----------------------------------------------------
 		// NOTE:2026033001 这里可以调配各个区间的读写比例
-		// ！！！在这里自由发挥你的学术创意 ！！！
 		// 你可以根据区间 i 的特性（热区还是冷区），配置完全不同的比例。
 		// ----------------------------------------------------
 		// 1=read, 2=update, 3=insert, 4=scan, 5=readModifyWrite
 		// 注意 update 会先get再set,会计入两次!
-		if i == 0 || i == 1 {
-			chooser.Add(0.8, 1) // read
-			chooser.Add(0.2, 2) // update
-			// chooser.Add(0.30, 3) // insert
-		} else if i >= 10 && i <= 20 {
-			chooser.Add(0.50, 1) // read
-			chooser.Add(0.50, 2) // update
-			// chooser.Add(0.35, 4) // scan
+		if pos <= 0.10 {
+			// 🔥 [Top 10% 核心热区] - 对应 i == 0, 1 等
+			// 模拟：热门话题、活跃用户 Session
+			// 策略：高频更新，制造海量过期版本，压榨 Compaction 性能
+			chooser.Add(0.50, 1) // 50% Read
+			chooser.Add(0.50, 2) // 50% Update
+
+		} else if pos > 0.10 && pos <= 0.30 {
+			// ⛅ [10% - 30% 温和区] - 相当于之前的 i >= 10 && i <= 20
+			// 模拟：一般社交动态、近期 Timeline 翻阅
+			// 策略：读为主，加入少量 Scan 以增加 LSM-Tree 检索压力
+			chooser.Add(0.80, 1) // 80% Read
+			chooser.Add(0.15, 2) // 15% Update
+			chooser.Add(0.05, 4) // 5%  Scan
+
 		} else {
-			chooser.Add(0.95, 1) // read
-			chooser.Add(0.05, 2) // update
+			// ❄️ [30% - 100% 广阔冷区]
+			// 模拟：历史存档、僵尸账号
+			// 策略：极高比例的纯读，Update 极少
+			// 战术意义：如果这部分的 SSTable 被频繁 Compaction，说明写放大失控
+			chooser.Add(0.95, 1) // 95% Read
+			chooser.Add(0.05, 2) // 5%  Update
 		}
 		// 【关键修复】：把它存放在它洗牌后对应的【物理前缀索引】下！
 		physicalRegionID := regionMap[i]
