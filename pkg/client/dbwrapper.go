@@ -50,6 +50,7 @@ func (db DbWrapper) CleanupThread(ctx context.Context) {
 	db.DB.CleanupThread(ctx)
 }
 
+// NOTE:2026033100
 func (db DbWrapper) Read(ctx context.Context, table string, key string, fields []string) (_ map[string][]byte, err error) {
 	start := time.Now()
 	defer func() {

@@ -26,7 +26,7 @@ echo "✅ 编译成功。"
 
 # 4. 执行 Load 阶段 
 echo "📥 [3/4] 正在执行 Load 阶段 ..."
-./bin/go-ycsb load badger -P workloads/workload_micro -P zzl_badger.properties -p threadcount=16
+./bin/go-ycsb load badger -P workloads/workload_micro -P zzl_badger.properties
 if [ $? -ne 0 ]; then
     echo "❌ Load 阶段报错，停止压测！"
     exit 1
@@ -36,7 +36,7 @@ echo "✅ Load 阶段完成。"
 # 5. 执行 Run 阶段
 echo "🔥 [4/4] 正在执行 Run 阶段 ..."
 
-./bin/go-ycsb run badger -P workloads/workload_micro -P zzl_badger.properties -p threadcount=16
+./bin/go-ycsb run badger -P workloads/workload_micro -P zzl_badger.properties
 
 # if [ $? -ne 0 ]; then
 #     echo "❌ Run 阶段报错！"

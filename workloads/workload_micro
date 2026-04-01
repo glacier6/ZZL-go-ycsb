@@ -1,21 +1,18 @@
-# ==========================================
-# 显微镜测试配置 (Micro-benchmark)
-# ==========================================
 workload=core
 readallfields=true
 
 # 1. 数据集
-recordcount=100
+recordcount=1000000
 
 # 2. 强制顺序生成 (user0 到 user99)
 insertorder=ordered
 
 # 3. 跑操作 
-operationcount=10000
+operationcount=1000000
 
 # 4. 纯读模式 (排除 Update 的干扰，纯粹观察读热点)
-readproportion=1
-updateproportion=0
+readproportion=0.5
+updateproportion=0.5
 insertproportion=0.0
 
 ; requestdistribution=zipfian
@@ -32,3 +29,4 @@ mixgraph.key_dist_b=0.25
 # 前缀补0
 zeropadding=10
 
+threadcount=16

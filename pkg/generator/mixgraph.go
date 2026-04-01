@@ -115,8 +115,8 @@ func NewPrefixMixGraphGenerator(numKeys, numRegions int64, expA, expB, expC, exp
 		// 1=read, 2=update, 3=insert, 4=scan, 5=readModifyWrite
 		// 注意 update 会先get再set,会计入两次!
 		if i == 0 || i == 1 {
-			chooser.Add(1, 1) // read
-			chooser.Add(0, 2) // update
+			chooser.Add(0.8, 1) // read
+			chooser.Add(0.2, 2) // update
 			// chooser.Add(0.30, 3) // insert
 		} else if i >= 10 && i <= 20 {
 			chooser.Add(0.50, 1) // read
