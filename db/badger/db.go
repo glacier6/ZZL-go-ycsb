@@ -236,7 +236,14 @@ func (db *badgerDB) Update(ctx context.Context, table string, key string, values
 		if err != nil {
 			return err
 		}
-		return txn.Set(rowKey, buf)
+		// 🌟 新增深拷贝：切断与 YCSB 内存池的联系
+		safeBuf := make([]byte, len(buf))
+		copy(safeBuf, buf)
+
+		// fmt.Printf("👉 [BadgerDB Insert] 准备更新 Key: %s, 真实 Value 长度: %d bytes\n", rowKey, len(safeBuf))
+
+		// 传入独立内存 safeBuf，避免并发覆写
+		return txn.Set(rowKey, safeBuf)
 	})
 	return err
 }
@@ -254,7 +261,14 @@ func (db *badgerDB) Insert(ctx context.Context, table string, key string, values
 		if err != nil {
 			return err
 		}
-		return txn.Set(rowKey, buf)
+		// 🌟 新增深拷贝：切断与 YCSB 内存池的联系
+		safeBuf := make([]byte, len(buf))
+		copy(safeBuf, buf)
+
+		// fmt.Printf("👉 [BadgerDB Insert] 准备写入 Key: %s, 真实 Value 长度: %d bytes\n", rowKey, len(safeBuf))
+
+		// 传入独立内存 safeBuf，让 Badger 慢慢去异步落盘
+		return txn.Set(rowKey, safeBuf)
 	})
 
 	return err

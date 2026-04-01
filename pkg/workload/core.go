@@ -718,6 +718,18 @@ func (coreCreator) Create(p *properties.Properties) (ycsb.Workload, error) {
 			expA, expB, expC, expD,
 			keyDistA, keyDistB,
 		)
+		// 👇 新增：在这里劫持 Value 长度生成器 👇
+		if p.GetBool("mixgraph.gpd_value", false) {
+			valueK := p.GetFloat64("mixgraph.value_k", 0.2615)
+			valueSigma := p.GetFloat64("mixgraph.value_sigma", 25.45)
+			valueMu := p.GetFloat64("mixgraph.value_mu", 0.0)
+			c.fieldLengthGenerator = generator.NewGPDGenerator(valueK, valueSigma, valueMu)
+			fmt.Printf("🚀 [CoreWorkload] GPD 动态 Value 开关【已开启】! (k=%.4f, sigma=%.2f)\n", valueK, valueSigma)
+		} else {
+			// 留一个提示日志，方便你压测时确认状态
+			fmt.Println("⚪ [CoreWorkload] GPD 动态 Value 开关【未开启】，将使用原版固定 fieldlength。")
+		}
+
 	// zzlHACK:END
 	default:
 		util.Fatalf("unknown request distribution %s", requestDistrib)

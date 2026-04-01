@@ -1,32 +1,56 @@
 workload=core
 readallfields=true
 
-# 1. 数据集
 recordcount=1000000
-
-# 2. 强制顺序生成 (user0 到 user99)
-insertorder=ordered
-
-# 3. 跑操作 
 operationcount=1000000
 
-# 4. 纯读模式 (排除 Update 的干扰，纯粹观察读热点)
-readproportion=0.5
-updateproportion=0.5
+insertorder=ordered
+
+readproportion=0.83
+updateproportion=0.14
+scanproportion=0.03
 insertproportion=0.0
 
 ; requestdistribution=zipfian
 
 requestdistribution=mixgraph
 mixgraph.num_regions=100
-mixgraph.exp_a=0.5
-mixgraph.exp_b=-0.2
-mixgraph.exp_c=0.5
-mixgraph.exp_d=-0.01
+threadcount=16
 
-mixgraph.key_dist_a=1.0
-mixgraph.key_dist_b=0.25
+# ==========================================
+#  前缀热度分布 (Bimodal Exponential Decay 双项指数衰减)
+# 对应 db_bench 参数: -keyrange_num 及 -keyrange_dist_a/b/c/d
+# 作用: 制造极度陡峭的热点前缀 (a, b) 和极其平缓的冷区沙漠 (c, d)
+# ==========================================
+mixgraph.num_regions=30
+mixgraph.exp_a=14.18
+mixgraph.exp_b=-2.917
+mixgraph.exp_c=0.0164
+mixgraph.exp_d=-0.08082
+
+# ==========================================
+#  前缀内部的 Key 倾斜度 (Pareto 长尾分布 / 幂律倾斜)
+# 对应 db_bench 参数: -key_dist_a 及 -key_dist_b
+# 作用: 在热点前缀内部，进一步让 10% 的 Key 承受 90% 的流量
+# ==========================================
+mixgraph.key_dist_a=0.002312
+mixgraph.key_dist_b=0.3467
+
+# ==========================================
+#  控制各个key的value长度
+# ==========================================
+# 启用GPD分布
+mixgraph.gpd_value=true
+# k决定“长尾到底有多畸变、多厚
+mixgraph.value_k=0.2615
+# sigma决定绝大多数“普通数据”的波动范围（胖瘦）
+mixgraph.value_sigma=25.45
+# mu设为 0 意味着这个分布在数学计算上可以生成的理论最小值是 0
+mixgraph.value_mu=0
+
 # 前缀补0
 zeropadding=10
 
-threadcount=16
+# fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
+fieldcount=1
+fieldlength=43 
