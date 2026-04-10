@@ -1,0 +1,127 @@
+=== 【Normal_Badger】 测试报告 ===
+>>> --- Load Phase ---
+🚀 [CoreWorkload] GPD 动态 Value 开关【已开启】! (k=0.2615, sigma=25.45)
+Using request distribution 'mixgraph' a keyrange of [0 29999999]
+badger 2026/04/10 17:39:49 INFO: All 0 tables opened in 0s
+badger 2026/04/10 17:39:49 INFO: Discard stats nextEmptySlot: 0
+badger 2026/04/10 17:39:49 INFO: Set nextTxnTs to 0
+***************** properties *****************
+"mixgraph.exp_d"="-0.08082"
+"mixgraph.value_mu"="0"
+"badger.num_compactors"="4"
+"table"="usertable"
+"insertorder"="ordered"
+"mixgraph.value_k"="0.2615"
+"mixgraph.key_dist_a"="0.002312"
+"badger.sync_writes"="false"
+"badger.dir"="./zzl_badger_data"
+"command"="load"
+"mixgraph.key_dist_b"="0.3467"
+"requestdistribution"="mixgraph"
+"mixgraph.exp_c"="0.0164"
+"zeropadding"="10"
+"threadcount"="16"
+"mixgraph.gpd_value"="true"
+"readallfields"="true"
+"badger.valuedir"="./zzl_badger_data"
+"mixgraph.exp_b"="-2.917"
+"mixgraph.num_regions"="100"
+"recordcount"="30000000"
+"fieldcount"="1"
+"fieldlength"="43 "
+"dotransactions"="false"
+"operationcount"="30000000"
+";"="requestdistribution=zipfian"
+"mixgraph.value_sigma"="25.45"
+"mixgraph.exp_a"="14.18"
+"workload"="core"
+**********************************************
+**********************************************
+Run finished, takes 3m37.876003092s
+INSERT - Takes(s): 217.9, Count: 30000000, OPS: 137692.8, Avg(us): 113, Min(us): 2, Max(us): 29967, 50th(us): 90, 90th(us): 175, 95th(us): 220, 99th(us): 464, 99.9th(us): 1095, 99.99th(us): 2675
+TOTAL  - Takes(s): 217.9, Count: 30000000, OPS: 137693.0, Avg(us): 113, Min(us): 2, Max(us): 29967, 50th(us): 90, 90th(us): 175, 95th(us): 220, 99th(us): 464, 99.9th(us): 1095, 99.99th(us): 2675
+badger 2026/04/10 17:43:27 INFO: Lifetime L0 stalled for: 0s
+badger 2026/04/10 17:43:27 INFO: 
+Level 0 [ ]: NumTables: 04. Size: 5.9 MiB of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 32 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 2 [ ]: NumTables: 00. Size: 0 B of 64 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 3 [ ]: NumTables: 00. Size: 0 B of 128 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 4 [ ]: NumTables: 00. Size: 0 B of 256 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 5 [B]: NumTables: 16. Size: 469 MiB of 511 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 6 [ ]: NumTables: 59. Size: 1022 MiB of 1022 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 128 MiB
+Level Done
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 1788.84 MB
+💿 [分子] OS内核级物理写入: 10129.32 MB  (10621362176 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 5.66 x
+>>> [PHYSICAL_IO_RESULT] 10129.32
+=======================================================
+
+>>> --- Run Phase ---
+🚀 [CoreWorkload] GPD 动态 Value 开关【已开启】! (k=0.2615, sigma=25.45)
+Using request distribution 'mixgraph' a keyrange of [0 29999999]
+badger 2026/04/10 17:43:28 INFO: All 79 tables opened in 75ms
+badger 2026/04/10 17:43:28 INFO: Discard stats nextEmptySlot: 0
+badger 2026/04/10 17:43:28 INFO: Set nextTxnTs to 30000000
+***************** properties *****************
+"table"="usertable"
+"recordcount"="30000000"
+"fieldlength"="43 "
+"mixgraph.gpd_value"="true"
+"threadcount"="16"
+"badger.dir"="./zzl_badger_data"
+"operationcount"="30000000"
+"mixgraph.exp_d"="-0.08082"
+"badger.valuedir"="./zzl_badger_data"
+"workload"="core"
+"mixgraph.num_regions"="100"
+"mixgraph.value_sigma"="25.45"
+"requestdistribution"="mixgraph"
+"mixgraph.value_k"="0.2615"
+"badger.sync_writes"="false"
+"mixgraph.key_dist_b"="0.3467"
+"mixgraph.exp_a"="14.18"
+"command"="run"
+"mixgraph.key_dist_a"="0.002312"
+"dotransactions"="true"
+"insertorder"="ordered"
+";"="requestdistribution=zipfian"
+"mixgraph.value_mu"="0"
+"readallfields"="true"
+"badger.num_compactors"="4"
+"mixgraph.exp_b"="-2.917"
+"zeropadding"="10"
+"mixgraph.exp_c"="0.0164"
+"fieldcount"="1"
+**********************************************
+**********************************************
+Run finished, takes 9m42.224318374s
+READ   - Takes(s): 582.2, Count: 2999383, OPS: 5151.6, Avg(us): 207, Min(us): 1, Max(us): 503039, 50th(us): 164, 90th(us): 366, 95th(us): 447, 99th(us): 681, 99.9th(us): 1474, 99.99th(us): 51839
+TOTAL  - Takes(s): 582.2, Count: 29743287, OPS: 51085.7, Avg(us): 306, Min(us): 1, Max(us): 652799, 50th(us): 216, 90th(us): 454, 95th(us): 560, 99th(us): 878, 99.9th(us): 3441, 99.99th(us): 120191
+UPDATE - Takes(s): 582.2, Count: 26743904, OPS: 45934.2, Avg(us): 317, Min(us): 4, Max(us): 652799, 50th(us): 221, 90th(us): 463, 95th(us): 570, 99th(us): 894, 99.9th(us): 3925, 99.99th(us): 127167
+UPDATE_ERROR - Takes(s): 582.2, Count: 256713, OPS: 440.9, Avg(us): 264, Min(us): 4, Max(us): 652287, 50th(us): 206, 90th(us): 414, 95th(us): 504, 99th(us): 799, 99.9th(us): 2613, 99.99th(us): 77055
+badger 2026/04/10 17:53:10 INFO: Lifetime L0 stalled for: 0s
+badger 2026/04/10 17:53:10 INFO: [3] [E] LOG Compact 0->5 (5, 16 -> 15 tables with 4 splits). [03969 03978 03979 03980 03981 . 03961 03962 03963 03964 03965 03970 03971 03968 03973 03974 03966 03975 03976 03967 03972 03977 .] -> [03982 03983 03985 03986 03984 03989 03993 03994 03987 03992 03996 03997 03988 03991 03995 .], took 2.909s
+, deleted 9571583 bytes
+badger 2026/04/10 17:53:10 INFO: 
+Level 0 [ ]: NumTables: 03. Size: 5.0 MiB of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 32 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 2 [ ]: NumTables: 00. Size: 0 B of 64 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 3 [ ]: NumTables: 00. Size: 0 B of 128 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 4 [ ]: NumTables: 00. Size: 0 B of 256 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 5 [B]: NumTables: 15. Size: 486 MiB of 511 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 6 [ ]: NumTables: 59. Size: 1022 MiB of 1022 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 128 MiB
+Level Done
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 1607.56 MB
+💿 [分子] OS内核级物理写入: 75194.91 MB  (78847574016 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 46.78 x
+>>> [PHYSICAL_IO_RESULT] 75194.91
+=======================================================
+

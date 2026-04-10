@@ -43,6 +43,11 @@ run_single_test() {
     mkdir -p ${DATA_DIR} 
     echo "✅ 旧数据清理完毕。"
 
+    # ⚠️ 为了保证 IO 统计不受旧页缓存影响，这里需要清空 OS 缓存
+    echo "🧼 正在清空操作系统页缓存 ..."
+    echo "207hanjiang" | sudo -S sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'
+    echo "✅ 环境净化完毕。"
+
     # [步骤C]：重新编译
     echo "🔨 [C] 正在重新编译 go-ycsb..."
     make build
@@ -67,6 +72,11 @@ run_single_test() {
         exit 1
     fi
     echo "✅ Load 阶段完成。"
+
+    # 再次清空缓存，确保 Run 阶段和 Load 阶段的物理环境隔离
+    echo "🧼 正在清空操作系统页缓存 ..."
+    echo "207hanjiang" | sudo -S sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'
+    echo "✅ 环境净化完毕。"
 
     # --- Run 阶段 ---
     echo "🔥 执行 Run 阶段..."

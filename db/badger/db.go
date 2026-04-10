@@ -17,6 +17,8 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
+	"sync/atomic"
 
 	"github.com/dgraph-io/badger/v4"
 	"github.com/magiconair/properties"
@@ -58,7 +60,11 @@ type badgerDB struct {
 
 	r       *util.RowCodec
 	bufPool *util.BufPool
+	//zzlHACK: 💥 新增：本地累加器（无锁）
+	localBytesCount int64
 }
+
+var GlobalLogicalWriteBytes atomic.Int64 //zzlHACK: 💥 新增：全局累加器
 
 type contextKey string
 
@@ -118,6 +124,18 @@ func getOptions(p *properties.Properties) badger.Options {
 	if p.GetBool(badgerDoNotCompact, false) {
 		opts.NumCompactors = 0
 	}
+	// zzlHACK:加速压缩,暂时测试用
+	// 首个目标上限比预设的层基础大小（BaseLevelSize）小或等的作为基线层
+	// 下面这三个是默认的
+	// MemTableSize:        64 << 20, //内存表的总尺寸大小 64乘2的20次方（向左移位20次），64MB
+	// BaseTableSize:       2 << 20,  //SST大小，2MB
+	// BaseLevelSize:       10 << 20,
+	opts.MemTableSize = 4 << 20
+	opts.BaseLevelSize = 8 << 20 // 这个调整的是到base的条件,即倒立漏斗的拐弯处大小
+	opts.LevelSizeMultiplier = 2 // 这个调整的是倒立漏斗的倾斜程度,越大则越倾斜,底层容纳的数据量也就越大!层级倍率调整为5倍的话,10G的数据即可让BASE到1层(1层为3mb,2层为16mb).为3倍的话,1G的数据就可以
+	opts.ValueThreshold = 1024
+	// zzlHACK:END
+
 	// if b := p.GetString(badgerTableLoadingMode, "LoadToRAM"); len(b) > 0 {
 	// 	if b == "FileIO" {
 	// 		opts.TableLoadingMode = options.FileIO
@@ -141,7 +159,57 @@ func getOptions(p *properties.Properties) badger.Options {
 }
 
 func (db *badgerDB) Close() error {
-	return db.db.Close()
+	// zzlHACK:清理尾部以及输出逻辑写入量
+	if db.localBytesCount > 0 {
+		GlobalLogicalWriteBytes.Add(db.localBytesCount)
+		db.localBytesCount = 0
+	}
+	logicalMB := float64(GlobalLogicalWriteBytes.Load()) / (1 << 20)
+
+	// =====================================================================
+	// 💥 第一步：先调用底层 Badger 的 Close！
+	// 这会阻塞等待所有后台 Compaction、Memtable Flush 彻底、绝对地写入物理磁盘！
+	// =====================================================================
+	closeErr := db.db.Close()
+
+	// =====================================================================
+	// 💥 第二步：此时引擎已经完全静止，底层 I/O 彻底结束。
+	// 我们亲自去读操作系统内核为我们记录的“生死簿”！
+	// =====================================================================
+	var physicalBytes int64
+	ioData, err := os.ReadFile("/proc/self/io") // 注意这里只会看YCSB自身的IO量
+	if err == nil {
+		lines := strings.Split(string(ioData), "\n")
+		for _, line := range lines {
+			if strings.HasPrefix(line, "write_bytes:") {
+				fmt.Sscanf(line, "write_bytes: %d", &physicalBytes)
+				break
+			}
+		}
+	}
+
+	physicalMB := float64(physicalBytes) / (1 << 20)
+	var finalWA float64
+	if logicalMB > 0 {
+		finalWA = physicalMB / logicalMB
+	}
+
+	// 华丽地打印出终极学术对账单
+	fmt.Printf("\n=======================================================\n")
+	fmt.Printf("🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成\n")
+	fmt.Printf("=======================================================\n")
+	fmt.Printf("🎯 [分母] 纯应用层逻辑写入: %.2f MB\n", logicalMB)
+	if physicalBytes > 0 {
+		fmt.Printf("💿 [分子] OS内核级物理写入: %.2f MB  (%d Bytes)\n", physicalMB, physicalBytes)
+		fmt.Printf("🔥 [核弹级数据] 最终系统级写放大 (System WA): %.2f x\n", finalWA)
+		// 留下一个特殊标记，方便外面的 Bash 脚本直接 Grep 提取
+		fmt.Printf(">>> [PHYSICAL_IO_RESULT] %.2f\n", physicalMB)
+	} else {
+		fmt.Printf("⚠️ 无法读取 /proc/self/io，请确保在 Linux 环境下运行！\n")
+	}
+	fmt.Printf("=======================================================\n\n")
+	// zzlHACK:END
+	return closeErr
 }
 
 func (db *badgerDB) InitThread(ctx context.Context, _ int, _ int) context.Context {
@@ -240,8 +308,15 @@ func (db *badgerDB) Update(ctx context.Context, table string, key string, values
 		safeBuf := make([]byte, len(buf))
 		copy(safeBuf, buf)
 
+		// zzlHACK:统计逻辑写入量
+		payloadSize := int64(len(rowKey) + len(safeBuf))
+		db.localBytesCount += payloadSize
+		if db.localBytesCount >= 1048576 {
+			GlobalLogicalWriteBytes.Add(db.localBytesCount)
+			db.localBytesCount = 0 // 清零重新攒
+		}
+		// zzlHACK:END
 		// fmt.Printf("👉 [BadgerDB Insert] 准备更新 Key: %s, 真实 Value 长度: %d bytes\n", rowKey, len(safeBuf))
-
 		// 传入独立内存 safeBuf，避免并发覆写
 		return txn.Set(rowKey, safeBuf)
 	})
@@ -266,7 +341,14 @@ func (db *badgerDB) Insert(ctx context.Context, table string, key string, values
 		copy(safeBuf, buf)
 
 		// fmt.Printf("👉 [BadgerDB Insert] 准备写入 Key: %s, 真实 Value 长度: %d bytes\n", rowKey, len(safeBuf))
-
+		// zzlHACK:统计逻辑写入量
+		payloadSize := int64(len(rowKey) + len(safeBuf))
+		db.localBytesCount += payloadSize
+		if db.localBytesCount >= 1048576 {
+			GlobalLogicalWriteBytes.Add(db.localBytesCount)
+			db.localBytesCount = 0 // 清零重新攒
+		}
+		// zzlHACK:END
 		// 传入独立内存 safeBuf，让 Badger 慢慢去异步落盘
 		return txn.Set(rowKey, safeBuf)
 	})
@@ -276,6 +358,16 @@ func (db *badgerDB) Insert(ctx context.Context, table string, key string, values
 
 func (db *badgerDB) Delete(ctx context.Context, table string, key string) error {
 	err := db.db.Update(func(txn *badger.Txn) error {
+		// zzlHACK:💥 墓碑写入也算逻辑写
+		rowKey := db.getRowKey(table, key)
+		payloadSize := int64(len(rowKey))
+		db.localBytesCount += payloadSize
+		if db.localBytesCount >= 1048576 {
+			GlobalLogicalWriteBytes.Add(db.localBytesCount)
+			db.localBytesCount = 0
+		}
+		// zzlHACK:END
+
 		return txn.Delete(db.getRowKey(table, key))
 	})
 
