@@ -118,15 +118,15 @@ func NewPrefixMixGraphGenerator(numKeys, numRegions int64, expA, expB, expC, exp
 			// 🔥 [Top 10% 核心热区] - 对应 i == 0, 1 等
 			// 模拟：热门话题、活跃用户 Session
 			// 策略：高频更新，制造海量过期版本，压榨 Compaction 性能
-			chooser.Add(0.50, 1) // 50% Read
-			chooser.Add(0.50, 2) // 50% Update
+			chooser.Add(0.1, 1) // 50% Read
+			chooser.Add(0.9, 2) // 50% Update
 
 		} else if pos > 0.10 && pos <= 0.30 {
 			// ⛅ [10% - 30% 温和区] - 相当于之前的 i >= 10 && i <= 20
 			// 模拟：一般社交动态、近期 Timeline 翻阅
 			// 策略：读为主，加入少量 Scan 以增加 LSM-Tree 检索压力
-			chooser.Add(0.80, 1) // 80% Read
-			chooser.Add(0.15, 2) // 15% Update
+			chooser.Add(0.10, 1) // 80% Read
+			chooser.Add(0.85, 2) // 15% Update
 			chooser.Add(0.05, 4) // 5%  Scan
 
 		} else {
