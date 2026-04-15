@@ -78,6 +78,9 @@ import (
 	_ "github.com/pingcap/go-ycsb/db/dynamodb"
 	// Register s3 database
 	_ "github.com/pingcap/go-ycsb/db/s3"
+	// zzlHACK:增加pprof性能统计工具
+	_ "net/http/pprof"
+	// zzlHACK:END
 )
 
 var (

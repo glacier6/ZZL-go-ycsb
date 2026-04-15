@@ -134,8 +134,8 @@ func NewPrefixMixGraphGenerator(numKeys, numRegions int64, expA, expB, expC, exp
 			// 模拟：历史存档、僵尸账号
 			// 策略：极高比例的纯读，Update 极少
 			// 战术意义：如果这部分的 SSTable 被频繁 Compaction，说明写放大失控
-			chooser.Add(0.1, 1) // 95% Read
-			chooser.Add(0.9, 2) // 5%  Update
+			chooser.Add(0.9, 1) // 95% Read
+			chooser.Add(0.1, 2) // 5%  Update
 		}
 		// 【关键修复】：把它存放在它洗牌后对应的【物理前缀索引】下！
 		physicalRegionID := regionMap[i]
