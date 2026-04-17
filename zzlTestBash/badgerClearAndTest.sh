@@ -97,10 +97,10 @@ run_single_test() {
 START_TIME=$(date +%s)
 
 # 第一轮：跑原版 Badger
-run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH}
+# run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH}
 
 # 第二轮：跑魔改版 (heatLSM) Badger
-# run_single_test "heatLSM_Badger" ${PRIZZL_BADGER_PATH}
+run_single_test "heatLSM_Badger" ${PRIZZL_BADGER_PATH}
 
 # 善后：把开发环境切回你的魔改版，方便你接下来继续改代码
 echo "🔧 测试完毕，正在将 go.mod 恢复指向你的开发版本..."
