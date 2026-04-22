@@ -1,0 +1,1382 @@
+=== 【heatLSM_Badger】 第 1 轮测试报告 ===
+>>> --- Load Phase ---
+🚀 [CoreWorkload] GPD 动态 Value 开关【已开启】! (k=0.2615, sigma=25.45)
+Using request distribution 'mixgraph' a keyrange of [0 29999999]
+badger 2026/04/22 10:49:39 INFO: All 0 tables opened in 0s
+badger 2026/04/22 10:49:39 INFO: Discard stats nextEmptySlot: 0
+badger 2026/04/22 10:49:39 INFO: Set nextTxnTs to 0
+***************** properties *****************
+"badger.valuedir"="./zzl_badger_data"
+"mixgraph.value_k"="0.2615"
+"fieldlength"="43 "
+"badger.sync_writes"="false"
+"insertorder"="ordered"
+"mixgraph.num_regions"="100"
+"mixgraph.exp_c"="0.0164"
+"mixgraph.gpd_value"="true"
+"workload"="core"
+"mixgraph.value_mu"="0"
+"mixgraph.key_dist_b"="0.3467"
+"threadcount"="16"
+"requestdistribution"="mixgraph"
+"mixgraph.key_dist_a"="0.002312"
+"operationcount"="30000000"
+"readallfields"="true"
+"mixgraph.exp_b"="-2.917"
+"badger.num_compactors"="4"
+"dotransactions"="false"
+"zeropadding"="10"
+"command"="load"
+"mixgraph.value_sigma"="25.45"
+"table"="usertable"
+"mixgraph.exp_d"="-0.08082"
+"fieldcount"="1"
+"recordcount"="30000000"
+"badger.dir"="./zzl_badger_data"
+";"="requestdistribution=zipfian"
+"mixgraph.exp_a"="14.18"
+**********************************************
+INSERT - Takes(s): 10.0, Count: 1317949, OPS: 131792.7, Avg(us): 119, Min(us): 3, Max(us): 6999, 50th(us): 97, 90th(us): 186, 95th(us): 227, 99th(us): 401, 99.9th(us): 1400, 99.99th(us): 4127
+TOTAL  - Takes(s): 10.0, Count: 1317949, OPS: 131792.6, Avg(us): 119, Min(us): 3, Max(us): 6999, 50th(us): 97, 90th(us): 186, 95th(us): 227, 99th(us): 401, 99.9th(us): 1400, 99.99th(us): 4127
+INSERT - Takes(s): 20.0, Count: 2664194, OPS: 133208.2, Avg(us): 117, Min(us): 2, Max(us): 15527, 50th(us): 96, 90th(us): 184, 95th(us): 224, 99th(us): 400, 99.9th(us): 1299, 99.99th(us): 3535
+TOTAL  - Takes(s): 20.0, Count: 2664194, OPS: 133210.2, Avg(us): 117, Min(us): 2, Max(us): 15527, 50th(us): 96, 90th(us): 184, 95th(us): 224, 99th(us): 400, 99.9th(us): 1299, 99.99th(us): 3535
+INSERT - Takes(s): 30.0, Count: 3973325, OPS: 132443.0, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 97, 90th(us): 185, 95th(us): 226, 99th(us): 405, 99.9th(us): 1264, 99.99th(us): 3161
+TOTAL  - Takes(s): 30.0, Count: 3973325, OPS: 132444.6, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 97, 90th(us): 185, 95th(us): 226, 99th(us): 405, 99.9th(us): 1264, 99.99th(us): 3161
+INSERT - Takes(s): 40.0, Count: 5314347, OPS: 132855.9, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 96, 90th(us): 185, 95th(us): 226, 99th(us): 410, 99.9th(us): 1232, 99.99th(us): 3025
+TOTAL  - Takes(s): 40.0, Count: 5314347, OPS: 132857.3, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 96, 90th(us): 185, 95th(us): 226, 99th(us): 410, 99.9th(us): 1232, 99.99th(us): 3025
+INSERT - Takes(s): 50.0, Count: 6676989, OPS: 133538.5, Avg(us): 117, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 183, 95th(us): 225, 99th(us): 415, 99.9th(us): 1198, 99.99th(us): 2799
+TOTAL  - Takes(s): 50.0, Count: 6676989, OPS: 133539.3, Avg(us): 117, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 183, 95th(us): 225, 99th(us): 415, 99.9th(us): 1198, 99.99th(us): 2799
+INSERT - Takes(s): 60.0, Count: 8029276, OPS: 133820.5, Avg(us): 117, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 183, 95th(us): 225, 99th(us): 421, 99.9th(us): 1177, 99.99th(us): 2643
+TOTAL  - Takes(s): 60.0, Count: 8029276, OPS: 133821.3, Avg(us): 117, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 183, 95th(us): 225, 99th(us): 421, 99.9th(us): 1177, 99.99th(us): 2643
+INSERT - Takes(s): 70.0, Count: 9298014, OPS: 132828.6, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 184, 95th(us): 228, 99th(us): 435, 99.9th(us): 1171, 99.99th(us): 2601
+TOTAL  - Takes(s): 70.0, Count: 9298014, OPS: 132828.7, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 184, 95th(us): 228, 99th(us): 435, 99.9th(us): 1171, 99.99th(us): 2601
+INSERT - Takes(s): 80.0, Count: 10612981, OPS: 132660.7, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 184, 95th(us): 229, 99th(us): 442, 99.9th(us): 1158, 99.99th(us): 2513
+TOTAL  - Takes(s): 80.0, Count: 10612981, OPS: 132660.3, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 184, 95th(us): 229, 99th(us): 442, 99.9th(us): 1158, 99.99th(us): 2513
+INSERT - Takes(s): 90.0, Count: 11916251, OPS: 132402.5, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 185, 95th(us): 230, 99th(us): 449, 99.9th(us): 1146, 99.99th(us): 2471
+TOTAL  - Takes(s): 90.0, Count: 11916251, OPS: 132402.9, Avg(us): 118, Min(us): 2, Max(us): 15527, 50th(us): 95, 90th(us): 185, 95th(us): 230, 99th(us): 449, 99.9th(us): 1146, 99.99th(us): 2471
+INSERT - Takes(s): 100.0, Count: 13287360, OPS: 132872.4, Avg(us): 118, Min(us): 2, Max(us): 18175, 50th(us): 95, 90th(us): 184, 95th(us): 229, 99th(us): 446, 99.9th(us): 1127, 99.99th(us): 2429
+TOTAL  - Takes(s): 100.0, Count: 13287360, OPS: 132872.4, Avg(us): 118, Min(us): 2, Max(us): 18175, 50th(us): 95, 90th(us): 184, 95th(us): 229, 99th(us): 446, 99.9th(us): 1127, 99.99th(us): 2429
+INSERT - Takes(s): 110.0, Count: 14581433, OPS: 132558.2, Avg(us): 118, Min(us): 2, Max(us): 18175, 50th(us): 95, 90th(us): 184, 95th(us): 230, 99th(us): 451, 99.9th(us): 1123, 99.99th(us): 2575
+TOTAL  - Takes(s): 110.0, Count: 14581433, OPS: 132558.7, Avg(us): 118, Min(us): 2, Max(us): 18175, 50th(us): 95, 90th(us): 184, 95th(us): 230, 99th(us): 451, 99.9th(us): 1123, 99.99th(us): 2575
+INSERT - Takes(s): 120.0, Count: 15915740, OPS: 132630.3, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 95, 90th(us): 184, 95th(us): 230, 99th(us): 452, 99.9th(us): 1112, 99.99th(us): 2397
+TOTAL  - Takes(s): 120.0, Count: 15915740, OPS: 132630.7, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 95, 90th(us): 184, 95th(us): 230, 99th(us): 452, 99.9th(us): 1112, 99.99th(us): 2397
+INSERT - Takes(s): 130.0, Count: 17299019, OPS: 133069.0, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 95, 90th(us): 183, 95th(us): 228, 99th(us): 449, 99.9th(us): 1096, 99.99th(us): 2291
+TOTAL  - Takes(s): 130.0, Count: 17299019, OPS: 133069.3, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 95, 90th(us): 183, 95th(us): 228, 99th(us): 449, 99.9th(us): 1096, 99.99th(us): 2291
+INSERT - Takes(s): 140.0, Count: 18613043, OPS: 132950.0, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 95, 90th(us): 184, 95th(us): 229, 99th(us): 452, 99.9th(us): 1096, 99.99th(us): 2283
+TOTAL  - Takes(s): 140.0, Count: 18613043, OPS: 132950.3, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 95, 90th(us): 184, 95th(us): 229, 99th(us): 452, 99.9th(us): 1096, 99.99th(us): 2283
+INSERT - Takes(s): 150.0, Count: 19940954, OPS: 132939.0, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 184, 95th(us): 229, 99th(us): 454, 99.9th(us): 1091, 99.99th(us): 2209
+TOTAL  - Takes(s): 150.0, Count: 19940954, OPS: 132939.4, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 184, 95th(us): 229, 99th(us): 454, 99.9th(us): 1091, 99.99th(us): 2209
+INSERT - Takes(s): 160.0, Count: 21284297, OPS: 133026.2, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 229, 99th(us): 454, 99.9th(us): 1083, 99.99th(us): 2201
+TOTAL  - Takes(s): 160.0, Count: 21284297, OPS: 133026.5, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 229, 99th(us): 454, 99.9th(us): 1083, 99.99th(us): 2201
+INSERT - Takes(s): 170.0, Count: 22631217, OPS: 133124.7, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 451, 99.9th(us): 1078, 99.99th(us): 2221
+TOTAL  - Takes(s): 170.0, Count: 22631217, OPS: 133124.9, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 451, 99.9th(us): 1078, 99.99th(us): 2221
+INSERT - Takes(s): 180.0, Count: 23970010, OPS: 133166.2, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 451, 99.9th(us): 1072, 99.99th(us): 2193
+TOTAL  - Takes(s): 180.0, Count: 23970010, OPS: 133166.4, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 451, 99.9th(us): 1072, 99.99th(us): 2193
+INSERT - Takes(s): 190.0, Count: 25296608, OPS: 133139.3, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 453, 99.9th(us): 1067, 99.99th(us): 2161
+TOTAL  - Takes(s): 190.0, Count: 25296608, OPS: 133139.5, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 453, 99.9th(us): 1067, 99.99th(us): 2161
+INSERT - Takes(s): 200.0, Count: 26624429, OPS: 133121.7, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 454, 99.9th(us): 1067, 99.99th(us): 2157
+TOTAL  - Takes(s): 200.0, Count: 26624429, OPS: 133121.9, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 228, 99th(us): 454, 99.9th(us): 1067, 99.99th(us): 2157
+INSERT - Takes(s): 210.0, Count: 27947684, OPS: 133084.0, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 229, 99th(us): 455, 99.9th(us): 1063, 99.99th(us): 2117
+TOTAL  - Takes(s): 210.0, Count: 27947684, OPS: 133084.2, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 183, 95th(us): 229, 99th(us): 455, 99.9th(us): 1063, 99.99th(us): 2117
+INSERT - Takes(s): 220.0, Count: 29243852, OPS: 132926.0, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 184, 95th(us): 229, 99th(us): 457, 99.9th(us): 1062, 99.99th(us): 2119
+TOTAL  - Takes(s): 220.0, Count: 29243852, OPS: 132926.0, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 184, 95th(us): 229, 99th(us): 457, 99.9th(us): 1062, 99.99th(us): 2119
+**********************************************
+Run finished, takes 3m45.637655853s
+INSERT - Takes(s): 225.6, Count: 30000000, OPS: 132956.6, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 184, 95th(us): 229, 99th(us): 457, 99.9th(us): 1059, 99.99th(us): 2103
+TOTAL  - Takes(s): 225.6, Count: 30000000, OPS: 132956.6, Avg(us): 118, Min(us): 2, Max(us): 28431, 50th(us): 94, 90th(us): 184, 95th(us): 229, 99th(us): 457, 99.9th(us): 1059, 99.99th(us): 2103
+badger 2026/04/22 10:53:25 INFO: 
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+(*) [Cold 🧊] FID: 1          | Size:    3.86 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Hot  🔥] FID: 2147483649 | Size: 2048.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)---------------------------------------------------------
+📈 汇总: 共 1 个冷大巴, 1 个热大巴
+总容量: 2051.86 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%!
+(MISSING)=========================================================
+
+================ 🌳 heatLSM 热力树拓扑与覆写率全景图 🌳 ================
+└── [Lv0 路由] 范围:[-∞, +∞) | 前缀:'ROOT' | 🌿子节点数:5
+    ├── [Lv1 叶子] 范围:[-∞, usertable:user0029986) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    ├── [Lv1 叶子] 范围:[usertable:user0029986, usertable:user0029987) | 前缀:'usertable:user0029986' | 💥写次数:466 | 🔥覆写率: 0.0000
+    ├── [Lv1 叶子] 范围:[usertable:user0029987, usertable:user0029988) | 前缀:'usertable:user0029987' | 💥写次数:970 | 🔥覆写率: 0.0000
+    ├── [Lv1 叶子] 范围:[usertable:user0029988, usertable:user0029989) | 前缀:'usertable:user0029988' | 💥写次数:1024 | 🔥覆写率: 0.0000
+    └── [Lv1 路由] 范围:[usertable:user0029989, +∞) | 前缀:'ROOT' | 🌿子节点数:5
+        ├── [Lv2 叶子] 范围:[usertable:user0029989, usertable:user0029989) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+        ├── [Lv2 叶子] 范围:[usertable:user0029989, usertable:user002998:) | 前缀:'usertable:user0029989' | 💥写次数:1036 | 🔥覆写率: 0.0000
+        ├── [Lv2 叶子] 范围:[usertable:user002998:, usertable:user002999) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+        ├── [Lv2 路由] 范围:[usertable:user002999, usertable:user00299:) | 前缀:'usertable:user002999' | 🌿子节点数:7
+        │   ├── [Lv3 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+        │   ├── [Lv3 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:816 | 🔥覆写率: 0.0002
+        │   ├── [Lv3 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:1120 | 🔥覆写率: 0.0002
+        │   ├── [Lv3 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:960 | 🔥覆写率: 0.0002
+        │   ├── [Lv3 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:1008 | 🔥覆写率: 0.0002
+        │   ├── [Lv3 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:1058 | 🔥覆写率: 0.0002
+        │   └── [Lv3 叶子] 范围:[5, +∞) | 前缀:'ROOT' | 💥写次数:5000 | 🔥覆写率: 0.0000
+        └── [Lv2 叶子] 范围:[usertable:user00299:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+========================================================================
+📊 [系统内存雷达] 活跃区块数: 15, 回收站空洞数: 21
+💾 [总物理内存开销] 1.19 MB
+
+badger 2026/04/22 10:53:25 INFO: Lifetime L0 stalled for: 0s
+badger 2026/04/22 10:53:25 INFO: 
+Level 0 [ ]: NumTables: 03. Size: 6.1 MiB of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 32 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 2 [ ]: NumTables: 00. Size: 0 B of 64 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 3 [ ]: NumTables: 00. Size: 0 B of 128 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 4 [ ]: NumTables: 00. Size: 0 B of 257 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 5 [B]: NumTables: 15. Size: 463 MiB of 514 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 6 [ ]: NumTables: 64. Size: 1.0 GiB of 1.0 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 128 MiB
+Level 98 [H]: NumTables: 00. Size: 0 B of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+Level 99 [H]: NumTables: 00. Size: 0 B of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+Level Done
+HeatTree统计因为阻塞丢弃的key个数（DropCount）: 0.
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 1780.46 MB
+💿 [分子] OS内核级物理写入: 10042.50 MB  (10530328576 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 5.64 x
+>>> [PHYSICAL_IO_RESULT] 10042.50
+=======================================================
+
+>>> --- Run Phase ---
+🚀 [CoreWorkload] GPD 动态 Value 开关【已开启】! (k=0.2615, sigma=25.45)
+Using request distribution 'mixgraph' a keyrange of [0 29999999]
+badger 2026/04/22 10:53:26 INFO: All 82 tables opened in 70ms
+badger 2026/04/22 10:53:26 INFO: Discard stats nextEmptySlot: 0
+badger 2026/04/22 10:53:26 INFO: Set nextTxnTs to 30000000
+***************** properties *****************
+"mixgraph.value_sigma"="25.45"
+"mixgraph.value_mu"="0"
+";"="requestdistribution=zipfian"
+"mixgraph.gpd_value"="true"
+"table"="usertable"
+"badger.sync_writes"="false"
+"recordcount"="30000000"
+"dotransactions"="true"
+"threadcount"="16"
+"badger.dir"="./zzl_badger_data"
+"mixgraph.exp_c"="0.0164"
+"workload"="core"
+"fieldlength"="43 "
+"mixgraph.key_dist_b"="0.3467"
+"mixgraph.exp_d"="-0.08082"
+"mixgraph.key_dist_a"="0.002312"
+"badger.valuedir"="./zzl_badger_data"
+"insertorder"="ordered"
+"zeropadding"="10"
+"requestdistribution"="mixgraph"
+"mixgraph.num_regions"="100"
+"badger.num_compactors"="4"
+"mixgraph.exp_b"="-2.917"
+"command"="run"
+"fieldcount"="1"
+"mixgraph.exp_a"="14.18"
+"mixgraph.value_k"="0.2615"
+"readallfields"="true"
+"operationcount"="30000000"
+**********************************************
+READ   - Takes(s): 10.0, Count: 69990, OPS: 7000.8, Avg(us): 199, Min(us): 3, Max(us): 6239, 50th(us): 189, 90th(us): 349, 95th(us): 444, 99th(us): 723, 99.9th(us): 1375, 99.99th(us): 2983
+TOTAL  - Takes(s): 10.0, Count: 687859, OPS: 68780.1, Avg(us): 227, Min(us): 3, Max(us): 8919, 50th(us): 212, 90th(us): 385, 95th(us): 482, 99th(us): 766, 99.9th(us): 1634, 99.99th(us): 3321
+UPDATE - Takes(s): 10.0, Count: 617869, OPS: 61781.1, Avg(us): 231, Min(us): 4, Max(us): 8919, 50th(us): 214, 90th(us): 388, 95th(us): 486, 99th(us): 771, 99.9th(us): 1658, 99.99th(us): 3321
+UPDATE_ERROR - Takes(s): 10.0, Count: 6344, OPS: 634.3, Avg(us): 226, Min(us): 8, Max(us): 3125, 50th(us): 214, 90th(us): 366, 95th(us): 449, 99th(us): 724, 99.9th(us): 1433, 99.99th(us): 2279
+READ   - Takes(s): 20.0, Count: 139327, OPS: 6967.2, Avg(us): 200, Min(us): 3, Max(us): 6239, 50th(us): 195, 90th(us): 350, 95th(us): 427, 99th(us): 701, 99.9th(us): 1253, 99.99th(us): 2513
+TOTAL  - Takes(s): 20.0, Count: 1369589, OPS: 68475.6, Avg(us): 228, Min(us): 3, Max(us): 8919, 50th(us): 217, 90th(us): 384, 95th(us): 464, 99th(us): 734, 99.9th(us): 1513, 99.99th(us): 2975
+UPDATE - Takes(s): 20.0, Count: 1230262, OPS: 61509.4, Avg(us): 232, Min(us): 4, Max(us): 8919, 50th(us): 220, 90th(us): 387, 95th(us): 467, 99th(us): 738, 99.9th(us): 1536, 99.99th(us): 3041
+UPDATE_ERROR - Takes(s): 20.0, Count: 12601, OPS: 630.0, Avg(us): 229, Min(us): 8, Max(us): 3461, 50th(us): 220, 90th(us): 369, 95th(us): 439, 99th(us): 686, 99.9th(us): 1327, 99.99th(us): 3125
+READ   - Takes(s): 30.0, Count: 209123, OPS: 6971.6, Avg(us): 200, Min(us): 2, Max(us): 6239, 50th(us): 197, 90th(us): 347, 95th(us): 418, 99th(us): 690, 99.9th(us): 1228, 99.99th(us): 2351
+TOTAL  - Takes(s): 30.0, Count: 2056596, OPS: 68553.5, Avg(us): 228, Min(us): 2, Max(us): 8919, 50th(us): 219, 90th(us): 381, 95th(us): 455, 99th(us): 716, 99.9th(us): 1464, 99.99th(us): 2811
+UPDATE - Takes(s): 30.0, Count: 1847473, OPS: 61582.5, Avg(us): 231, Min(us): 4, Max(us): 8919, 50th(us): 221, 90th(us): 385, 95th(us): 459, 99th(us): 719, 99.9th(us): 1492, 99.99th(us): 2839
+UPDATE_ERROR - Takes(s): 30.0, Count: 19129, OPS: 637.6, Avg(us): 229, Min(us): 8, Max(us): 3803, 50th(us): 222, 90th(us): 365, 95th(us): 428, 99th(us): 655, 99.9th(us): 1187, 99.99th(us): 3125
+READ   - Takes(s): 40.0, Count: 278784, OPS: 6970.1, Avg(us): 199, Min(us): 2, Max(us): 6239, 50th(us): 198, 90th(us): 346, 95th(us): 411, 99th(us): 673, 99.9th(us): 1215, 99.99th(us): 2271
+TOTAL  - Takes(s): 40.0, Count: 2746089, OPS: 68651.4, Avg(us): 228, Min(us): 2, Max(us): 8919, 50th(us): 220, 90th(us): 379, 95th(us): 450, 99th(us): 700, 99.9th(us): 1435, 99.99th(us): 2695
+UPDATE - Takes(s): 40.0, Count: 2467305, OPS: 61681.8, Avg(us): 231, Min(us): 4, Max(us): 8919, 50th(us): 223, 90th(us): 383, 95th(us): 453, 99th(us): 703, 99.9th(us): 1463, 99.99th(us): 2711
+UPDATE_ERROR - Takes(s): 40.0, Count: 25525, OPS: 638.1, Avg(us): 228, Min(us): 8, Max(us): 3803, 50th(us): 224, 90th(us): 363, 95th(us): 424, 99th(us): 637, 99.9th(us): 1148, 99.99th(us): 3123
+badger 2026/04/22 10:54:12 INFO: [0] [E] LOG Compact 0->5 (5, 16 -> 13 tables with 4 splits). [01398 01394 01396 01392 01399 . 00884 00899 00918 00943 00958 01005 01014 01030 01034 01073 01096 01142 01186 01190 01216 01224 .] -> [01401 01402 01403 01404 01410 01416 01411 01415 01409 01417 01418 01407 01412 .], took 2.461s
+, deleted 300899 bytes
+READ   - Takes(s): 50.0, Count: 345325, OPS: 6906.9, Avg(us): 198, Min(us): 2, Max(us): 107391, 50th(us): 193, 90th(us): 343, 95th(us): 408, 99th(us): 658, 99.9th(us): 1226, 99.99th(us): 2759
+TOTAL  - Takes(s): 50.0, Count: 3402058, OPS: 68040.5, Avg(us): 230, Min(us): 2, Max(us): 109183, 50th(us): 219, 90th(us): 380, 95th(us): 450, 99th(us): 694, 99.9th(us): 1443, 99.99th(us): 3351
+UPDATE - Takes(s): 50.0, Count: 3056733, OPS: 61133.9, Avg(us): 233, Min(us): 4, Max(us): 109183, 50th(us): 222, 90th(us): 384, 95th(us): 454, 99th(us): 697, 99.9th(us): 1468, 99.99th(us): 3381
+UPDATE_ERROR - Takes(s): 50.0, Count: 31299, OPS: 626.0, Avg(us): 227, Min(us): 8, Max(us): 7051, 50th(us): 222, 90th(us): 362, 95th(us): 423, 99th(us): 626, 99.9th(us): 1239, 99.99th(us): 3461
+READ   - Takes(s): 60.0, Count: 418237, OPS: 6970.9, Avg(us): 196, Min(us): 1, Max(us): 107391, 50th(us): 190, 90th(us): 340, 95th(us): 403, 99th(us): 642, 99.9th(us): 1232, 99.99th(us): 3495
+TOTAL  - Takes(s): 60.0, Count: 4115528, OPS: 68591.0, Avg(us): 228, Min(us): 1, Max(us): 109183, 50th(us): 218, 90th(us): 379, 95th(us): 448, 99th(us): 681, 99.9th(us): 1389, 99.99th(us): 3447
+UPDATE - Takes(s): 60.0, Count: 3697291, OPS: 61620.4, Avg(us): 232, Min(us): 4, Max(us): 109183, 50th(us): 221, 90th(us): 383, 95th(us): 452, 99th(us): 685, 99.9th(us): 1409, 99.99th(us): 3421
+UPDATE_ERROR - Takes(s): 60.0, Count: 37860, OPS: 631.0, Avg(us): 225, Min(us): 7, Max(us): 7051, 50th(us): 221, 90th(us): 361, 95th(us): 421, 99th(us): 615, 99.9th(us): 1148, 99.99th(us): 3125
+READ   - Takes(s): 70.0, Count: 488178, OPS: 6974.3, Avg(us): 196, Min(us): 1, Max(us): 107391, 50th(us): 192, 90th(us): 340, 95th(us): 402, 99th(us): 633, 99.9th(us): 1232, 99.99th(us): 3531
+TOTAL  - Takes(s): 70.0, Count: 4801239, OPS: 68589.2, Avg(us): 228, Min(us): 1, Max(us): 109183, 50th(us): 219, 90th(us): 378, 95th(us): 447, 99th(us): 675, 99.9th(us): 1353, 99.99th(us): 3305
+UPDATE - Takes(s): 70.0, Count: 4313061, OPS: 61615.1, Avg(us): 231, Min(us): 4, Max(us): 109183, 50th(us): 222, 90th(us): 382, 95th(us): 451, 99th(us): 679, 99.9th(us): 1364, 99.99th(us): 3253
+UPDATE_ERROR - Takes(s): 70.0, Count: 44255, OPS: 632.2, Avg(us): 226, Min(us): 7, Max(us): 7051, 50th(us): 222, 90th(us): 361, 95th(us): 420, 99th(us): 614, 99.9th(us): 1139, 99.99th(us): 3547
+READ   - Takes(s): 80.0, Count: 558061, OPS: 6976.0, Avg(us): 197, Min(us): 1, Max(us): 107391, 50th(us): 194, 90th(us): 340, 95th(us): 401, 99th(us): 621, 99.9th(us): 1241, 99.99th(us): 3649
+TOTAL  - Takes(s): 80.0, Count: 5489185, OPS: 68614.2, Avg(us): 228, Min(us): 1, Max(us): 109183, 50th(us): 220, 90th(us): 378, 95th(us): 445, 99th(us): 666, 99.9th(us): 1331, 99.99th(us): 3127
+UPDATE - Takes(s): 80.0, Count: 4931124, OPS: 61638.4, Avg(us): 231, Min(us): 4, Max(us): 109183, 50th(us): 222, 90th(us): 382, 95th(us): 449, 99th(us): 671, 99.9th(us): 1341, 99.99th(us): 3089
+UPDATE_ERROR - Takes(s): 80.0, Count: 50762, OPS: 634.5, Avg(us): 226, Min(us): 7, Max(us): 7051, 50th(us): 223, 90th(us): 360, 95th(us): 418, 99th(us): 605, 99.9th(us): 1109, 99.99th(us): 3461
+READ   - Takes(s): 90.0, Count: 627961, OPS: 6977.6, Avg(us): 197, Min(us): 1, Max(us): 107391, 50th(us): 195, 90th(us): 341, 95th(us): 401, 99th(us): 611, 99.9th(us): 1225, 99.99th(us): 3689
+TOTAL  - Takes(s): 90.0, Count: 6173184, OPS: 68590.7, Avg(us): 228, Min(us): 1, Max(us): 109183, 50th(us): 221, 90th(us): 379, 95th(us): 444, 99th(us): 660, 99.9th(us): 1304, 99.99th(us): 2989
+UPDATE - Takes(s): 90.0, Count: 5545223, OPS: 61613.2, Avg(us): 231, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 382, 95th(us): 449, 99th(us): 665, 99.9th(us): 1312, 99.99th(us): 2901
+UPDATE_ERROR - Takes(s): 90.0, Count: 57167, OPS: 635.2, Avg(us): 226, Min(us): 7, Max(us): 7051, 50th(us): 223, 90th(us): 362, 95th(us): 419, 99th(us): 598, 99.9th(us): 1105, 99.99th(us): 3461
+READ   - Takes(s): 100.0, Count: 697960, OPS: 6979.8, Avg(us): 197, Min(us): 1, Max(us): 107391, 50th(us): 196, 90th(us): 340, 95th(us): 400, 99th(us): 603, 99.9th(us): 1206, 99.99th(us): 3715
+TOTAL  - Takes(s): 100.0, Count: 6862172, OPS: 68621.6, Avg(us): 228, Min(us): 1, Max(us): 109183, 50th(us): 221, 90th(us): 378, 95th(us): 443, 99th(us): 654, 99.9th(us): 1295, 99.99th(us): 2925
+UPDATE - Takes(s): 100.0, Count: 6164212, OPS: 61641.9, Avg(us): 231, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 382, 95th(us): 448, 99th(us): 659, 99.9th(us): 1303, 99.99th(us): 2841
+UPDATE_ERROR - Takes(s): 100.0, Count: 63618, OPS: 636.2, Avg(us): 227, Min(us): 7, Max(us): 7051, 50th(us): 224, 90th(us): 362, 95th(us): 418, 99th(us): 594, 99.9th(us): 1072, 99.99th(us): 3461
+READ   - Takes(s): 110.0, Count: 768828, OPS: 6989.5, Avg(us): 197, Min(us): 1, Max(us): 107391, 50th(us): 196, 90th(us): 340, 95th(us): 399, 99th(us): 595, 99.9th(us): 1206, 99.99th(us): 3809
+TOTAL  - Takes(s): 110.0, Count: 7556078, OPS: 68691.4, Avg(us): 228, Min(us): 1, Max(us): 109183, 50th(us): 221, 90th(us): 378, 95th(us): 442, 99th(us): 649, 99.9th(us): 1284, 99.99th(us): 2839
+UPDATE - Takes(s): 110.0, Count: 6787250, OPS: 61702.0, Avg(us): 231, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 382, 95th(us): 446, 99th(us): 653, 99.9th(us): 1290, 99.99th(us): 2723
+UPDATE_ERROR - Takes(s): 110.0, Count: 70091, OPS: 637.2, Avg(us): 227, Min(us): 7, Max(us): 7051, 50th(us): 224, 90th(us): 361, 95th(us): 418, 99th(us): 590, 99.9th(us): 1071, 99.99th(us): 3125
+READ   - Takes(s): 120.0, Count: 839555, OPS: 6996.5, Avg(us): 197, Min(us): 1, Max(us): 107391, 50th(us): 197, 90th(us): 340, 95th(us): 398, 99th(us): 587, 99.9th(us): 1217, 99.99th(us): 3939
+TOTAL  - Takes(s): 120.0, Count: 8250701, OPS: 68755.7, Avg(us): 227, Min(us): 1, Max(us): 109183, 50th(us): 222, 90th(us): 377, 95th(us): 441, 99th(us): 645, 99.9th(us): 1277, 99.99th(us): 2759
+UPDATE - Takes(s): 120.0, Count: 7411146, OPS: 61759.3, Avg(us): 231, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 381, 95th(us): 445, 99th(us): 649, 99.9th(us): 1282, 99.99th(us): 2653
+UPDATE_ERROR - Takes(s): 120.0, Count: 76766, OPS: 639.7, Avg(us): 227, Min(us): 7, Max(us): 7051, 50th(us): 225, 90th(us): 361, 95th(us): 417, 99th(us): 587, 99.9th(us): 1098, 99.99th(us): 3123
+badger 2026/04/22 10:55:30 INFO: [1] [E] LOG Compact 0->5 (5, 13 -> 14 tables with 5 splits). [01734 01732 01730 01725 01736 . 01401 01402 01403 01404 01410 01416 01411 01415 01409 01417 01418 01407 01412 .] -> [01738 01740 01741 01742 01739 01746 01749 01745 01751 01755 01744 01750 01752 01743 .], took 2.274s
+, deleted 1404975 bytes
+READ   - Takes(s): 130.0, Count: 909625, OPS: 6997.3, Avg(us): 196, Min(us): 1, Max(us): 107391, 50th(us): 194, 90th(us): 338, 95th(us): 396, 99th(us): 582, 99.9th(us): 1225, 99.99th(us): 4103
+TOTAL  - Takes(s): 130.0, Count: 8936789, OPS: 68744.5, Avg(us): 227, Min(us): 1, Max(us): 109183, 50th(us): 220, 90th(us): 377, 95th(us): 441, 99th(us): 645, 99.9th(us): 1284, 99.99th(us): 3031
+UPDATE - Takes(s): 130.0, Count: 8027164, OPS: 61747.4, Avg(us): 231, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 380, 95th(us): 445, 99th(us): 650, 99.9th(us): 1289, 99.99th(us): 2855
+UPDATE_ERROR - Takes(s): 130.0, Count: 82975, OPS: 638.3, Avg(us): 226, Min(us): 7, Max(us): 7051, 50th(us): 223, 90th(us): 361, 95th(us): 416, 99th(us): 587, 99.9th(us): 1125, 99.99th(us): 3125
+READ   - Takes(s): 140.0, Count: 983834, OPS: 7027.5, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 193, 90th(us): 336, 95th(us): 394, 99th(us): 574, 99.9th(us): 1206, 99.99th(us): 4043
+TOTAL  - Takes(s): 140.0, Count: 9666419, OPS: 69045.7, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 220, 90th(us): 375, 95th(us): 439, 99th(us): 638, 99.9th(us): 1266, 99.99th(us): 2891
+UPDATE - Takes(s): 140.0, Count: 8682585, OPS: 62018.3, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 222, 90th(us): 379, 95th(us): 443, 99th(us): 643, 99.9th(us): 1271, 99.99th(us): 2751
+UPDATE_ERROR - Takes(s): 140.0, Count: 89698, OPS: 640.7, Avg(us): 225, Min(us): 7, Max(us): 7051, 50th(us): 223, 90th(us): 359, 95th(us): 413, 99th(us): 580, 99.9th(us): 1098, 99.99th(us): 3123
+READ   - Takes(s): 150.0, Count: 1053249, OPS: 7021.8, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 194, 90th(us): 337, 95th(us): 394, 99th(us): 569, 99.9th(us): 1201, 99.99th(us): 4077
+TOTAL  - Takes(s): 150.0, Count: 10352621, OPS: 69017.0, Avg(us): 227, Min(us): 0, Max(us): 109183, 50th(us): 220, 90th(us): 375, 95th(us): 439, 99th(us): 636, 99.9th(us): 1263, 99.99th(us): 2851
+UPDATE - Takes(s): 150.0, Count: 9299373, OPS: 61995.5, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 379, 95th(us): 443, 99th(us): 641, 99.9th(us): 1269, 99.99th(us): 2711
+UPDATE_ERROR - Takes(s): 150.0, Count: 96022, OPS: 640.1, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 223, 90th(us): 359, 95th(us): 413, 99th(us): 578, 99.9th(us): 1076, 99.99th(us): 3123
+READ   - Takes(s): 160.0, Count: 1124408, OPS: 7027.7, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 194, 90th(us): 336, 95th(us): 393, 99th(us): 564, 99.9th(us): 1204, 99.99th(us): 4143
+TOTAL  - Takes(s): 160.0, Count: 11052506, OPS: 69077.9, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 220, 90th(us): 375, 95th(us): 438, 99th(us): 632, 99.9th(us): 1250, 99.99th(us): 2771
+UPDATE - Takes(s): 160.0, Count: 9928098, OPS: 62050.3, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 379, 95th(us): 442, 99th(us): 637, 99.9th(us): 1254, 99.99th(us): 2627
+UPDATE_ERROR - Takes(s): 160.0, Count: 102581, OPS: 641.1, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 359, 95th(us): 413, 99th(us): 572, 99.9th(us): 1066, 99.99th(us): 3125
+READ   - Takes(s): 170.0, Count: 1194905, OPS: 7029.0, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 195, 90th(us): 336, 95th(us): 393, 99th(us): 559, 99.9th(us): 1209, 99.99th(us): 4187
+TOTAL  - Takes(s): 170.0, Count: 11742755, OPS: 69074.7, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 375, 95th(us): 437, 99th(us): 629, 99.9th(us): 1246, 99.99th(us): 2727
+UPDATE - Takes(s): 170.0, Count: 10547850, OPS: 62045.9, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 379, 95th(us): 441, 99th(us): 634, 99.9th(us): 1250, 99.99th(us): 2553
+UPDATE_ERROR - Takes(s): 170.0, Count: 109052, OPS: 641.5, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 359, 95th(us): 412, 99th(us): 569, 99.9th(us): 1052, 99.99th(us): 3123
+READ   - Takes(s): 180.0, Count: 1265250, OPS: 7029.3, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 195, 90th(us): 336, 95th(us): 392, 99th(us): 556, 99.9th(us): 1198, 99.99th(us): 4179
+TOTAL  - Takes(s): 180.0, Count: 12433062, OPS: 69072.4, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 375, 95th(us): 437, 99th(us): 627, 99.9th(us): 1239, 99.99th(us): 2697
+UPDATE - Takes(s): 180.0, Count: 11167812, OPS: 62043.4, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 378, 95th(us): 441, 99th(us): 632, 99.9th(us): 1243, 99.99th(us): 2495
+UPDATE_ERROR - Takes(s): 180.0, Count: 115731, OPS: 642.9, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 359, 95th(us): 412, 99th(us): 567, 99.9th(us): 1058, 99.99th(us): 3125
+READ   - Takes(s): 190.0, Count: 1336223, OPS: 7032.9, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 196, 90th(us): 336, 95th(us): 392, 99th(us): 552, 99.9th(us): 1185, 99.99th(us): 4187
+TOTAL  - Takes(s): 190.0, Count: 13128660, OPS: 69098.1, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 436, 99th(us): 624, 99.9th(us): 1229, 99.99th(us): 2625
+UPDATE - Takes(s): 190.0, Count: 11792437, OPS: 62065.3, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 378, 95th(us): 440, 99th(us): 629, 99.9th(us): 1233, 99.99th(us): 2429
+UPDATE_ERROR - Takes(s): 190.0, Count: 122246, OPS: 643.4, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 359, 95th(us): 411, 99th(us): 564, 99.9th(us): 1058, 99.99th(us): 3125
+READ   - Takes(s): 200.0, Count: 1406812, OPS: 7034.2, Avg(us): 196, Min(us): 0, Max(us): 107391, 50th(us): 196, 90th(us): 336, 95th(us): 392, 99th(us): 549, 99.9th(us): 1185, 99.99th(us): 4223
+TOTAL  - Takes(s): 200.0, Count: 13819476, OPS: 69097.0, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 436, 99th(us): 622, 99.9th(us): 1226, 99.99th(us): 2585
+UPDATE - Takes(s): 200.0, Count: 12412664, OPS: 62063.1, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 378, 95th(us): 440, 99th(us): 628, 99.9th(us): 1229, 99.99th(us): 2393
+UPDATE_ERROR - Takes(s): 200.0, Count: 128700, OPS: 643.5, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 359, 95th(us): 411, 99th(us): 563, 99.9th(us): 1049, 99.99th(us): 3123
+badger 2026/04/22 10:56:55 INFO: [1] [E] LOG Compact 0->5 (5, 14 -> 15 tables with 5 splits). [02107 02105 02099 02097 02108 . 01738 01740 01741 01742 01739 01746 01749 01745 01751 01755 01744 01750 01752 01743 .] -> [02110 02111 02113 02114 02112 02116 02117 02118 02124 02128 02115 02123 02125 02121 02122 .], took 2.313s
+, deleted 1795099 bytes
+READ   - Takes(s): 210.0, Count: 1474309, OPS: 7020.6, Avg(us): 196, Min(us): 0, Max(us): 107391, 50th(us): 196, 90th(us): 336, 95th(us): 392, 99th(us): 549, 99.9th(us): 1185, 99.99th(us): 4259
+TOTAL  - Takes(s): 210.0, Count: 14479976, OPS: 68952.2, Avg(us): 227, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 375, 95th(us): 436, 99th(us): 624, 99.9th(us): 1232, 99.99th(us): 2735
+UPDATE - Takes(s): 210.0, Count: 13005667, OPS: 61931.7, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 378, 95th(us): 441, 99th(us): 630, 99.9th(us): 1235, 99.99th(us): 2533
+UPDATE_ERROR - Takes(s): 210.0, Count: 134787, OPS: 641.8, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 359, 95th(us): 412, 99th(us): 563, 99.9th(us): 1055, 99.99th(us): 3123
+READ   - Takes(s): 220.0, Count: 1549489, OPS: 7043.2, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 194, 90th(us): 335, 95th(us): 390, 99th(us): 545, 99.9th(us): 1181, 99.99th(us): 4291
+TOTAL  - Takes(s): 220.0, Count: 15221204, OPS: 69187.3, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 435, 99th(us): 621, 99.9th(us): 1221, 99.99th(us): 2689
+UPDATE - Takes(s): 220.0, Count: 13671715, OPS: 62144.1, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 378, 95th(us): 440, 99th(us): 627, 99.9th(us): 1224, 99.99th(us): 2465
+UPDATE_ERROR - Takes(s): 220.0, Count: 141603, OPS: 643.7, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 358, 95th(us): 410, 99th(us): 560, 99.9th(us): 1044, 99.99th(us): 2927
+READ   - Takes(s): 230.0, Count: 1621111, OPS: 7048.4, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 195, 90th(us): 335, 95th(us): 390, 99th(us): 542, 99.9th(us): 1175, 99.99th(us): 4295
+TOTAL  - Takes(s): 230.0, Count: 15923959, OPS: 69234.4, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 435, 99th(us): 619, 99.9th(us): 1214, 99.99th(us): 2681
+UPDATE - Takes(s): 230.0, Count: 14302848, OPS: 62186.1, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 377, 95th(us): 439, 99th(us): 625, 99.9th(us): 1217, 99.99th(us): 2455
+UPDATE_ERROR - Takes(s): 230.0, Count: 148209, OPS: 644.4, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 358, 95th(us): 410, 99th(us): 557, 99.9th(us): 1036, 99.99th(us): 2785
+READ   - Takes(s): 240.0, Count: 1692220, OPS: 7051.0, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 195, 90th(us): 335, 95th(us): 390, 99th(us): 540, 99.9th(us): 1170, 99.99th(us): 4311
+TOTAL  - Takes(s): 240.0, Count: 16617942, OPS: 69241.2, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 435, 99th(us): 617, 99.9th(us): 1208, 99.99th(us): 2679
+UPDATE - Takes(s): 240.0, Count: 14925722, OPS: 62190.3, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 223, 90th(us): 377, 95th(us): 439, 99th(us): 623, 99.9th(us): 1212, 99.99th(us): 2437
+UPDATE_ERROR - Takes(s): 240.0, Count: 154661, OPS: 644.4, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 358, 95th(us): 410, 99th(us): 555, 99.9th(us): 1019, 99.99th(us): 2785
+READ   - Takes(s): 250.0, Count: 1762618, OPS: 7050.6, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 195, 90th(us): 335, 95th(us): 390, 99th(us): 538, 99.9th(us): 1168, 99.99th(us): 4323
+TOTAL  - Takes(s): 250.0, Count: 17307148, OPS: 69228.5, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 435, 99th(us): 616, 99.9th(us): 1203, 99.99th(us): 2669
+UPDATE - Takes(s): 250.0, Count: 15544530, OPS: 62178.0, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 439, 99th(us): 622, 99.9th(us): 1206, 99.99th(us): 2415
+UPDATE_ERROR - Takes(s): 250.0, Count: 161110, OPS: 644.4, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 224, 90th(us): 358, 95th(us): 410, 99th(us): 553, 99.9th(us): 1012, 99.99th(us): 2489
+READ   - Takes(s): 260.0, Count: 1833106, OPS: 7050.5, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 195, 90th(us): 335, 95th(us): 390, 99th(us): 536, 99.9th(us): 1164, 99.99th(us): 4323
+TOTAL  - Takes(s): 260.0, Count: 17998897, OPS: 69226.5, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 435, 99th(us): 615, 99.9th(us): 1199, 99.99th(us): 2611
+UPDATE - Takes(s): 260.0, Count: 16165791, OPS: 62176.0, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 378, 95th(us): 439, 99th(us): 621, 99.9th(us): 1202, 99.99th(us): 2389
+UPDATE_ERROR - Takes(s): 260.0, Count: 167556, OPS: 644.4, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 410, 99th(us): 551, 99.9th(us): 1019, 99.99th(us): 2489
+READ   - Takes(s): 270.0, Count: 1903423, OPS: 7049.8, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 196, 90th(us): 335, 95th(us): 390, 99th(us): 535, 99.9th(us): 1155, 99.99th(us): 4323
+TOTAL  - Takes(s): 270.0, Count: 18690741, OPS: 69224.9, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 221, 90th(us): 374, 95th(us): 434, 99th(us): 613, 99.9th(us): 1195, 99.99th(us): 2575
+UPDATE - Takes(s): 270.0, Count: 16787318, OPS: 62175.2, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 378, 95th(us): 439, 99th(us): 620, 99.9th(us): 1198, 99.99th(us): 2375
+UPDATE_ERROR - Takes(s): 270.0, Count: 174102, OPS: 644.8, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 410, 99th(us): 550, 99.9th(us): 1019, 99.99th(us): 2785
+READ   - Takes(s): 280.0, Count: 1973483, OPS: 7048.2, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 196, 90th(us): 335, 95th(us): 390, 99th(us): 533, 99.9th(us): 1154, 99.99th(us): 4351
+TOTAL  - Takes(s): 280.0, Count: 19383371, OPS: 69226.2, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 374, 95th(us): 434, 99th(us): 612, 99.9th(us): 1194, 99.99th(us): 2525
+UPDATE - Takes(s): 280.0, Count: 17409888, OPS: 62178.0, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 439, 99th(us): 618, 99.9th(us): 1198, 99.99th(us): 2347
+UPDATE_ERROR - Takes(s): 280.0, Count: 180537, OPS: 644.8, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 410, 99th(us): 549, 99.9th(us): 1011, 99.99th(us): 2489
+READ   - Takes(s): 290.0, Count: 2043853, OPS: 7047.8, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 196, 90th(us): 335, 95th(us): 390, 99th(us): 532, 99.9th(us): 1150, 99.99th(us): 4379
+TOTAL  - Takes(s): 290.0, Count: 20078185, OPS: 69234.9, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 374, 95th(us): 434, 99th(us): 611, 99.9th(us): 1190, 99.99th(us): 2503
+UPDATE - Takes(s): 290.0, Count: 18034332, OPS: 62187.1, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 438, 99th(us): 617, 99.9th(us): 1193, 99.99th(us): 2323
+UPDATE_ERROR - Takes(s): 290.0, Count: 187176, OPS: 645.4, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 410, 99th(us): 548, 99.9th(us): 1011, 99.99th(us): 2489
+READ   - Takes(s): 300.0, Count: 2116105, OPS: 7053.7, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 196, 90th(us): 335, 95th(us): 389, 99th(us): 531, 99.9th(us): 1147, 99.99th(us): 4427
+TOTAL  - Takes(s): 300.0, Count: 20779094, OPS: 69263.5, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 434, 99th(us): 610, 99.9th(us): 1187, 99.99th(us): 2481
+UPDATE - Takes(s): 300.0, Count: 18662989, OPS: 62209.7, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 438, 99th(us): 616, 99.9th(us): 1191, 99.99th(us): 2311
+UPDATE_ERROR - Takes(s): 300.0, Count: 193794, OPS: 646.0, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 409, 99th(us): 548, 99.9th(us): 1005, 99.99th(us): 2489
+READ   - Takes(s): 310.0, Count: 2187162, OPS: 7055.4, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 389, 99th(us): 529, 99.9th(us): 1142, 99.99th(us): 4439
+TOTAL  - Takes(s): 310.0, Count: 21474266, OPS: 69271.7, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 433, 99th(us): 609, 99.9th(us): 1185, 99.99th(us): 2445
+UPDATE - Takes(s): 310.0, Count: 19287104, OPS: 62216.5, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 438, 99th(us): 615, 99.9th(us): 1188, 99.99th(us): 2287
+UPDATE_ERROR - Takes(s): 310.0, Count: 200339, OPS: 646.3, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 409, 99th(us): 547, 99.9th(us): 999, 99.99th(us): 2465
+READ   - Takes(s): 320.0, Count: 2257833, OPS: 7055.8, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 389, 99th(us): 528, 99.9th(us): 1137, 99.99th(us): 4443
+TOTAL  - Takes(s): 320.0, Count: 22168782, OPS: 69277.3, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 433, 99th(us): 608, 99.9th(us): 1183, 99.99th(us): 2445
+UPDATE - Takes(s): 320.0, Count: 19910949, OPS: 62221.5, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 438, 99th(us): 614, 99.9th(us): 1187, 99.99th(us): 2285
+UPDATE_ERROR - Takes(s): 320.0, Count: 206917, OPS: 646.6, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 409, 99th(us): 545, 99.9th(us): 993, 99.99th(us): 2309
+READ   - Takes(s): 330.0, Count: 2329834, OPS: 7060.2, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 389, 99th(us): 526, 99.9th(us): 1128, 99.99th(us): 4455
+TOTAL  - Takes(s): 330.0, Count: 22873460, OPS: 69313.2, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 433, 99th(us): 607, 99.9th(us): 1180, 99.99th(us): 2417
+UPDATE - Takes(s): 330.0, Count: 20543626, OPS: 62253.2, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 437, 99th(us): 613, 99.9th(us): 1184, 99.99th(us): 2265
+UPDATE_ERROR - Takes(s): 330.0, Count: 213455, OPS: 646.8, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 409, 99th(us): 544, 99.9th(us): 990, 99.99th(us): 2465
+READ   - Takes(s): 340.0, Count: 2400453, OPS: 7060.2, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 389, 99th(us): 525, 99.9th(us): 1120, 99.99th(us): 4451
+TOTAL  - Takes(s): 340.0, Count: 23569177, OPS: 69320.9, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 433, 99th(us): 606, 99.9th(us): 1177, 99.99th(us): 2399
+UPDATE - Takes(s): 340.0, Count: 21168724, OPS: 62260.7, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 437, 99th(us): 612, 99.9th(us): 1181, 99.99th(us): 2257
+UPDATE_ERROR - Takes(s): 340.0, Count: 220088, OPS: 647.3, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 409, 99th(us): 544, 99.9th(us): 993, 99.99th(us): 2309
+READ   - Takes(s): 350.0, Count: 2471756, OPS: 7062.2, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 389, 99th(us): 524, 99.9th(us): 1117, 99.99th(us): 4455
+TOTAL  - Takes(s): 350.0, Count: 24267342, OPS: 69335.1, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 433, 99th(us): 605, 99.9th(us): 1175, 99.99th(us): 2383
+UPDATE - Takes(s): 350.0, Count: 21795586, OPS: 62273.0, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 224, 90th(us): 377, 95th(us): 437, 99th(us): 611, 99.9th(us): 1179, 99.99th(us): 2247
+UPDATE_ERROR - Takes(s): 350.0, Count: 226747, OPS: 647.8, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 225, 90th(us): 358, 95th(us): 409, 99th(us): 542, 99.9th(us): 991, 99.99th(us): 2279
+badger 2026/04/22 10:59:26 INFO: Block cache metrics: hit: 93113961 miss: 1135644 keys-added: 677663 keys-updated: 5348 keys-evicted: 616403 cost-added: 2965428841 cost-evicted: 2696997651 sets-dropped: 0 sets-rejected: 417 gets-dropped: 163584 gets-kept: 94084416 gets-total: 94249612 hit-ratio: 0.99
+READ   - Takes(s): 360.0, Count: 2542850, OPS: 7063.5, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 389, 99th(us): 523, 99.9th(us): 1114, 99.99th(us): 4467
+TOTAL  - Takes(s): 360.0, Count: 24961345, OPS: 69337.1, Avg(us): 225, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 432, 99th(us): 604, 99.9th(us): 1176, 99.99th(us): 2375
+UPDATE - Takes(s): 360.0, Count: 22418495, OPS: 62273.5, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 377, 95th(us): 437, 99th(us): 610, 99.9th(us): 1181, 99.99th(us): 2241
+UPDATE_ERROR - Takes(s): 360.0, Count: 233407, OPS: 648.4, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 226, 90th(us): 357, 95th(us): 408, 99th(us): 541, 99.9th(us): 990, 99.99th(us): 2279
+READ   - Takes(s): 370.0, Count: 2614499, OPS: 7066.3, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 388, 99th(us): 522, 99.9th(us): 1114, 99.99th(us): 4511
+TOTAL  - Takes(s): 370.0, Count: 25665324, OPS: 69365.7, Avg(us): 225, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 432, 99th(us): 603, 99.9th(us): 1174, 99.99th(us): 2375
+UPDATE - Takes(s): 370.0, Count: 23050825, OPS: 62299.5, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 376, 95th(us): 437, 99th(us): 610, 99.9th(us): 1179, 99.99th(us): 2237
+UPDATE_ERROR - Takes(s): 370.0, Count: 240083, OPS: 648.9, Avg(us): 225, Min(us): 6, Max(us): 7051, 50th(us): 226, 90th(us): 357, 95th(us): 408, 99th(us): 541, 99.9th(us): 983, 99.99th(us): 2261
+READ   - Takes(s): 380.0, Count: 2683307, OPS: 7061.4, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 335, 95th(us): 389, 99th(us): 523, 99.9th(us): 1114, 99.99th(us): 4531
+TOTAL  - Takes(s): 380.0, Count: 26340470, OPS: 69316.9, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 373, 95th(us): 433, 99th(us): 604, 99.9th(us): 1174, 99.99th(us): 2367
+UPDATE - Takes(s): 380.0, Count: 23657163, OPS: 62255.7, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 377, 95th(us): 437, 99th(us): 610, 99.9th(us): 1179, 99.99th(us): 2231
+UPDATE_ERROR - Takes(s): 380.0, Count: 246412, OPS: 648.5, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 226, 90th(us): 358, 95th(us): 409, 99th(us): 541, 99.9th(us): 990, 99.99th(us): 2217
+READ   - Takes(s): 390.0, Count: 2751571, OPS: 7055.4, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 336, 95th(us): 390, 99th(us): 524, 99.9th(us): 1112, 99.99th(us): 4547
+TOTAL  - Takes(s): 390.0, Count: 27009106, OPS: 69254.0, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 374, 95th(us): 434, 99th(us): 605, 99.9th(us): 1174, 99.99th(us): 2367
+UPDATE - Takes(s): 390.0, Count: 24257535, OPS: 62198.7, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 377, 95th(us): 438, 99th(us): 612, 99.9th(us): 1178, 99.99th(us): 2231
+UPDATE_ERROR - Takes(s): 390.0, Count: 252633, OPS: 647.8, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 226, 90th(us): 358, 95th(us): 409, 99th(us): 543, 99.9th(us): 990, 99.99th(us): 2261
+READ   - Takes(s): 400.0, Count: 2819692, OPS: 7049.3, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 198, 90th(us): 336, 95th(us): 390, 99th(us): 524, 99.9th(us): 1110, 99.99th(us): 4571
+TOTAL  - Takes(s): 400.0, Count: 27679672, OPS: 69199.1, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 223, 90th(us): 374, 95th(us): 434, 99th(us): 606, 99.9th(us): 1174, 99.99th(us): 2357
+UPDATE - Takes(s): 400.0, Count: 24859980, OPS: 62149.8, Avg(us): 229, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 378, 95th(us): 438, 99th(us): 613, 99.9th(us): 1179, 99.99th(us): 2223
+UPDATE_ERROR - Takes(s): 400.0, Count: 258951, OPS: 647.4, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 226, 90th(us): 359, 95th(us): 410, 99th(us): 545, 99.9th(us): 990, 99.99th(us): 2217
+READ   - Takes(s): 410.0, Count: 2888650, OPS: 7045.5, Avg(us): 196, Min(us): 0, Max(us): 107391, 50th(us): 198, 90th(us): 337, 95th(us): 390, 99th(us): 524, 99.9th(us): 1108, 99.99th(us): 4587
+TOTAL  - Takes(s): 410.0, Count: 28354434, OPS: 69157.2, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 223, 90th(us): 375, 95th(us): 435, 99th(us): 607, 99.9th(us): 1174, 99.99th(us): 2363
+UPDATE - Takes(s): 410.0, Count: 25465784, OPS: 62111.6, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 378, 95th(us): 439, 99th(us): 613, 99.9th(us): 1179, 99.99th(us): 2223
+UPDATE_ERROR - Takes(s): 410.0, Count: 265154, OPS: 646.7, Avg(us): 226, Min(us): 6, Max(us): 7051, 50th(us): 226, 90th(us): 359, 95th(us): 410, 99th(us): 545, 99.9th(us): 990, 99.99th(us): 2217
+READ   - Takes(s): 420.0, Count: 2953827, OPS: 7033.0, Avg(us): 196, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 337, 95th(us): 391, 99th(us): 525, 99.9th(us): 1105, 99.99th(us): 4607
+TOTAL  - Takes(s): 420.0, Count: 28994792, OPS: 69035.1, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 223, 90th(us): 375, 95th(us): 435, 99th(us): 608, 99.9th(us): 1177, 99.99th(us): 2427
+UPDATE - Takes(s): 420.0, Count: 26040965, OPS: 62002.3, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 379, 95th(us): 439, 99th(us): 615, 99.9th(us): 1182, 99.99th(us): 2265
+UPDATE_ERROR - Takes(s): 420.0, Count: 271019, OPS: 645.3, Avg(us): 227, Min(us): 6, Max(us): 43615, 50th(us): 226, 90th(us): 360, 95th(us): 411, 99th(us): 546, 99.9th(us): 990, 99.99th(us): 2279
+badger 2026/04/22 11:00:26 INFO: [1] [E] LOG Compact 0->5 (5, 13 -> 13 tables with 5 splits). [03052 03050 03043 03046 03053 . 02110 02111 02113 02114 02112 02116 02117 02118 02124 02128 02115 02123 02125 .] -> [03055 03056 03059 03057 03058 03065 03061 03066 03067 03062 03068 03070 03060 .], took 2.203s
+, deleted 1149708 bytes
+**********************************************
+Run finished, takes 7m9.837062413s
+READ   - Takes(s): 429.8, Count: 3027600, OPS: 7043.7, Avg(us): 195, Min(us): 0, Max(us): 107391, 50th(us): 197, 90th(us): 336, 95th(us): 390, 99th(us): 524, 99.9th(us): 1102, 99.99th(us): 4615
+TOTAL  - Takes(s): 429.8, Count: 29722525, OPS: 69148.4, Avg(us): 226, Min(us): 0, Max(us): 109183, 50th(us): 222, 90th(us): 375, 95th(us): 435, 99th(us): 607, 99.9th(us): 1176, 99.99th(us): 2429
+UPDATE - Takes(s): 429.8, Count: 26694925, OPS: 62104.9, Avg(us): 230, Min(us): 4, Max(us): 109183, 50th(us): 225, 90th(us): 378, 95th(us): 439, 99th(us): 614, 99.9th(us): 1181, 99.99th(us): 2267
+UPDATE_ERROR - Takes(s): 429.8, Count: 277475, OPS: 645.5, Avg(us): 226, Min(us): 6, Max(us): 43615, 50th(us): 226, 90th(us): 359, 95th(us): 411, 99th(us): 546, 99.9th(us): 990, 99.99th(us): 2261
+badger 2026/04/22 11:00:36 INFO: 
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 1          | Size:    3.86 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.05%!
+(MISSING)(*) [Cold 🧊] FID: 2          | Size:    0.06 MB | Discard(垃圾):    0.03 MB | Garbage Ratio: 54.33%!
+(MISSING)    [Hot  🔥] FID: 2147483649 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Hot  🔥] FID: 2147483650 | Size:    3.25 MB | Discard(垃圾):    3.23 MB | Garbage Ratio: 99.39%!
+(MISSING)---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 7.17 MB | 总垃圾: 3.27 MB | 整体垃圾率: 45.56%!
+(MISSING)=========================================================
+
+================ 🌳 heatLSM 热力树拓扑与覆写率全景图 🌳 ================
+└── [Lv0 路由] 范围:[-∞, +∞) | 前缀:'ROOT' | 🌿子节点数:5
+    ├── [Lv1 叶子] 范围:[-∞, usertable:user000) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    ├── [Lv1 路由] 范围:[usertable:user000, usertable:user001) | 前缀:'usertable:user000' | 🌿子节点数:8
+    │   ├── [Lv2 路由] 范围:[-∞, 1) | 前缀:'ROOT' | 🌿子节点数:7
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 0196659) | 前缀:'ROOT' | 💥写次数:11 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[0196659, 019665:) | 前缀:'0196659' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[019665:, 06) | 前缀:'ROOT' | 💥写次数:32 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[06, 07) | 前缀:'06' | 💥写次数:5407 | 🔥覆写率: 0.3026
+    │   │   ├── [Lv3 叶子] 范围:[07, 08) | 前缀:'07' | 💥写次数:5355 | 🔥覆写率: 0.2905
+    │   │   ├── [Lv3 叶子] 范围:[08, 09) | 前缀:'08' | 💥写次数:5758 | 🔥覆写率: 0.3024
+    │   │   └── [Lv3 叶子] 范围:[09, 1) | 前缀:'ROOT' | 💥写次数:5 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:5
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 5) | 前缀:'ROOT' | 💥写次数:131 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4116 | 🔥覆写率: 0.9693
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:6379 | 🔥覆写率: 0.9788
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3465 | 🔥覆写率: 0.9651
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3381 | 🔥覆写率: 0.9677
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4702 | 🔥覆写率: 0.9705
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3957 | 🔥覆写率: 0.9705
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4288 | 🔥覆写率: 0.9702
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4947 | 🔥覆写率: 0.9738
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3417 | 🔥覆写率: 0.9638
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3869 | 🔥覆写率: 0.9682
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4295 | 🔥覆写率: 0.9698
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:6421 | 🔥覆写率: 0.9812
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4191 | 🔥覆写率: 0.9690
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4613 | 🔥覆写率: 0.9713
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4928 | 🔥覆写率: 0.9766
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3539 | 🔥覆写率: 0.9676
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3950 | 🔥覆写率: 0.9696
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4931 | 🔥覆写率: 0.9728
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3463 | 🔥覆写率: 0.9669
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4005 | 🔥覆写率: 0.9703
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:11109 | 🔥覆写率: 0.9893
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4267 | 🔥覆写率: 0.9714
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3684 | 🔥覆写率: 0.9699
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4774 | 🔥覆写率: 0.9751
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4859 | 🔥覆写率: 0.9771
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3810 | 🔥覆写率: 0.9710
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:5838 | 🔥覆写率: 0.9777
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3230 | 🔥覆写率: 0.9686
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3501 | 🔥覆写率: 0.9704
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4132 | 🔥覆写率: 0.9713
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:5952 | 🔥覆写率: 0.9771
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4519 | 🔥覆写率: 0.9707
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4296 | 🔥覆写率: 0.9709
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3720 | 🔥覆写率: 0.9646
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3663 | 🔥覆写率: 0.9662
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4150 | 🔥覆写率: 0.9689
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4659 | 🔥覆写率: 0.9726
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3158 | 🔥覆写率: 0.9663
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4127 | 🔥覆写率: 0.9709
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4469 | 🔥覆写率: 0.9715
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4562 | 🔥覆写率: 0.9721
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3798 | 🔥覆写率: 0.9664
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4455 | 🔥覆写率: 0.9734
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:2973 | 🔥覆写率: 0.9644
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3970 | 🔥覆写率: 0.9695
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:5400 | 🔥覆写率: 0.9768
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3883 | 🔥覆写率: 0.9667
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3434 | 🔥覆写率: 0.9691
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4041 | 🔥覆写率: 0.9703
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:7988 | 🔥覆写率: 0.9827
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4062 | 🔥覆写率: 0.9710
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4882 | 🔥覆写率: 0.9735
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3947 | 🔥覆写率: 0.9652
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3545 | 🔥覆写率: 0.9672
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4002 | 🔥覆写率: 0.9709
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4392 | 🔥覆写率: 0.9741
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3616 | 🔥覆写率: 0.9702
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3950 | 🔥覆写率: 0.9718
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:8902 | 🔥覆写率: 0.9868
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4810 | 🔥覆写率: 0.9736
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3782 | 🔥覆写率: 0.9684
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:5294 | 🔥覆写率: 0.9746
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:2997 | 🔥覆写率: 0.9663
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4157 | 🔥覆写率: 0.9698
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:6482 | 🔥覆写率: 0.9795
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4132 | 🔥覆写率: 0.8480
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3380 | 🔥覆写率: 0.9689
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4096 | 🔥覆写率: 0.9709
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:7290 | 🔥覆写率: 0.9843
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4085 | 🔥覆写率: 0.9708
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[7, 8) | 前缀:'7' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4434 | 🔥覆写率: 0.9707
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3278 | 🔥覆写率: 0.9646
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3454 | 🔥覆写率: 0.9664
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4749 | 🔥覆写率: 0.9692
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:5504 | 🔥覆写率: 0.9759
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4061 | 🔥覆写率: 0.9663
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3788 | 🔥覆写率: 0.9703
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3330 | 🔥覆写率: 0.9641
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:5218 | 🔥覆写率: 0.9730
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3629 | 🔥覆写率: 0.9672
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[8, 9) | 前缀:'8' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4897 | 🔥覆写率: 0.9755
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3367 | 🔥覆写率: 0.9595
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4066 | 🔥覆写率: 0.9710
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:7200 | 🔥覆写率: 0.9832
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4508 | 🔥覆写率: 0.9758
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3687 | 🔥覆写率: 0.9692
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4838 | 🔥覆写率: 0.9716
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:6390 | 🔥覆写率: 0.9825
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4101 | 🔥覆写率: 0.9710
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4704 | 🔥覆写率: 0.9753
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3997 | 🔥覆写率: 0.9677
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3638 | 🔥覆写率: 0.9673
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4719 | 🔥覆写率: 0.9724
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:8318 | 🔥覆写率: 0.9864
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3832 | 🔥覆写率: 0.9702
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4399 | 🔥覆写率: 0.9729
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3893 | 🔥覆写率: 0.9668
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4704 | 🔥覆写率: 0.9770
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4218 | 🔥覆写率: 0.9704
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:5114 | 🔥覆写率: 0.9763
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3193 | 🔥覆写率: 0.9677
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4101 | 🔥覆写率: 0.9710
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:6605 | 🔥覆写率: 0.9818
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:5689 | 🔥覆写率: 0.9760
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3479 | 🔥覆写率: 0.9701
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4370 | 🔥覆写率: 0.9714
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:6280 | 🔥覆写率: 0.9808
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4192 | 🔥覆写率: 0.9716
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4866 | 🔥覆写率: 0.9757
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3905 | 🔥覆写率: 0.9695
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3799 | 🔥覆写率: 0.9649
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3832 | 🔥覆写率: 0.9705
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:5250 | 🔥覆写率: 0.9713
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3437 | 🔥覆写率: 0.9675
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4824 | 🔥覆写率: 0.9721
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3342 | 🔥覆写率: 0.9657
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3331 | 🔥覆写率: 0.9649
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3732 | 🔥覆写率: 0.9689
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:6059 | 🔥覆写率: 0.9769
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4144 | 🔥覆写率: 0.9676
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4549 | 🔥覆写率: 0.9699
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:5065 | 🔥覆写率: 0.9770
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:5557 | 🔥覆写率: 0.9787
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4718 | 🔥覆写率: 0.9696
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3865 | 🔥覆写率: 0.9705
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3163 | 🔥覆写率: 0.9587
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4449 | 🔥覆写率: 0.9706
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3638 | 🔥覆写率: 0.9721
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4766 | 🔥覆写率: 0.9737
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4147 | 🔥覆写率: 0.9676
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4033 | 🔥覆写率: 0.9713
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:5754 | 🔥覆写率: 0.9766
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3813 | 🔥覆写率: 0.9644
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4587 | 🔥覆写率: 0.9741
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3890 | 🔥覆写率: 0.9680
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3364 | 🔥覆写率: 0.9644
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4231 | 🔥覆写率: 0.9683
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:5500 | 🔥覆写率: 0.9775
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3029 | 🔥覆写率: 0.9662
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4520 | 🔥覆写率: 0.9703
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3886 | 🔥覆写率: 0.9657
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:6552 | 🔥覆写率: 0.9823
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4206 | 🔥覆写率: 0.9699
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4314 | 🔥覆写率: 0.9712
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3505 | 🔥覆写率: 0.9570
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4698 | 🔥覆写率: 0.9715
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4659 | 🔥覆写率: 0.9747
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4612 | 🔥覆写率: 0.9726
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3641 | 🔥覆写率: 0.9685
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4181 | 🔥覆写率: 0.9720
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4323 | 🔥覆写率: 0.9706
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3580 | 🔥覆写率: 0.9664
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:5275 | 🔥覆写率: 0.9745
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4452 | 🔥覆写率: 0.9695
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3811 | 🔥覆写率: 0.9665
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3404 | 🔥覆写率: 0.9692
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:7049 | 🔥覆写率: 0.9826
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3537 | 🔥覆写率: 0.9657
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4586 | 🔥覆写率: 0.9703
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3362 | 🔥覆写率: 0.9661
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4945 | 🔥覆写率: 0.9751
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4254 | 🔥覆写率: 0.9727
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4139 | 🔥覆写率: 0.9726
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3399 | 🔥覆写率: 0.9641
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4090 | 🔥覆写率: 0.9729
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:8349 | 🔥覆写率: 0.9860
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4983 | 🔥覆写率: 0.9766
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4605 | 🔥覆写率: 0.9712
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4700 | 🔥覆写率: 0.9743
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4565 | 🔥覆写率: 0.9752
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[7, 8) | 前缀:'7' | 🌿子节点数:11
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 1) | 前缀:'ROOT' | 💥写次数:3585 | 🔥覆写率: 0.9749
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:5105 | 🔥覆写率: 0.9815
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'ROOT' | 💥写次数:3787 | 🔥覆写率: 0.9766
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3526 | 🔥覆写率: 0.9726
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4264 | 🔥覆写率: 0.9461
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:7752 | 🔥覆写率: 0.9876
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'ROOT' | 💥写次数:3655 | 🔥覆写率: 0.9747
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4406 | 🔥覆写率: 0.9783
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'ROOT' | 💥写次数:3480 | 🔥覆写率: 0.9748
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:46378 | 🔥覆写率: 0.9826
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[8, 9) | 前缀:'8' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4413 | 🔥覆写率: 0.9705
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4416 | 🔥覆写率: 0.9719
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3217 | 🔥覆写率: 0.9647
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4251 | 🔥覆写率: 0.9702
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4203 | 🔥覆写率: 0.9657
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:5420 | 🔥覆写率: 0.9750
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4480 | 🔥覆写率: 0.9706
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4514 | 🔥覆写率: 0.9718
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3199 | 🔥覆写率: 0.9607
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3711 | 🔥覆写率: 0.9678
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:5210 | 🔥覆写率: 0.9742
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:5793 | 🔥覆写率: 0.9748
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3583 | 🔥覆写率: 0.9659
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3881 | 🔥覆写率: 0.9699
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4590 | 🔥覆写率: 0.9760
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3558 | 🔥覆写率: 0.9674
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4333 | 🔥覆写率: 0.9638
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3910 | 🔥覆写率: 0.9670
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3637 | 🔥覆写率: 0.9562
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4409 | 🔥覆写率: 0.9727
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[7, 8) | 前缀:'7' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3962 | 🔥覆写率: 0.9745
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3601 | 🔥覆写率: 0.9582
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4311 | 🔥覆写率: 0.9722
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3913 | 🔥覆写率: 0.9696
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:6214 | 🔥覆写率: 0.9783
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4349 | 🔥覆写率: 0.9709
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4729 | 🔥覆写率: 0.9738
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:2917 | 🔥覆写率: 0.9632
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4060 | 🔥覆写率: 0.9694
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:7197 | 🔥覆写率: 0.9827
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:5621 | 🔥覆写率: 0.9781
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3414 | 🔥覆写率: 0.9694
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4225 | 🔥覆写率: 0.9734
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:12662 | 🔥覆写率: 0.9907
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3888 | 🔥覆写率: 0.9693
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3988 | 🔥覆写率: 0.9730
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4028 | 🔥覆写率: 0.9716
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3413 | 🔥覆写率: 0.9681
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3916 | 🔥覆写率: 0.9714
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:5326 | 🔥覆写率: 0.9791
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3135 | 🔥覆写率: 0.9664
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4752 | 🔥覆写率: 0.9732
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3765 | 🔥覆写率: 0.9705
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3987 | 🔥覆写率: 0.9718
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4600 | 🔥覆写率: 0.9728
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:5501 | 🔥覆写率: 0.9760
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3369 | 🔥覆写率: 0.9638
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4270 | 🔥覆写率: 0.9684
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:5969 | 🔥覆写率: 0.9801
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:5913 | 🔥覆写率: 0.9787
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4007 | 🔥覆写率: 0.9675
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4589 | 🔥覆写率: 0.9706
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4536 | 🔥覆写率: 0.9702
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3453 | 🔥覆写率: 0.9659
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4182 | 🔥覆写率: 0.9712
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4043 | 🔥覆写率: 0.9699
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3448 | 🔥覆写率: 0.9637
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3683 | 🔥覆写率: 0.9683
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:6772 | 🔥覆写率: 0.9799
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3378 | 🔥覆写率: 0.9652
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3927 | 🔥覆写率: 0.9714
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4092 | 🔥覆写率: 0.9708
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4793 | 🔥覆写率: 0.9782
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4300 | 🔥覆写率: 0.9645
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:5133 | 🔥覆写率: 0.9776
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3471 | 🔥覆写率: 0.9640
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4158 | 🔥覆写率: 0.9690
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4633 | 🔥覆写率: 0.9717
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:7213 | 🔥覆写率: 0.9834
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4424 | 🔥覆写率: 0.8490
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4199 | 🔥覆写率: 0.9729
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:7022 | 🔥覆写率: 0.9834
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3502 | 🔥覆写率: 0.9688
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4152 | 🔥覆写率: 0.9673
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4619 | 🔥覆写率: 0.9753
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3876 | 🔥覆写率: 0.9670
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3767 | 🔥覆写率: 0.9689
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:5493 | 🔥覆写率: 0.9755
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3537 | 🔥覆写率: 0.9662
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4733 | 🔥覆写率: 0.9718
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4308 | 🔥覆写率: 0.9704
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3466 | 🔥覆写率: 0.9639
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4248 | 🔥覆写率: 0.9698
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:6426 | 🔥覆写率: 0.9792
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3498 | 🔥覆写率: 0.9640
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3780 | 🔥覆写率: 0.9687
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:4245 | 🔥覆写率: 0.9717
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:5322 | 🔥覆写率: 0.9763
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3726 | 🔥覆写率: 0.9693
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4397 | 🔥覆写率: 0.9725
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[7, 8) | 前缀:'7' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:2882 | 🔥覆写率: 0.9635
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3592 | 🔥覆写率: 0.9675
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4060 | 🔥覆写率: 0.9674
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:5400 | 🔥覆写率: 0.9752
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3859 | 🔥覆写率: 0.9667
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4570 | 🔥覆写率: 0.9686
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:5701 | 🔥覆写率: 0.9792
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4199 | 🔥覆写率: 0.9645
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3866 | 🔥覆写率: 0.9678
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4178 | 🔥覆写率: 0.9707
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[8, 9) | 前缀:'8' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3525 | 🔥覆写率: 0.9695
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4134 | 🔥覆写率: 0.9721
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:7933 | 🔥覆写率: 0.9854
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3197 | 🔥覆写率: 0.9682
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3926 | 🔥覆写率: 0.9712
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4356 | 🔥覆写率: 0.9748
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:15440 | 🔥覆写率: 0.9693
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4049 | 🔥覆写率: 0.9739
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4563 | 🔥覆写率: 0.9749
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3355 | 🔥覆写率: 0.9686
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4414 | 🔥覆写率: 0.9673
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4222 | 🔥覆写率: 0.9686
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:5276 | 🔥覆写率: 0.9775
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4045 | 🔥覆写率: 0.9680
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:4010 | 🔥覆写率: 0.9700
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:4511 | 🔥覆写率: 0.9712
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3700 | 🔥覆写率: 0.9662
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4194 | 🔥覆写率: 0.9519
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:4294 | 🔥覆写率: 0.9715
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3140 | 🔥覆写率: 0.9632
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   └── [Lv3 叶子] 范围:[8, +∞) | 前缀:'ROOT' | 💥写次数:6284 | 🔥覆写率: 0.2362
+    │   ├── [Lv2 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:8
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 1) | 前缀:'ROOT' | 💥写次数:2947 | 🔥覆写率: 0.1600
+    │   │   ├── [Lv3 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:1528 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:1613 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:1481 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:250 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:1267 | 🔥覆写率: 0.2562
+    │   │   ├── [Lv3 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:496 | 🔥覆写率: 0.1276
+    │   │   └── [Lv3 叶子] 范围:[7, +∞) | 前缀:'ROOT' | 💥写次数:8 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[3, 4128930) | 前缀:'ROOT' | 🌿子节点数:4
+    │   │   ├── [Lv3 叶子] 范围:[3, 3) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:9
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 3) | 前缀:'ROOT' | 💥写次数:1 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:1731 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:1733 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:2223 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:892 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:985 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:840 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:5630 | 🔥覆写率: 0.2968
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:8085 | 🔥覆写率: 0.1637
+    │   │   └── [Lv3 叶子] 范围:[5, 4128930) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 叶子] 范围:[4128930, 4128931) | 前缀:'4128930' | 💥写次数:4 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[4128931, 5) | 前缀:'ROOT' | 🌿子节点数:9
+    │   │   ├── [Lv3 叶子] 范围:[4128931, 41) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[41, 42) | 前缀:'41' | 💥写次数:4161 | 🔥覆写率: 0.2280
+    │   │   ├── [Lv3 叶子] 范围:[42, 4338181) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[4338181, 4338182) | 前缀:'4338181' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[4338182, 4519535) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[4519535, 4519536) | 前缀:'4519535' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[4519536, 47) | 前缀:'ROOT' | 💥写次数:19 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[47, 48) | 前缀:'47' | 💥写次数:48 | 🔥覆写率: 0.0000
+    │   │   └── [Lv3 叶子] 范围:[48, 5) | 前缀:'ROOT' | 💥写次数:37 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:5
+    │   │   ├── [Lv3 路由] 范围:[-∞, 4) | 前缀:'ROOT' | 🌿子节点数:5
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:75 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4324 | 🔥覆写率: 0.3268
+    │   │   │   ├── [Lv4 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:5012 | 🔥覆写率: 0.2776
+    │   │   │   └── [Lv4 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4871 | 🔥覆写率: 0.2783
+    │   │   ├── [Lv3 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:62382 | 🔥覆写率: 0.9781
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:86004 | 🔥覆写率: 0.9970
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:124248 | 🔥覆写率: 0.9975
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:69132 | 🔥覆写率: 0.9925
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:69203 | 🔥覆写率: 0.9922
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:80684 | 🔥覆写率: 0.9963
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:65767 | 🔥覆写率: 0.9885
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:74752 | 🔥覆写率: 0.9950
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:102555 | 🔥覆写率: 0.9918
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:60846 | 🔥覆写率: 0.9657
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:70277 | 🔥覆写率: 0.9932
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:81265 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:79512 | 🔥覆写率: 0.9961
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:72228 | 🔥覆写率: 0.9942
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:89381 | 🔥覆写率: 0.9974
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:63589 | 🔥覆写率: 0.9841
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:67055 | 🔥覆写率: 0.9904
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:106959 | 🔥覆写率: 0.9943
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:104015 | 🔥覆写率: 0.9924
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:66172 | 🔥覆写率: 0.9898
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:85947 | 🔥覆写率: 0.9971
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:114287 | 🔥覆写率: 0.9966
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:68096 | 🔥覆写率: 0.9918
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:70849 | 🔥覆写率: 0.9931
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:81639 | 🔥覆写率: 0.9965
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:67376 | 🔥覆写率: 0.9912
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:74512 | 🔥覆写率: 0.9951
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:291582 | 🔥覆写率: 0.9974
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:63334 | 🔥覆写率: 0.9848
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:71942 | 🔥覆写率: 0.9939
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:82091 | 🔥覆写率: 0.9965
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:92820 | 🔥覆写率: 0.9977
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:73841 | 🔥覆写率: 0.9948
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:94409 | 🔥覆写率: 0.9571
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:64585 | 🔥覆写率: 0.9862
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:67978 | 🔥覆写率: 0.9914
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:81080 | 🔥覆写率: 0.9963
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:104270 | 🔥覆写率: 0.9932
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:66731 | 🔥覆写率: 0.9904
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:83289 | 🔥覆写率: 0.9969
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:107541 | 🔥覆写率: 0.9948
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:68367 | 🔥覆写率: 0.9921
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:70954 | 🔥覆写率: 0.9930
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:85176 | 🔥覆写率: 0.9969
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:65375 | 🔥覆写率: 0.9891
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:77196 | 🔥覆写率: 0.9956
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:87338 | 🔥覆写率: 0.9971
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:63935 | 🔥覆写率: 0.9848
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:71044 | 🔥覆写率: 0.9934
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:85126 | 🔥覆写率: 0.9968
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:61061 | 🔥覆写率: 0.9653
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:76423 | 🔥覆写率: 0.9954
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:104528 | 🔥覆写率: 0.9935
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:67822 | 🔥覆写率: 0.9914
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:68169 | 🔥覆写率: 0.9917
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:79663 | 🔥覆写率: 0.9961
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:126488 | 🔥覆写率: 0.9976
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:70105 | 🔥覆写率: 0.9931
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:80074 | 🔥覆写率: 0.9962
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:70857 | 🔥覆写率: 0.9935
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:70037 | 🔥覆写率: 0.9922
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:73230 | 🔥覆写率: 0.9945
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:89751 | 🔥覆写率: 0.9973
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:64616 | 🔥覆写率: 0.9873
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:81030 | 🔥覆写率: 0.9963
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:104574 | 🔥覆写率: 0.9932
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:65580 | 🔥覆写率: 0.9881
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:72661 | 🔥覆写率: 0.9942
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:76616 | 🔥覆写率: 0.9953
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:60453 | 🔥覆写率: 0.9402
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[7, 8) | 前缀:'7' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:75886 | 🔥覆写率: 0.9953
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:107028 | 🔥覆写率: 0.9942
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:67073 | 🔥覆写率: 0.9905
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:66873 | 🔥覆写率: 0.9897
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:81414 | 🔥覆写率: 0.9963
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:120498 | 🔥覆写率: 0.9973
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:71469 | 🔥覆写率: 0.9939
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:80885 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:69765 | 🔥覆写率: 0.9928
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:68443 | 🔥覆写率: 0.9920
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[8, 9) | 前缀:'8' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:72775 | 🔥覆写率: 0.9942
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:95058 | 🔥覆写率: 0.9695
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:65713 | 🔥覆写率: 0.9890
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:82041 | 🔥覆写率: 0.9965
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:80421 | 🔥覆写率: 0.9963
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:65133 | 🔥覆写率: 0.9876
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:73302 | 🔥覆写率: 0.9944
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:78654 | 🔥覆写率: 0.9957
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:62019 | 🔥覆写率: 0.9721
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:76641 | 🔥覆写率: 0.9955
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:136014 | 🔥覆写率: 0.9911
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:70943 | 🔥覆写率: 0.9937
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:67261 | 🔥覆写率: 0.9905
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:81638 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:85706 | 🔥覆写率: 0.9971
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:71717 | 🔥覆写率: 0.9939
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:82614 | 🔥覆写率: 0.9965
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:72362 | 🔥覆写率: 0.9943
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:69517 | 🔥覆写率: 0.9926
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:71891 | 🔥覆写率: 0.9939
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:182997 | 🔥覆写率: 0.9986
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:68728 | 🔥覆写率: 0.9926
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:81076 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:90353 | 🔥覆写率: 0.9975
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:65802 | 🔥覆写率: 0.9885
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:73372 | 🔥覆写率: 0.9946
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:78532 | 🔥覆写率: 0.9959
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:61811 | 🔥覆写率: 0.9765
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:76444 | 🔥覆写率: 0.9957
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:145738 | 🔥覆写率: 0.9960
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:71473 | 🔥覆写率: 0.9940
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:70314 | 🔥覆写率: 0.9933
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:82354 | 🔥覆写率: 0.9966
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:179455 | 🔥覆写率: 0.9985
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:71994 | 🔥覆写率: 0.9941
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:84717 | 🔥覆写率: 0.9969
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:72452 | 🔥覆写率: 0.9945
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:70348 | 🔥覆写率: 0.9933
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:74276 | 🔥覆写率: 0.9946
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:100914 | 🔥覆写率: 0.9906
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:71345 | 🔥覆写率: 0.9936
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:74776 | 🔥覆写率: 0.9950
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:73762 | 🔥覆写率: 0.9944
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:65724 | 🔥覆写率: 0.9889
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:74840 | 🔥覆写率: 0.9949
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:84385 | 🔥覆写率: 0.9968
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:59217 | 🔥覆写率: 0.8895
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:80701 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:126780 | 🔥覆写率: 0.8817
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:74544 | 🔥覆写率: 0.9949
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:71699 | 🔥覆写率: 0.9937
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:84011 | 🔥覆写率: 0.9967
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:60880 | 🔥覆写率: 0.9561
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:72856 | 🔥覆写率: 0.9945
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:90924 | 🔥覆写率: 0.9974
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:77553 | 🔥覆写率: 0.9958
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:68912 | 🔥覆写率: 0.9927
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:72543 | 🔥覆写率: 0.9942
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:114262 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:71812 | 🔥覆写率: 0.9938
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:75075 | 🔥覆写率: 0.9951
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:70686 | 🔥覆写率: 0.9935
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:66623 | 🔥覆写率: 0.9903
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:75169 | 🔥覆写率: 0.9950
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:88425 | 🔥覆写率: 0.9973
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:59656 | 🔥覆写率: 0.9166
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:77998 | 🔥覆写率: 0.9960
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:116877 | 🔥覆写率: 0.9967
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:78681 | 🔥覆写率: 0.9959
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:70765 | 🔥覆写率: 0.9934
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:84692 | 🔥覆写率: 0.9969
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:59540 | 🔥覆写率: 0.9194
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:73841 | 🔥覆写率: 0.9949
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:95965 | 🔥覆写率: 0.9721
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:77438 | 🔥覆写率: 0.9959
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:70516 | 🔥覆写率: 0.9934
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:74964 | 🔥覆写率: 0.9951
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:92220 | 🔥覆写率: 0.9977
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:72635 | 🔥覆写率: 0.9941
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:77361 | 🔥覆写率: 0.9955
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:71702 | 🔥覆写率: 0.9942
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:67476 | 🔥覆写率: 0.9908
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:74522 | 🔥覆写率: 0.9947
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:98323 | 🔥覆写率: 0.9869
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:63829 | 🔥覆写率: 0.9829
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:74809 | 🔥覆写率: 0.9949
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:75600 | 🔥覆写率: 0.9952
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:88547 | 🔥覆写率: 0.9973
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:70360 | 🔥覆写率: 0.9935
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:89454 | 🔥覆写率: 0.9974
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[7, 8) | 前缀:'7' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:59126 | 🔥覆写率: 0.8502
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:77706 | 🔥覆写率: 0.9958
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:109299 | 🔥覆写率: 0.9953
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:81645 | 🔥覆写率: 0.9965
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:73248 | 🔥覆写率: 0.9947
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:77329 | 🔥覆写率: 0.9954
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:116746 | 🔥覆写率: 0.9968
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:77249 | 🔥覆写率: 0.9957
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:77113 | 🔥覆写率: 0.9956
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:70593 | 🔥覆写率: 0.9936
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[8, 9) | 前缀:'8' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:71328 | 🔥覆写率: 0.9937
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:77399 | 🔥覆写率: 0.9955
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:122165 | 🔥覆写率: 0.9973
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:66232 | 🔥覆写率: 0.9900
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:76105 | 🔥覆写率: 0.9953
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:75497 | 🔥覆写率: 0.9954
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:142003 | 🔥覆写率: 0.9949
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:71896 | 🔥覆写率: 0.9939
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:91246 | 🔥覆写率: 0.9975
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:57073 | 🔥覆写率: 0.9950
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:78914 | 🔥覆写率: 0.9960
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:87881 | 🔥覆写率: 0.9972
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:88153 | 🔥覆写率: 0.9972
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:70991 | 🔥覆写率: 0.9936
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:80377 | 🔥覆写率: 0.9962
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:114871 | 🔥覆写率: 0.9965
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:75029 | 🔥覆写率: 0.9954
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:80703 | 🔥覆写率: 0.9962
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:75559 | 🔥覆写率: 0.9953
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:69855 | 🔥覆写率: 0.9935
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:75892 | 🔥覆写率: 0.9954
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:90180 | 🔥覆写率: 0.9974
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:65546 | 🔥覆写率: 0.9879
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:79352 | 🔥覆写率: 0.9959
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:75000 | 🔥覆写率: 0.9951
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:63860 | 🔥覆写率: 0.9858
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:71642 | 🔥覆写率: 0.9940
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:95947 | 🔥覆写率: 0.9704
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:61764 | 🔥覆写率: 0.9692
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:76049 | 🔥覆写率: 0.9955
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:99346 | 🔥覆写率: 0.9873
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:97352 | 🔥覆写率: 0.9843
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:73360 | 🔥覆写率: 0.9947
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:79274 | 🔥覆写率: 0.9962
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:89750 | 🔥覆写率: 0.9975
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:77070 | 🔥覆写率: 0.9958
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:88435 | 🔥覆写率: 0.9971
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:77271 | 🔥覆写率: 0.9957
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:70722 | 🔥覆写率: 0.9935
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:79722 | 🔥覆写率: 0.9961
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:11
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:839914 | 🔥覆写率: 0.9985
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'ROOT' | 💥写次数:65896 | 🔥覆写率: 0.9905
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:79244 | 🔥覆写率: 0.9961
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:74973 | 🔥覆写率: 0.9954
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 6) | 前缀:'ROOT' | 💥写次数:139472 | 🔥覆写率: 0.9895
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:102568 | 🔥覆写率: 0.9926
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:61530 | 🔥覆写率: 0.9748
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'ROOT' | 💥写次数:71659 | 🔥覆写率: 0.9943
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:76013 | 🔥覆写率: 0.9956
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:100984 | 🔥覆写率: 0.9897
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:74105 | 🔥覆写率: 0.9947
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:81533 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:57924 | 🔥覆写率: 0.9950
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:75691 | 🔥覆写率: 0.9956
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:99083 | 🔥覆写率: 0.9878
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:78009 | 🔥覆写率: 0.9958
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:69941 | 🔥覆写率: 0.9933
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:83930 | 🔥覆写率: 0.9968
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:73051 | 🔥覆写率: 0.9945
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:68874 | 🔥覆写率: 0.9924
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:83646 | 🔥覆写率: 0.9967
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:80644 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:67839 | 🔥覆写率: 0.9913
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:74899 | 🔥覆写率: 0.9948
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:115108 | 🔥覆写率: 0.9964
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:65880 | 🔥覆写率: 0.9888
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:67633 | 🔥覆写率: 0.9911
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:78271 | 🔥覆写率: 0.9957
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:124038 | 🔥覆写率: 0.9975
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[5, 6) | 前缀:'5' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:75225 | 🔥覆写率: 0.9953
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:84221 | 🔥覆写率: 0.9968
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:59042 | 🔥覆写率: 0.8469
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:77256 | 🔥覆写率: 0.9957
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:218278 | 🔥覆写率: 0.9968
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:81901 | 🔥覆写率: 0.9967
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:69693 | 🔥覆写率: 0.9932
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:89312 | 🔥覆写率: 0.9974
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:141672 | 🔥覆写率: 0.9951
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:68835 | 🔥覆写率: 0.9922
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[6, 7) | 前缀:'6' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:87157 | 🔥覆写率: 0.9971
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:83714 | 🔥覆写率: 0.9967
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:65089 | 🔥覆写率: 0.9873
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:76493 | 🔥覆写率: 0.9955
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:96860 | 🔥覆写率: 0.9817
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:63399 | 🔥覆写率: 0.9836
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:69963 | 🔥覆写率: 0.9928
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:77867 | 🔥覆写率: 0.9959
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:124909 | 🔥覆写率: 0.9976
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:76292 | 🔥覆写率: 0.9955
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[7, 8) | 前缀:'7' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:85303 | 🔥覆写率: 0.9969
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:57425 | 🔥覆写率: 0.9952
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:76698 | 🔥覆写率: 0.9954
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:73711 | 🔥覆写率: 0.9945
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:90439 | 🔥覆写率: 0.9974
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:70157 | 🔥覆写率: 0.9934
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:91844 | 🔥覆写率: 0.9975
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:55240 | 🔥覆写率: 0.9940
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:69164 | 🔥覆写率: 0.9926
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:85315 | 🔥覆写率: 0.9969
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[8, 9) | 前缀:'8' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:85916 | 🔥覆写率: 0.9970
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:65946 | 🔥覆写率: 0.9887
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:78338 | 🔥覆写率: 0.9960
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:123211 | 🔥覆写率: 0.9975
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:67535 | 🔥覆写率: 0.9905
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:69241 | 🔥覆写率: 0.9922
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:78839 | 🔥覆写率: 0.9960
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:65946 | 🔥覆写率: 0.9893
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:77672 | 🔥覆写率: 0.9957
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:88732 | 🔥覆写率: 0.9973
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:12
+    │   │   │   │   ├── [Lv5 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   │   ├── [Lv5 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:60982 | 🔥覆写率: 0.9668
+    │   │   │   │   ├── [Lv5 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:71049 | 🔥覆写率: 0.9936
+    │   │   │   │   ├── [Lv5 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:79762 | 🔥覆写率: 0.9963
+    │   │   │   │   ├── [Lv5 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:147431 | 🔥覆写率: 0.9962
+    │   │   │   │   ├── [Lv5 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:71235 | 🔥覆写率: 0.9938
+    │   │   │   │   ├── [Lv5 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:86179 | 🔥覆写率: 0.9971
+    │   │   │   │   ├── [Lv5 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:61336 | 🔥覆写率: 0.9729
+    │   │   │   │   ├── [Lv5 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:67879 | 🔥覆写率: 0.9914
+    │   │   │   │   ├── [Lv5 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:97458 | 🔥覆写率: 0.9829
+    │   │   │   │   ├── [Lv5 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:90249 | 🔥覆写率: 0.9974
+    │   │   │   │   └── [Lv5 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   └── [Lv3 叶子] 范围:[7, +∞) | 前缀:'ROOT' | 💥写次数:53 | 🔥覆写率: 0.0000
+    │   └── [Lv2 路由] 范围:[6, +∞) | 前缀:'ROOT' | 🌿子节点数:6
+    │       ├── [Lv3 叶子] 范围:[6, 6) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │       ├── [Lv3 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3755 | 🔥覆写率: 0.2706
+    │       ├── [Lv3 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:6507 | 🔥覆写率: 0.1818
+    │       ├── [Lv3 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:6998 | 🔥覆写率: 0.0841
+    │       ├── [Lv3 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:8
+    │       │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │       │   ├── [Lv4 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4099 | 🔥覆写率: 0.3038
+    │       │   ├── [Lv4 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4054 | 🔥覆写率: 0.2916
+    │       │   ├── [Lv4 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4027 | 🔥覆写率: 0.3464
+    │       │   ├── [Lv4 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:2142 | 🔥覆写率: 0.2255
+    │       │   ├── [Lv4 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:2832 | 🔥覆写率: 0.2862
+    │       │   ├── [Lv4 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:2349 | 🔥覆写率: 0.0839
+    │       │   └── [Lv4 叶子] 范围:[6, +∞) | 前缀:'ROOT' | 💥写次数:851 | 🔥覆写率: 0.0000
+    │       └── [Lv3 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    ├── [Lv1 路由] 范围:[usertable:user001, usertable:user002) | 前缀:'usertable:user001' | 🌿子节点数:9
+    │   ├── [Lv2 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:7
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:1041 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:877 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[2, 8) | 前缀:'ROOT' | 💥写次数:255 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:5525 | 🔥覆写率: 0.3011
+    │   │   ├── [Lv3 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:4966 | 🔥覆写率: 0.2476
+    │   │   └── [Lv3 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:6
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:4919 | 🔥覆写率: 0.2492
+    │   │   ├── [Lv3 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:4408 | 🔥覆写率: 0.1639
+    │   │   ├── [Lv3 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:4500 | 🔥覆写率: 0.3064
+    │   │   ├── [Lv3 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:4040 | 🔥覆写率: 0.2191
+    │   │   └── [Lv3 叶子] 范围:[4, +∞) | 前缀:'ROOT' | 💥写次数:97 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[2, 3) | 前缀:'2' | 🌿子节点数:7
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 003303) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[003303, 003304) | 前缀:'003303' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[003304, 102733) | 前缀:'ROOT' | 💥写次数:55 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[102733, 102734) | 前缀:'102733' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[102734, 9) | 前缀:'ROOT' | 💥写次数:111 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[9, :) | 前缀:'9' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3734 | 🔥覆写率: 0.7600
+    │   │   │   ├── [Lv4 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:2897 | 🔥覆写率: 0.7099
+    │   │   │   ├── [Lv4 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:2982 | 🔥覆写率: 0.7162
+    │   │   │   ├── [Lv4 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:2983 | 🔥覆写率: 0.7342
+    │   │   │   ├── [Lv4 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3828 | 🔥覆写率: 0.7584
+    │   │   │   ├── [Lv4 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:2908 | 🔥覆写率: 0.7183
+    │   │   │   ├── [Lv4 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3229 | 🔥覆写率: 0.7260
+    │   │   │   ├── [Lv4 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3223 | 🔥覆写率: 0.7313
+    │   │   │   ├── [Lv4 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3279 | 🔥覆写率: 0.7372
+    │   │   │   ├── [Lv4 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3107 | 🔥覆写率: 0.7126
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   └── [Lv3 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[3, 4) | 前缀:'3' | 🌿子节点数:8
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[0, 1) | 前缀:'0' | 🌿子节点数:12
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3100 | 🔥覆写率: 0.7282
+    │   │   │   ├── [Lv4 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3011 | 🔥覆写率: 0.7265
+    │   │   │   ├── [Lv4 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3591 | 🔥覆写率: 0.7554
+    │   │   │   ├── [Lv4 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:2751 | 🔥覆写率: 0.7172
+    │   │   │   ├── [Lv4 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3408 | 🔥覆写率: 0.7442
+    │   │   │   ├── [Lv4 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3251 | 🔥覆写率: 0.7406
+    │   │   │   ├── [Lv4 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3198 | 🔥覆写率: 0.7270
+    │   │   │   ├── [Lv4 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3429 | 🔥覆写率: 0.7286
+    │   │   │   ├── [Lv4 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:3275 | 🔥覆写率: 0.7394
+    │   │   │   ├── [Lv4 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:3231 | 🔥覆写率: 0.7306
+    │   │   │   └── [Lv4 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:11
+    │   │   │   ├── [Lv4 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   │   ├── [Lv4 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:3334 | 🔥覆写率: 0.7350
+    │   │   │   ├── [Lv4 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:3079 | 🔥覆写率: 0.7162
+    │   │   │   ├── [Lv4 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:3628 | 🔥覆写率: 0.7065
+    │   │   │   ├── [Lv4 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3356 | 🔥覆写率: 0.7304
+    │   │   │   ├── [Lv4 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3055 | 🔥覆写率: 0.7075
+    │   │   │   ├── [Lv4 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3001 | 🔥覆写率: 0.7285
+    │   │   │   ├── [Lv4 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:6160 | 🔥覆写率: 0.6428
+    │   │   │   ├── [Lv4 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:2971 | 🔥覆写率: 0.7224
+    │   │   │   ├── [Lv4 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:2952 | 🔥覆写率: 0.6651
+    │   │   │   └── [Lv4 叶子] 范围:[9, +∞) | 前缀:'ROOT' | 💥写次数:2714 | 🔥覆写率: 0.7259
+    │   │   ├── [Lv3 叶子] 范围:[2, 225002) | 前缀:'ROOT' | 💥写次数:4 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[225002, 225003) | 前缀:'225002' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[225003, 553915) | 前缀:'ROOT' | 💥写次数:75 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[553915, 553916) | 前缀:'553915' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   └── [Lv3 叶子] 范围:[553916, +∞) | 前缀:'ROOT' | 💥写次数:163 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[4, 5) | 前缀:'4' | 🌿子节点数:7
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 2) | 前缀:'ROOT' | 💥写次数:45 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:88 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[3, 4) | 前缀:'ROOT' | 💥写次数:45 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[4, 5) | 前缀:'4' | 💥写次数:3575 | 🔥覆写率: 0.2614
+    │   │   ├── [Lv3 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:3620 | 🔥覆写率: 0.1399
+    │   │   ├── [Lv3 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:3876 | 🔥覆写率: 0.1907
+    │   │   └── [Lv3 叶子] 范围:[7, +∞) | 前缀:'ROOT' | 💥写次数:33 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[5, 9) | 前缀:'ROOT' | 🌿子节点数:5
+    │   │   ├── [Lv3 叶子] 范围:[5, 5) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[5, 6) | 前缀:'5' | 💥写次数:1056 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:1721 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:4894 | 🔥覆写率: 0.1135
+    │   │   └── [Lv3 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:2228 | 🔥覆写率: 0.2334
+    │   ├── [Lv2 叶子] 范围:[9, :) | 前缀:'9' | 💥写次数:2266 | 🔥覆写率: 0.0845
+    │   └── [Lv2 叶子] 范围:[:, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    ├── [Lv1 路由] 范围:[usertable:user002, usertable:user003) | 前缀:'usertable:user002' | 🌿子节点数:8
+    │   ├── [Lv2 叶子] 范围:[-∞, 1) | 前缀:'ROOT' | 💥写次数:70 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 路由] 范围:[1, 2) | 前缀:'1' | 🌿子节点数:5
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 6) | 前缀:'ROOT' | 💥写次数:15 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[6, 7) | 前缀:'6' | 💥写次数:6067 | 🔥覆写率: 0.1387
+    │   │   ├── [Lv3 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:7037 | 🔥覆写率: 0.2779
+    │   │   ├── [Lv3 叶子] 范围:[8, 9) | 前缀:'8' | 💥写次数:6365 | 🔥覆写率: 0.1527
+    │   │   └── [Lv3 叶子] 范围:[9, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 叶子] 范围:[2, 3) | 前缀:'2' | 💥写次数:2517 | 🔥覆写率: 0.0638
+    │   ├── [Lv2 叶子] 范围:[3, 4) | 前缀:'3' | 💥写次数:3085 | 🔥覆写率: 0.0000
+    │   ├── [Lv2 叶子] 范围:[4, 7) | 前缀:'ROOT' | 💥写次数:3565 | 🔥覆写率: 0.0892
+    │   ├── [Lv2 叶子] 范围:[7, 8) | 前缀:'7' | 💥写次数:3430 | 🔥覆写率: 0.0521
+    │   ├── [Lv2 路由] 范围:[8, 9) | 前缀:'8' | 🌿子节点数:6
+    │   │   ├── [Lv3 叶子] 范围:[-∞, 0) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[0, 1) | 前缀:'0' | 💥写次数:7461 | 🔥覆写率: 0.2848
+    │   │   ├── [Lv3 叶子] 范围:[1, 2) | 前缀:'1' | 💥写次数:7055 | 🔥覆写率: 0.1820
+    │   │   ├── [Lv3 叶子] 范围:[2, 535337) | 前缀:'ROOT' | 💥写次数:32 | 🔥覆写率: 0.0000
+    │   │   ├── [Lv3 叶子] 范围:[535337, 535338) | 前缀:'535337' | 💥写次数:16 | 🔥覆写率: 0.0000
+    │   │   └── [Lv3 叶子] 范围:[535338, +∞) | 前缀:'ROOT' | 💥写次数:6 | 🔥覆写率: 0.0000
+    │   └── [Lv2 叶子] 范围:[9, +∞) | 前缀:'ROOT' | 💥写次数:165 | 🔥覆写率: 0.0000
+    └── [Lv1 叶子] 范围:[usertable:user003, +∞) | 前缀:'ROOT' | 💥写次数:0 | 🔥覆写率: 0.0000
+========================================================================
+📊 [系统内存雷达] 活跃区块数: 882, 回收站空洞数: 12
+💾 [总物理内存开销] 6.12 MB
+
+badger 2026/04/22 11:00:36 INFO: Lifetime L0 stalled for: 0s
+badger 2026/04/22 11:00:36 INFO: 
+Level 0 [ ]: NumTables: 05. Size: 244 KiB of 0 B. Score: 1.00->1.07 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 32 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 2 [ ]: NumTables: 00. Size: 0 B of 64 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 3 [ ]: NumTables: 00. Size: 0 B of 128 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 4 [ ]: NumTables: 00. Size: 0 B of 257 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 5 [B]: NumTables: 15. Size: 478 MiB of 514 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 6 [ ]: NumTables: 64. Size: 1.0 GiB of 1.0 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 128 MiB
+Level 98 [H]: NumTables: 03. Size: 4.4 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 3117] Size: 1.8 MiB Range: [usertable:user0000618218] ~ [usertable:user0028191252]
+    -> [SST 3119] Size: 1.8 MiB Range: [usertable:user0000656602] ~ [usertable:user0028199861]
+    -> [SST 3121] Size: 751 KiB Range: [usertable:user0000622525] ~ [usertable:user0028140354]
+Level 99 [H]: NumTables: 02. Size: 5.7 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 3114] Size: 3.9 MiB Range: [usertable:user0000032126] ~ [usertable:user0014513052]
+    -> [SST 3115] Size: 1.8 MiB Range: [usertable:user0014513071] ~ [usertable:user0029999677]
+Level Done
+HeatTree统计因为阻塞丢弃的key个数（DropCount）: 0.
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 1607.31 MB
+💿 [分子] OS内核级物理写入: 6970.92 MB  (7309541376 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 4.34 x
+>>> [PHYSICAL_IO_RESULT] 6970.92
+=======================================================
+
