@@ -130,10 +130,11 @@ func getOptions(p *properties.Properties) badger.Options {
 	// MemTableSize:        64 << 20, //内存表的总尺寸大小 64乘2的20次方（向左移位20次），64MB
 	// BaseTableSize:       2 << 20,  //SST大小，2MB
 	// BaseLevelSize:       10 << 20,
-	opts.MemTableSize = 4 << 20
-	opts.BaseLevelSize = 8 << 20 // 这个调整的是到base的条件,即倒立漏斗的拐弯处大小
-	opts.LevelSizeMultiplier = 2 // 这个调整的是倒立漏斗的倾斜程度,越大则越倾斜,底层容纳的数据量也就越大!层级倍率调整为5倍的话,10G的数据即可让BASE到1层(1层为3mb,2层为16mb).为3倍的话,1G的数据就可以
-	opts.ValueThreshold = 1024
+	// ValueThreshold:      1 << 20
+	// opts.MemTableSize = 4 << 20
+	// opts.BaseLevelSize = 8 << 20 // 这个调整的是到base的条件,即倒立漏斗的拐弯处大小
+	// opts.LevelSizeMultiplier = 2 // 这个调整的是倒立漏斗的倾斜程度,越大则越倾斜,底层容纳的数据量也就越大!层级倍率调整为5倍的话,10G的数据即可让BASE到1层(1层为3mb,2层为16mb).为3倍的话,1G的数据就可以
+	opts.ValueThreshold = 1 << 20
 	// zzlHACK:END
 
 	// if b := p.GetString(badgerTableLoadingMode, "LoadToRAM"); len(b) > 0 {
@@ -325,6 +326,7 @@ func (db *badgerDB) Update(ctx context.Context, table string, key string, values
 
 func (db *badgerDB) Insert(ctx context.Context, table string, key string, values map[string][]byte) error {
 	err := db.db.Update(func(txn *badger.Txn) error {
+		// fmt.Printf("insert %s\n", key)
 		rowKey := db.getRowKey(table, key)
 
 		buf := db.bufPool.Get()

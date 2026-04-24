@@ -1,0 +1,96 @@
+workload=core
+readallfields=true
+
+recordcount=30000000
+operationcount=30000000
+
+insertorder=ordered
+
+# 注意readproportion等四个参数,当requestdistribution=mixgraph就会失效,需要在 NOTE:2026033001 处设置读写比例什么的
+
+
+; requestdistribution=zipfian
+
+requestdistribution=mixgraph
+mixgraph.num_regions=100
+threadcount=16
+
+# ==========================================
+#  前缀热度分布 (Bimodal Exponential Decay 双项指数衰减)
+# 对应 db_bench 参数: -keyrange_num 及 -keyrange_dist_a/b/c/d
+# 作用: 制造极度陡峭的热点前缀 (a, b) 和极其平缓的冷区沙漠 (c, d)
+# ==========================================
+mixgraph.exp_a=14.18
+mixgraph.exp_b=-2.917
+mixgraph.exp_c=0.0164
+mixgraph.exp_d=-0.08082
+
+# ==========================================
+#  前缀内部的 Key 倾斜度 (Pareto 长尾分布 / 幂律倾斜)
+# 对应 db_bench 参数: -key_dist_a 及 -key_dist_b
+# 作用: 在热点前缀内部，进一步让 10% 的 Key 承受 90% 的流量
+# ==========================================
+mixgraph.key_dist_a=0.002312
+mixgraph.key_dist_b=0.3467
+
+# ==========================================
+#  控制各个key的value长度
+# ==========================================
+# 启用GPD分布
+mixgraph.gpd_value=true
+# k决定“长尾到底有多畸变、多厚
+mixgraph.value_k=0.2615
+# sigma决定绝大多数“普通数据”的波动范围（胖瘦）
+mixgraph.value_sigma=25.45
+# mu设为 0 意味着这个分布在数学计算上可以生成的理论最小值是 0
+mixgraph.value_mu=0
+
+# 前缀补0
+zeropadding=10
+
+# fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
+fieldcount=1
+fieldlength=43 
+
+
+
+
+
+
+		// NOTE:2026033001 这里可以调配各个区间的读写比例
+		// 你可以根据区间 i 的特性（热区还是冷区），配置完全不同的比例。
+		// ----------------------------------------------------
+		// 1=read, 2=update, 3=insert, 4=scan, 5=readModifyWrite
+		// 注意 update 会先get再set,会计入两次!
+		if pos <= 0.10 {
+			// 🔥 [Top 10% 核心热区] - 对应 i == 0, 1 等
+			// 模拟：热门话题、活跃用户 Session
+			// 策略：高频更新，制造海量过期版本，压榨 Compaction 性能
+			chooser.Add(0.1, 1) // 50% Read
+			chooser.Add(0.9, 2) // 50% Update
+
+		} else if pos > 0.10 && pos <= 0.30 {
+			// ⛅ [10% - 30% 温和区] - 相当于之前的 i >= 10 && i <= 20
+			// 模拟：一般社交动态、近期 Timeline 翻阅
+			// 策略：读为主，加入少量 Scan 以增加 LSM-Tree 检索压力
+			chooser.Add(0.10, 1) // 80% Read
+			chooser.Add(0.9, 2)  // 15% Update
+			// chooser.Add(0.05, 4) // 5%  Scan
+
+		} else {
+			// ❄️ [30% - 100% 广阔冷区]
+			// 模拟：历史存档、僵尸账号
+			// 策略：极高比例的纯读，Update 极少
+			// 战术意义：如果这部分的 SSTable 被频繁 Compaction，说明写放大失控
+			chooser.Add(0.9, 1) // 95% Read
+			chooser.Add(0.1, 2) // 5%  Update
+		}
+
+
+
+
+
+
+
+
+    

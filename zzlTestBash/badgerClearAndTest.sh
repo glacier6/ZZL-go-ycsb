@@ -80,7 +80,7 @@ run_single_test() {
     # --- Load 阶段 ---
     echo "📥 执行 Load 阶段..."
     echo ">>> --- Load Phase ---" >> ${LOG_FILE}
-    ./bin/go-ycsb load badger -P workloads/workload_micro -P zzl_badger.properties >> ${LOG_FILE} 2>&1
+    ./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties >> ${LOG_FILE} 2>&1
     if [ $? -ne 0 ]; then
         echo "❌ Load 阶段报错，请查看 ${LOG_FILE}！"
         exit 1
@@ -95,7 +95,7 @@ run_single_test() {
     # --- Run 阶段 ---
     echo "🔥 执行 Run 阶段..."
     echo ">>> --- Run Phase ---" >> ${LOG_FILE}
-    ./bin/go-ycsb run badger -P workloads/workload_micro -P zzl_badger.properties >> ${LOG_FILE} 2>&1
+    ./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties >> ${LOG_FILE} 2>&1
     
     # (保留你原来的注释逻辑：即使 Run 阶段报错也不一定退出，因为有的时候 YCSB 跑完会有非0退出码)
     # if [ $? -ne 0 ]; then
@@ -117,11 +117,11 @@ for (( i=1; i<=ROUNDS; i++ )); do
     echo "🔔 正在开始第 【${i} / ${ROUNDS}】 轮全量对照测试"
     echo "=================================================="
 
+    # 跑原版 Badger
+    # run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH} $i
     # 跑魔改版 (heatLSM) Badger
     run_single_test "heatLSM_Badger" ${PRIZZL_BADGER_PATH} $i
 
-    # 跑原版 Badger
-    # run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH} $i
 done
 
 # 善后：把开发环境切回你的魔改版，方便你接下来继续改代码

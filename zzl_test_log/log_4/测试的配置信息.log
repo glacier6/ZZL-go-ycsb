@@ -8,7 +8,8 @@ insertorder=ordered
 
 # 注意readproportion等四个参数,当requestdistribution=mixgraph就会失效,需要在 NOTE:2026033001 处设置读写比例什么的
 
-# 因为太倾斜了,所以就算改mixgraph.num_regions也没什么太大意义,而如果只是平缓貌似,也效果不好?
+
+; requestdistribution=zipfian
 
 requestdistribution=mixgraph
 mixgraph.num_regions=300
@@ -20,7 +21,7 @@ threadcount=16
 # 作用: 制造极度陡峭的热点前缀 (a, b) 和极其平缓的冷区沙漠 (c, d)
 # ==========================================
 mixgraph.exp_a=14.18
-mixgraph.exp_b=-2.917
+mixgraph.exp_b=-0.35 # NOTE:改了这里
 mixgraph.exp_c=0.0164
 mixgraph.exp_d=-0.08082
 
@@ -61,5 +62,31 @@ mixgraph.value_mu=16
 # fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
 fieldlength=300 
 
+		if pos <= 0.10 {
+			// 🔥 [Top 10% 核心热区] - 对应 i == 0, 1 等
+			// 模拟：热门话题、活跃用户 Session
+			// 策略：高频更新，制造海量过期版本，压榨 Compaction 性能
+			chooser.Add(0.1, 1) // 50% Read
+			chooser.Add(0.6, 2) // 50% Update
+			chooser.Add(0.3, 3)
+
+		} else if pos > 0.10 && pos <= 0.30 {
+			// ⛅ [10% - 30% 温和区] - 相当于之前的 i >= 10 && i <= 20
+			// 模拟：一般社交动态、近期 Timeline 翻阅
+			// 策略：读为主，加入少量 Scan 以增加 LSM-Tree 检索压力
+			chooser.Add(0.10, 1) // 80% Read
+			chooser.Add(0.5, 2)  // 15% Update
+			chooser.Add(0.4, 3)
+			// chooser.Add(0.05, 4) // 5%  Scan
+
+		} else {
+			// ❄️ [30% - 100% 广阔冷区]
+			// 模拟：历史存档、僵尸账号
+			// 策略：极高比例的纯读，Update 极少
+			// 战术意义：如果这部分的 SSTable 被频繁 Compaction，说明写放大失控
+			chooser.Add(0.9, 1) // 95% Read
+			chooser.Add(0.1, 2) // 5%  Update
+		}
 
 
+NOTE:badgerDB采用默认配置

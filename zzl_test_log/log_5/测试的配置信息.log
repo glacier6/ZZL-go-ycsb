@@ -1,4 +1,32 @@
-workload=core
+		if pos <= 0.10 {
+			// 🔥 [Top 10% 核心热区] - 对应 i == 0, 1 等
+			// 模拟：热门话题、活跃用户 Session
+			// 策略：高频更新，制造海量过期版本，压榨 Compaction 性能
+			chooser.Add(0.4, 1)
+			chooser.Add(0.4, 2)
+			chooser.Add(0.2, 3)
+
+		} else if pos > 0.10 && pos <= 0.30 {
+			// ⛅ [10% - 30% 温和区] - 相当于之前的 i >= 10 && i <= 20
+			// 模拟：一般社交动态、近期 Timeline 翻阅
+			// 策略：读为主，加入少量 Scan 以增加 LSM-Tree 检索压力
+			chooser.Add(0.4, 1)
+			chooser.Add(0.4, 2)
+			chooser.Add(0.2, 3)
+			// chooser.Add(0.05, 4) // 5%  Scan
+
+		} else {
+			// ❄️ [30% - 100% 广阔冷区]
+			// 模拟：历史存档、僵尸账号
+			// 策略：极高比例的纯读，Update 极少
+			// 战术意义：如果这部分的 SSTable 被频繁 Compaction，说明写放大失控
+			chooser.Add(0.4, 1)
+			chooser.Add(0.4, 2)
+			chooser.Add(0.2, 3)
+		}
+
+
+		workload=core
 readallfields=true
 
 recordcount=30000000
@@ -40,26 +68,15 @@ fieldcount=1
 #  控制各个key的value长度
 # ==========================================
 # 启用GPD分布(zippyDB)
-; mixgraph.gpd_value=true
-; # k决定“长尾到底有多畸变、多厚,即巨无霸数据的量
-; mixgraph.value_k=0.2615
-; # sigma决定绝大多数“普通数据”的波动范围（胖瘦）,改动这个则是决定绝大多数普通数据的波动范围。
-; mixgraph.value_sigma=25.45
-; # mu设为 0 意味着这个分布在数学计算上可以生成的理论最小值是 0
-; mixgraph.value_mu=0
-; # fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
-; fieldlength=43 
-
-# 启用GPD分布(UDB)
 mixgraph.gpd_value=true
 # k决定“长尾到底有多畸变、多厚,即巨无霸数据的量
-mixgraph.value_k=0.75
+mixgraph.value_k=0.2615
 # sigma决定绝大多数“普通数据”的波动范围（胖瘦）,改动这个则是决定绝大多数普通数据的波动范围。
-mixgraph.value_sigma=246
+mixgraph.value_sigma=25.45
 # mu设为 0 意味着这个分布在数学计算上可以生成的理论最小值是 0
-mixgraph.value_mu=16
+mixgraph.value_mu=0
 # fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
-fieldlength=300 
+fieldlength=43 
 
 
-
+NOTE:badgerDB采用默认配置
