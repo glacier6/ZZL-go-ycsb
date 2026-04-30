@@ -11,13 +11,13 @@
 2.运行目标程序
 3.运行pprof 
   抓取CPU的指令
-  go tool pprof -http=:8080 http://localhost:6060/debug/pprof/profile?seconds=20
+  go tool pprof -http=:8080 http://localhost:6060/debug/pprof/profile?seconds=30
   注意6060和main函数中的一致，而8080是网页版性能分析的地址,20是抓取多长时间
   PS：如果不加-http参数，那么就需要用命令行查看，体验感不好
 
   抓取内存指令
   go tool pprof -http=:8080 http://localhost:6060/debug/pprof/heap
-  go tool pprof -http=:8080 http://localhost:6060/debug/pprof/heap?seconds=20
+  go tool pprof -http=:8080 http://localhost:6060/debug/pprof/heap?seconds=30
   PS：加上了 ?seconds=20 这个参数后，pprof 的行为是“先拍一张照，等20秒，再拍第二张照，然后把两张照片相减”。
   抓内存的左上角的SAMPLE的四个值分别表示：
   inuse_space (当前存活的内存空间，默认选项，或者20秒内的内存“净增长” / 净吞吐量)
