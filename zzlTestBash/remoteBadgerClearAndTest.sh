@@ -142,7 +142,7 @@ run_single_test() {
 
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-THREAD_COUNTS=(1)
+THREAD_COUNTS=(1 2 4)
 
 echo "📊 计划测试的线程数列表: ${THREAD_COUNTS[*]}"
 
