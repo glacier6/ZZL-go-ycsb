@@ -103,8 +103,16 @@ run_single_test() {
     # [步骤D]：清理远程机器的旧数据
     echo "🧹 [D] 正在清空远程主机的旧数据: ${REMOTE_DATA_DIR}/*"
     sshpass_exec "$REMOTE_IP" "false" "rm -rf ${REMOTE_DATA_DIR}/* && mkdir -p ${REMOTE_DATA_DIR}"
-    echo "✅ 远程旧数据清理完毕。"
 
+    # 下面这个是为了在每轮中间加上冷却时间，小机器不知道什么原因，可能是过热也可能是SSD要整理数据，如果连续运行会导致一轮比一轮的速度慢，导致测试结果失真
+    echo "⚡ 正在触发底层 SSD 硬件级空间回收 (fstrim)..."
+    sshpass_exec "$REMOTE_IP" "false" "fstrim -v /"
+    sleep 1
+    echo "⏳ 冷却 30 秒，等待 SSD 恢复至满血写入性能..."
+    sleep 30
+
+    echo "✅ 远程旧数据清理完毕。"
+    
     # ⚠️ 远程清空操作系统页缓存 (因为目标机器是 root 用户，无需 sudo)
     echo "🧼 正在清空远程操作系统页缓存 ..."
     sshpass_exec "$REMOTE_IP" "false" "sync; echo 3 > /proc/sys/vm/drop_caches"
@@ -142,7 +150,7 @@ run_single_test() {
 
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-THREAD_COUNTS=(1 2 4)
+THREAD_COUNTS=(1)
 
 echo "📊 计划测试的线程数列表: ${THREAD_COUNTS[*]}"
 
@@ -157,7 +165,7 @@ for TC in "${THREAD_COUNTS[@]}"; do
         echo "🔔 [线程数: ${TC}] 正在开始第 【${i} / ${ROUNDS}】 轮对照测试"
 
         # 跑魔改版 (heatLSM) Badger
-        run_single_test "heatLSM_Badger_NL98M" ${PRIZZL_BADGER_PATH} $i $TC
+        # run_single_test "heatLSM_Badger_NL98M" ${PRIZZL_BADGER_PATH} $i $TC
   
         # 跑原版 Badger
         run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH} $i $TC
