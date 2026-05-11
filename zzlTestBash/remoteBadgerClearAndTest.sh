@@ -147,10 +147,10 @@ run_single_test() {
     echo "✅ 远程 Run 阶段完成。"
     echo "🏁 【${VERSION_NAME}】 T${THREADS} 第 ${ROUND} 轮测试流程结束！"
 }
-
+ 
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-THREAD_COUNTS=(1)
+THREAD_COUNTS=(1 2 4 8)
 
 echo "📊 计划测试的线程数列表: ${THREAD_COUNTS[*]}"
 
@@ -165,7 +165,7 @@ for TC in "${THREAD_COUNTS[@]}"; do
         echo "🔔 [线程数: ${TC}] 正在开始第 【${i} / ${ROUNDS}】 轮对照测试"
 
         # 跑魔改版 (heatLSM) Badger
-        # run_single_test "heatLSM_Badger_NL98M" ${PRIZZL_BADGER_PATH} $i $TC
+        run_single_test "heatLSM_Badger_NL98M" ${PRIZZL_BADGER_PATH} $i $TC
   
         # 跑原版 Badger
         run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH} $i $TC
