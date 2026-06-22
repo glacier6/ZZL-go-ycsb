@@ -134,7 +134,7 @@ func getOptions(p *properties.Properties) badger.Options {
 	// opts.MemTableSize = 4 << 20
 	// opts.BaseLevelSize = 8 << 20 // 这个调整的是到base的条件,即倒立漏斗的拐弯处大小
 	// opts.LevelSizeMultiplier = 2 // 这个调整的是倒立漏斗的倾斜程度,越大则越倾斜,底层容纳的数据量也就越大!层级倍率调整为5倍的话,10G的数据即可让BASE到1层(1层为3mb,2层为16mb).为3倍的话,1G的数据就可以
-	opts.ValueThreshold = 1 << 20
+	opts.ValueThreshold = 1 << 10 // NOTE:2026062200 修改分裂阈值
 	// zzlHACK:END
 
 	// if b := p.GetString(badgerTableLoadingMode, "LoadToRAM"); len(b) > 0 {
@@ -374,6 +374,24 @@ func (db *badgerDB) Delete(ctx context.Context, table string, key string) error 
 	})
 
 	return err
+}
+
+// zzlHACK: 暴露 GC 接口给命令行 gc 子命令使用
+func (db *badgerDB) RunValueLogGC(discardRatio float64) error {
+	return db.db.RunValueLogGC(discardRatio)
+}
+
+// zzlHACK: 暴露 Size 接口
+func (db *badgerDB) VlogSize() (lsm int64, vlog int64) {
+	return db.db.Size()
+}
+
+// zzlHACK: 尝试获取 Vlog 大盘统计 (如果底层 badger 支持)
+func (db *badgerDB) VlogStats() string {
+	if v, ok := interface{}(db.db).(interface{ VlogStatsToString() string }); ok {
+		return v.VlogStatsToString()
+	}
+	return ""
 }
 
 func init() {

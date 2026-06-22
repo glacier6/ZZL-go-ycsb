@@ -145,12 +145,20 @@ run_single_test() {
         "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS}" >> ${LOG_FILE} 2>&1
     
     echo "✅ 远程 Run 阶段完成。"
+
+    # --- GC 阶段 ---
+    echo "🧹 [GC] 执行远程 GC 阶段 (3轮, 每轮回收垃圾率最高的Vlog文件)..."
+    echo ">>> --- GC Phase ---" >> ${LOG_FILE}
+    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no ${remote_user}@${REMOTE_IP} \
+        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb gc badger -P zzl_badger.properties -p gc.count=3 -p gc.discard_ratio=0.1" >> ${LOG_FILE} 2>&1
+    echo "✅ 远程 GC 阶段完成。"
+
     echo "🏁 【${VERSION_NAME}】 T${THREADS} 第 ${ROUND} 轮测试流程结束！"
 }
  
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-THREAD_COUNTS=(4 8 16 32)
+THREAD_COUNTS=(8)
 
 echo "📊 计划测试的线程数列表: ${THREAD_COUNTS[*]}"
 
