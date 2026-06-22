@@ -22,20 +22,27 @@
 #   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
 #   Request distribution: zipfian
 
-recordcount=10000000
-operationcount=10000000
+recordcount=30000000
+operationcount=30000000
 workload=core
 
 readallfields=true
 
-readproportion=0.45
-updateproportion=0.45
+readproportion=0.5
+updateproportion=0.5
 scanproportion=0
-insertproportion=0.1
+insertproportion=0
+
+# 实际下面这个和上面这个的最大垃圾率差（Heat版和原版的最高垃圾率VLog）都是差20%多一点，但是上面这个垃圾总量更高，写出来更好看
+# readproportion=0.45
+# updateproportion=0.45
+# scanproportion=0
+# insertproportion=0.1
 
 fieldcount=1
 # 注意修改分裂阈值，在NOTE:2026062200
-fieldlength=3072  
+fieldlength=2048
+# TODO:或许也可以不要uniform，让所有V都放在Vlog？
 fieldlengthdistribution=uniform
 
 requestdistribution=zipfian
