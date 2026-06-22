@@ -127,7 +127,7 @@ run_single_test() {
     echo ">>> --- Load Phase ---" >> ${LOG_FILE}
     # 直接利用 ssh 命令将远程标准输出和错误重定向追加到本地 LOG_FILE 中
     sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no ${remote_user}@${REMOTE_IP} \
-        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloadv -P zzl_badger.properties -p threadcount=${THREADS}" >> ${LOG_FILE} 2>&1
+        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS}" >> ${LOG_FILE} 2>&1
     if [ $? -ne 0 ]; then
         echo "❌ Load 阶段报错，请查看本地 ${LOG_FILE}！"
         exit 1
@@ -142,7 +142,7 @@ run_single_test() {
     echo "🔥 执行远程 Run 阶段..."
     echo ">>> --- Run Phase ---" >> ${LOG_FILE}
     sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no ${remote_user}@${REMOTE_IP} \
-        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb run badger -P workloads/workloadv -P zzl_badger.properties -p threadcount=${THREADS}" >> ${LOG_FILE} 2>&1
+        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS}" >> ${LOG_FILE} 2>&1
     
     echo "✅ 远程 Run 阶段完成。"
 
@@ -158,7 +158,7 @@ run_single_test() {
  
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-THREAD_COUNTS=(8)
+THREAD_COUNTS=(1 2 4 8 16 32)
 
 echo "📊 计划测试的线程数列表: ${THREAD_COUNTS[*]}"
 
