@@ -34,9 +34,9 @@ default: build
 build: export GO111MODULE=on
 build:
 ifeq ($(TAGS),)
-	$(CGO_FLAGS) go build -o bin/go-ycsb cmd/go-ycsb/*
+	CGO_ENABLED=0 $(CGO_FLAGS) go build -o bin/go-ycsb cmd/go-ycsb/*
 else
-	$(CGO_FLAGS) go build -tags "$(TAGS)" -o bin/go-ycsb cmd/go-ycsb/*
+	CGO_ENABLED=0 $(CGO_FLAGS) go build -tags "$(TAGS)" -o bin/go-ycsb cmd/go-ycsb/*
 endif
 
 check:
