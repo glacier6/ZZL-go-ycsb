@@ -9,6 +9,7 @@ REMOTE_IP="${target_ips[0]}"    # 这里取第一个IP作为压测目标机
 
 # 远程机器的工作目录和数据目录
 REMOTE_WORKSPACE="/zzlBadger"
+# REMOTE_WORKSPACE="/pfm/disks/core/zzlBadger"
 REMOTE_DATA_DIR="${REMOTE_WORKSPACE}/zzl_badger_data"
 
 # ================= 本地环境配置区 =================
