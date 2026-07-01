@@ -28,7 +28,7 @@ sshpass_exec() {
         return 1
     fi
 
-    local ssh_options="-o StrictHostKeyChecking=no"
+    local ssh_options="-o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10"
     if [ "$use_ssh_f" = "f" ]; then
         ssh_options="$ssh_options -f"
     fi
@@ -71,14 +71,15 @@ run_single_test() {
     local BADGER_PATH=$2
     local ROUND=$3
     local THREADS=$4
-    
-    local LOG_FILE="result_${VERSION_NAME}_T${THREADS}_Round${ROUND}.log"
+    local RC=$5
+
+    local LOG_FILE="result_${VERSION_NAME}_RC${RC}_T${THREADS}_Round${ROUND}.log"
 
     echo ""
     echo "--------------------------------------------------"
-    echo "🔄 版本: 【${VERSION_NAME}】 | 线程数: 【${THREADS}】 | 轮次: 【第 ${ROUND} 轮】"
+    echo "🔄 版本: 【${VERSION_NAME}】 | 数据量: 【${RC}】 | 线程数: 【${THREADS}】 | 轮次: 【第 ${ROUND} 轮】"
     echo "--------------------------------------------------"
-    
+
     # [步骤A]：修改本地 go.mod 指向目标版本
     echo "⚙️ [A] 正在修改本地 go.mod 指向: ${BADGER_PATH}"
     go mod edit -replace ${MODULE_NAME}=${BADGER_PATH}
@@ -95,10 +96,10 @@ run_single_test() {
 
     # [步骤C]：推送可执行文件和配置到远程主机
     echo "🚀 [C] 正在将压测程序推送到远程主机 ${REMOTE_IP} ..."
-    sshpass -p "$remote_password" scp -o StrictHostKeyChecking=no ./bin/go-ycsb ${remote_user}@${REMOTE_IP}:${REMOTE_WORKSPACE}/bin/
-    sshpass -p "$remote_password" scp -o StrictHostKeyChecking=no ./zzl_badger.properties ${remote_user}@${REMOTE_IP}:${REMOTE_WORKSPACE}/
+    sshpass -p "$remote_password" scp -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ./bin/go-ycsb ${remote_user}@${REMOTE_IP}:${REMOTE_WORKSPACE}/bin/
+    sshpass -p "$remote_password" scp -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ./zzl_badger.properties ${remote_user}@${REMOTE_IP}:${REMOTE_WORKSPACE}/
     # 覆盖推 workloads 文件夹，以防负载有变动
-    sshpass -p "$remote_password" scp -o StrictHostKeyChecking=no -r ./workloads/* ${remote_user}@${REMOTE_IP}:${REMOTE_WORKSPACE}/workloads/
+    sshpass -p "$remote_password" scp -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 -r ./workloads/* ${remote_user}@${REMOTE_IP}:${REMOTE_WORKSPACE}/workloads/
     echo "✅ 文件推送完毕。"
 
     # [步骤D]：清理远程机器的旧数据
@@ -127,8 +128,8 @@ run_single_test() {
     echo "📥 执行远程 Load 阶段..."
     echo ">>> --- Load Phase ---" >> ${LOG_FILE}
     # 直接利用 ssh 命令将远程标准输出和错误重定向追加到本地 LOG_FILE 中
-    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no ${remote_user}@${REMOTE_IP} \
-        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS}" >> ${LOG_FILE} 2>&1
+    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
+        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p stabilization_time=${STABILIZE_TIMES[0]}" >> ${LOG_FILE} 2>&1
     if [ $? -ne 0 ]; then
         echo "❌ Load 阶段报错，请查看本地 ${LOG_FILE}！"
         exit 1
@@ -142,16 +143,16 @@ run_single_test() {
     # --- Run 阶段 ---
     echo "🔥 执行远程 Run 阶段..."
     echo ">>> --- Run Phase ---" >> ${LOG_FILE}
-    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no ${remote_user}@${REMOTE_IP} \
-        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS}" >> ${LOG_FILE} 2>&1
-    
+    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
+        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb run badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p operationcount=${OPCOUNT} -p stabilization_time=${STABILIZE_TIMES[1]}" >> ${LOG_FILE} 2>&1
+
     echo "✅ 远程 Run 阶段完成。"
 
     # --- GC 阶段 ---
     echo "🧹 [GC] 执行远程 GC 阶段 (3轮, 每轮回收垃圾率最高的Vlog文件)..."
     echo ">>> --- GC Phase ---" >> ${LOG_FILE}
-    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no ${remote_user}@${REMOTE_IP} \
-        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb gc badger -P zzl_badger.properties -p gc.count=3 -p gc.discard_ratio=0.1" >> ${LOG_FILE} 2>&1
+    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
+        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb gc badger -P zzl_badger.properties -p gc.count=3 -p gc.discard_ratio=0.1 -p stabilization_time=0" >> ${LOG_FILE} 2>&1
     echo "✅ 远程 GC 阶段完成。"
 
     echo "🏁 【${VERSION_NAME}】 T${THREADS} 第 ${ROUND} 轮测试流程结束！"
@@ -159,25 +160,39 @@ run_single_test() {
  
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
+RECORD_COUNTS=(10000000 30000000 50000000 70000000 90000000)
 THREAD_COUNTS=(1 2 4 8 16 32)
+OPCOUNT=10000000
+# 稳定等待时间数组: [0]=Load阶段等待秒数, [1]=Run阶段等待秒数
+STABILIZE_TIMES=(20 40)
 
+echo "📊 计划测试的数据量列表: ${RECORD_COUNTS[*]}"
 echo "📊 计划测试的线程数列表: ${THREAD_COUNTS[*]}"
+echo "📊 操作数: ${OPCOUNT}"
+echo "📊 稳定等待: Load=${STABILIZE_TIMES[0]}s, Run=${STABILIZE_TIMES[1]}s"
 
-for TC in "${THREAD_COUNTS[@]}"; do
+for RC in "${RECORD_COUNTS[@]}"; do
     echo ""
-    echo "=================================================="
-    echo "🔥 开始针对线程数 【${TC}】 的全面压测"
-    echo "=================================================="
+    echo "██████████████████████████████████████████████████"
+    echo "🔥 开始针对数据量 【${RC}】 的全面压测"
+    echo "██████████████████████████████████████████████████"
 
-    for (( i=1; i<=ROUNDS; i++ )); do
+    for TC in "${THREAD_COUNTS[@]}"; do
         echo ""
-        echo "🔔 [线程数: ${TC}] 正在开始第 【${i} / ${ROUNDS}】 轮对照测试"
+        echo "=================================================="
+        echo "🔥 数据量: 【${RC}】 | 线程数: 【${TC}】"
+        echo "=================================================="
 
-        # 跑魔改版 (heatLSM) Badger
-        run_single_test "heatLSM_Badger_NL98M" ${PRIZZL_BADGER_PATH} $i $TC
-  
-        # 跑原版 Badger
-        run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH} $i $TC
+        for (( i=1; i<=ROUNDS; i++ )); do
+            echo ""
+            echo "🔔 [数据量: ${RC}] [线程数: ${TC}] 正在开始第 【${i} / ${ROUNDS}】 轮对照测试"
+
+            # 跑魔改版 (heatLSM) Badger
+            run_single_test "heatLSM_Badger_NL98M" ${PRIZZL_BADGER_PATH} $i $TC $RC
+
+            # 跑原版 Badger
+            run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH} $i $TC $RC
+        done
     done
 done
 
