@@ -58,6 +58,15 @@ func runClientCommandFunc(cmd *cobra.Command, args []string, doTransactions bool
 	c := client.NewClient(globalProps, globalWorkload, globalDB)
 	start := time.Now()
 	c.Run(globalContext)
+
+	// zzlHACK: 压测结束后不立即 Close，给 Badger 后台 compaction 时间自然消化
+	// 用 -p stabilization_time=60 控制等待秒数，默认 0 (不透支立即关)
+	if stabilizeSec := globalProps.GetInt64("stabilization_time", 0); stabilizeSec > 0 {
+		fmt.Printf("\n⏳ 等待 %d 秒让 LSM-tree 后台 compaction 趋于稳定 (DB 尚未关闭)...\n", stabilizeSec)
+		time.Sleep(time.Duration(stabilizeSec) * time.Second)
+		fmt.Println("✅ 稳定期结束")
+	}
+
 	fmt.Println("**********************************************")
 	fmt.Printf("Run finished, takes %s\n", time.Now().Sub(start))
 	measurement.Output()
