@@ -19,6 +19,7 @@ import (
 	"os"
 	"strings"
 	"sync/atomic"
+	"time"
 
 	"github.com/dgraph-io/badger/v4"
 	"github.com/magiconair/properties"
@@ -168,6 +169,14 @@ func (db *badgerDB) Close() error {
 	logicalMB := float64(GlobalLogicalWriteBytes.Load()) / (1 << 20)
 
 	// =====================================================================
+	// 💥 智能等待 LSM-tree compaction 趋于健康（替代盲等 stabilization_time）
+	// 轮询 db.Levels() 检查每层 Score，所有层 Score < 1.0 才视为健康
+	// =====================================================================
+	if stabilizeSec := db.p.GetInt64("stabilization_time", 0); stabilizeSec > 0 {
+		db.waitForCompactionHealthy(stabilizeSec)
+	}
+
+	// =====================================================================
 	// 💥 第一步：先调用底层 Badger 的 Close！
 	// 这会阻塞等待所有后台 Compaction、Memtable Flush 彻底、绝对地写入物理磁盘！
 	// =====================================================================
@@ -211,6 +220,49 @@ func (db *badgerDB) Close() error {
 	fmt.Printf("=======================================================\n\n")
 	// zzlHACK:END
 	return closeErr
+}
+
+// zzlHACK: 智能等待 LSM-tree 各层 compaction 趋于健康
+// 轮询 db.Levels() 检查每层的 Score，当所有层 Score < 1.0 时返回
+// maxWaitSec: 最长等待秒数，超时后打印警告但不阻塞 Close
+func (db *badgerDB) waitForCompactionHealthy(maxWaitSec int64) {
+	const checkInterval = 1 * time.Second
+	deadline := time.Now().Add(time.Duration(maxWaitSec) * time.Second)
+
+	fmt.Printf("\n⏳ 等待 LSM-tree compaction 趋于健康 (最长 %d 秒, 每 %v 检查一次)...\n", maxWaitSec, checkInterval)
+
+	startTime := time.Now()
+	firstCheck := true
+	for time.Now().Before(deadline) {
+		levels := db.db.Levels()
+		allHealthy := true
+
+		for _, l := range levels {
+			if l.NumTables == 0 {
+				continue
+			}
+			if l.Score >= 1.0 {
+				allHealthy = false
+				break
+			}
+		}
+
+		if allHealthy {
+			fmt.Printf("✅ LSM-tree 已健康，总等待时间: %.1f 秒\n", time.Since(startTime).Seconds())
+			return
+		}
+
+		// 首次检查不健康时，输出完整 LSM-tree 结构
+		if firstCheck {
+			firstCheck = false
+			fmt.Println("   当前 LSM-tree 结构 (仍有 compaction 待完成):")
+			fmt.Print(db.db.LevelsToString())
+		}
+
+		time.Sleep(checkInterval)
+	}
+
+	fmt.Println("⚠️ 等待超时，交由 Badger.Close() 阻塞完成剩余 compaction...")
 }
 
 func (db *badgerDB) InitThread(ctx context.Context, _ int, _ int) context.Context {
