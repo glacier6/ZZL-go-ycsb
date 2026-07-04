@@ -64,8 +64,10 @@ echo "🌐 目标测试主机: ${REMOTE_IP}"
 echo "=================================================="
 
 # 初始化远程主机的工作目录
+REMOTE_TEMPLATE_DIR="${REMOTE_WORKSPACE}/templates"
+
 echo "📁 正在初始化远程主机工作目录..."
-sshpass_exec "$REMOTE_IP" "false" "mkdir -p ${REMOTE_WORKSPACE}/bin ${REMOTE_WORKSPACE}/workloads"
+sshpass_exec "$REMOTE_IP" "false" "mkdir -p ${REMOTE_WORKSPACE}/bin ${REMOTE_WORKSPACE}/workloads ${REMOTE_TEMPLATE_DIR}"
 
 # ================= 核心测试逻辑函数 =================
 run_single_test() {
@@ -126,17 +128,44 @@ run_single_test() {
     echo "🏃 [E] 开始远程压测！日志将实时写入本地 -> ${LOG_FILE}"
     echo "=== 【${VERSION_NAME}】 Threads: ${THREADS}, Round: ${ROUND} 测试报告 ===" > ${LOG_FILE} 
     
-    # --- Load 阶段 ---
-    echo "📥 执行远程 Load 阶段..."
-    echo ">>> --- Load Phase ---" >> ${LOG_FILE}
-    # 直接利用 ssh 命令将远程标准输出和错误重定向追加到本地 LOG_FILE 中
-    sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
-        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p stabilization_time=${STABILIZE_TIMES[0]}" >> ${LOG_FILE} 2>&1
-    if [ $? -ne 0 ]; then
-        echo "❌ Load 阶段报错，请查看本地 ${LOG_FILE}！"
-        exit 1
+    # --- Load 阶段（模板复用优化）---
+    # 同一个 (版本, 数据量) 的数据集是完全确定性的（固定 hash/seed），
+    # 因此只需要在第一轮执行一次 load，之后直接复制模板数据即可，大幅节省时间。
+    local TEMPLATE_NAME="${VERSION_NAME}_RC${RC}_T${THREADS}"
+    local TEMPLATE_PATH="${REMOTE_TEMPLATE_DIR}/${TEMPLATE_NAME}"
+    local template_exists
+    template_exists=$(sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
+        "test -d ${TEMPLATE_PATH} && echo 'yes' || echo 'no'")
+
+    if [ "$template_exists" = "yes" ]; then
+        echo "📋 发现已有模板数据 [${TEMPLATE_NAME}]，跳过 Load，直接复制模板 → 数据目录..."
+        echo ">>> --- Load Phase (skipped, using template: ${TEMPLATE_NAME}) ---" >> ${LOG_FILE}
+        sshpass_exec "$REMOTE_IP" "false" "cp -r ${TEMPLATE_PATH}/* ${REMOTE_DATA_DIR}/"
+        if [ $? -ne 0 ]; then
+            echo "❌ 模板复制失败，请检查远程磁盘空间！"
+            exit 1
+        fi
+        echo "✅ 模板数据复制完成，Load 阶段跳过。"
+    else
+        echo "📥 未发现模板 [${TEMPLATE_NAME}]，执行完整远程 Load 阶段..."
+        echo ">>> --- Load Phase ---" >> ${LOG_FILE}
+        sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
+            "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloada -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p stabilization_time=${STABILIZE_TIMES[0]}" >> ${LOG_FILE} 2>&1
+        if [ $? -ne 0 ]; then
+            echo "❌ Load 阶段报错，请查看本地 ${LOG_FILE}！"
+            exit 1
+        fi
+        echo "✅ 远程 Load 阶段完成。"
+
+        # 保存为模板供后续轮次复用
+        echo "💾 正在保存模板数据 [${TEMPLATE_NAME}] 供后续轮次复用..."
+        sshpass_exec "$REMOTE_IP" "false" "mkdir -p ${TEMPLATE_PATH} && cp -r ${REMOTE_DATA_DIR}/* ${TEMPLATE_PATH}/"
+        if [ $? -ne 0 ]; then
+            echo "❌ 模板保存失败，请检查远程磁盘空间！"
+            exit 1
+        fi
+        echo "✅ 模板数据已保存。"
     fi
-    echo "✅ 远程 Load 阶段完成。"
 
     # 再次清空远程缓存
     # echo "🧼 正在清空远程操作系统页缓存 ..."
@@ -162,8 +191,8 @@ run_single_test() {
  
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-RECORD_COUNTS=(10000000 30000000 50000000 70000000 90000000)
-THREAD_COUNTS=(1 4 16 32 64)
+RECORD_COUNTS=(10000000 30000000 50000000 70000000)
+THREAD_COUNTS=(1 4 8 16 32)
 OPCOUNT=10000000
 # 稳定等待时间数组: [0]=Load阶段等待秒数, [1]=Run阶段等待秒数
 STABILIZE_TIMES=(500 500)
