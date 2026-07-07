@@ -1,0 +1,842 @@
+=== 【heatLSM_Badger_NL98M】 Threads: 32, Round: 2 测试报告 ===
+>>> --- Load Phase (skipped, using template: heatLSM_Badger_NL98M_RC50000000_T32) ---
+>>> --- Run Phase ---
+Using request distribution 'zipfian' a keyrange of [0 50000000]
+badger 2026/07/05 11:52:39 INFO: All 2764 tables opened in 715ms
+badger 2026/07/05 11:52:39 INFO: Discard stats nextEmptySlot: 0
+badger 2026/07/05 11:52:39 INFO: Set nextTxnTs to 50000000
+***************** properties *****************
+"readproportion"="0.5"
+"insertproportion"="0"
+"stabilization_time"="500"
+"scanproportion"="0"
+"updateproportion"="0.5"
+"recordcount"="50000000"
+"operationcount"="10000000"
+"badger.num_compactors"="4"
+"threadcount"="32"
+"table"="usertable"
+"requestdistribution"="zipfian"
+"workload"="core"
+"dotransactions"="true"
+"readallfields"="true"
+"badger.dir"="./zzl_badger_data"
+"command"="run"
+"badger.valuedir"="./zzl_badger_data"
+"fieldlength"="1024"
+"fieldcount"="1"
+"badger.sync_writes"="false"
+**********************************************
+READ   - Takes(s): 10.0, Count: 301836, OPS: 30182.7, Avg(us): 376, Min(us): 7, Max(us): 122239, 50th(us): 292, 90th(us): 582, 95th(us): 712, 99th(us): 1806, 99.9th(us): 5079, 99.99th(us): 53471
+TOTAL  - Takes(s): 10.0, Count: 597863, OPS: 59782.8, Avg(us): 506, Min(us): 7, Max(us): 122239, 50th(us): 405, 90th(us): 804, 95th(us): 988, 99th(us): 2051, 99.9th(us): 8127, 99.99th(us): 55679
+UPDATE - Takes(s): 10.0, Count: 296027, OPS: 29597.9, Avg(us): 639, Min(us): 30, Max(us): 121151, 50th(us): 531, 90th(us): 920, 95th(us): 1107, 99th(us): 2289, 99.9th(us): 16671, 99.99th(us): 55903
+UPDATE_ERROR - Takes(s): 10.0, Count: 6334, OPS: 633.5, Avg(us): 411, Min(us): 30, Max(us): 120255, 50th(us): 322, 90th(us): 608, 95th(us): 720, 99th(us): 1068, 99.9th(us): 5687, 99.99th(us): 42879
+READ   - Takes(s): 20.0, Count: 546582, OPS: 27326.3, Avg(us): 410, Min(us): 7, Max(us): 122239, 50th(us): 311, 90th(us): 627, 95th(us): 771, 99th(us): 1812, 99.9th(us): 9399, 99.99th(us): 58591
+TOTAL  - Takes(s): 20.0, Count: 1082609, OPS: 54123.2, Avg(us): 560, Min(us): 7, Max(us): 122239, 50th(us): 430, 90th(us): 869, 95th(us): 1076, 99th(us): 2437, 99.9th(us): 17199, 99.99th(us): 64607
+UPDATE - Takes(s): 20.0, Count: 536027, OPS: 26801.5, Avg(us): 714, Min(us): 25, Max(us): 121151, 50th(us): 564, 90th(us): 1007, 95th(us): 1231, 99th(us): 3341, 99.9th(us): 19727, 99.99th(us): 65855
+UPDATE_ERROR - Takes(s): 20.0, Count: 11827, OPS: 591.3, Avg(us): 470, Min(us): 30, Max(us): 120255, 50th(us): 352, 90th(us): 682, 95th(us): 815, 99th(us): 1808, 99.9th(us): 17951, 99.99th(us): 42879
+badger 2026/07/05 11:53:06 INFO: [3] [E] LOG Compact 5->6 (1, 41 -> 28 tables with 5 splits). [97139 . 96897 96907 96927 96924 96925 96916 96915 96917 96905 96859 96861 96866 96896 96899 96894 96895 96881 96879 96880 96869 96853 96854 96855 96875 96876 96878 96847 96845 96849 96851 96860 96864 96865 96822 96825 96813 96814 96807 96794 96798 100236 .] -> [101023 101035 101042 101046 101050 101052 101026 101032 101038 101045 101049 101054 101021 101034 101041 101048 101053 101022 101030 101036 101040 101047 101051 101057 101058 101027 101031 101037 .], took 2.974s
+, deleted 7485 bytes
+badger 2026/07/05 11:53:06 INFO: This Range (numTables: 1)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 35 32  |usertable:user52|
+00000010  39 36 37 33 35 30 39 31  35 37 37 30 36 35 37 35  |9673509157706575|
+00000020  00 00 00 00 00 00 00 00                           |........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 35 34  |usertable:user54|
+00000010  32 33 33 34 37 34 32 34  32 37 35 35 35 33 37 39  |2334742427555379|
+00000020  31 ff ff ff ff ff ff ff  ff                       |1........|
+
+badger 2026/07/05 11:53:06 INFO: Next Range (numTables: 41)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 35 32  |usertable:user52|
+00000010  39 34 36 36 34 33 38 32  39 35 30 30 33 37 38 31  |9466438295003781|
+00000020  34 00 00 00 00 00 00 00  00                       |4........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 35 34  |usertable:user54|
+00000010  32 35 37 31 31 38 33 36  31 37 38 30 36 38 39 38  |2571183617806898|
+00000020  36 ff ff ff ff ff ff ff  ff                       |6........|
+
+READ   - Takes(s): 30.0, Count: 779984, OPS: 25998.9, Avg(us): 428, Min(us): 7, Max(us): 122239, 50th(us): 320, 90th(us): 644, 95th(us): 791, 99th(us): 1815, 99.9th(us): 15519, 99.99th(us): 54527
+TOTAL  - Takes(s): 30.0, Count: 1544157, OPS: 51469.8, Avg(us): 590, Min(us): 7, Max(us): 122239, 50th(us): 441, 90th(us): 891, 95th(us): 1103, 99th(us): 2581, 99.9th(us): 20207, 99.99th(us): 58175
+UPDATE - Takes(s): 30.0, Count: 764173, OPS: 25470.1, Avg(us): 756, Min(us): 25, Max(us): 121151, 50th(us): 577, 90th(us): 1035, 95th(us): 1265, 99th(us): 3887, 99.9th(us): 23615, 99.99th(us): 59103
+UPDATE_ERROR - Takes(s): 30.0, Count: 16757, OPS: 558.6, Avg(us): 480, Min(us): 30, Max(us): 120255, 50th(us): 361, 90th(us): 700, 95th(us): 842, 99th(us): 1738, 99.9th(us): 17951, 99.99th(us): 42719
+READ   - Takes(s): 40.0, Count: 1017988, OPS: 25448.8, Avg(us): 435, Min(us): 6, Max(us): 135295, 50th(us): 323, 90th(us): 654, 95th(us): 803, 99th(us): 1852, 99.9th(us): 14687, 99.99th(us): 54399
+TOTAL  - Takes(s): 40.0, Count: 2014506, OPS: 50360.5, Avg(us): 602, Min(us): 6, Max(us): 135807, 50th(us): 445, 90th(us): 906, 95th(us): 1125, 99th(us): 2999, 99.9th(us): 19887, 99.99th(us): 59967
+UPDATE - Takes(s): 40.0, Count: 996518, OPS: 24913.1, Avg(us): 773, Min(us): 25, Max(us): 135807, 50th(us): 583, 90th(us): 1056, 95th(us): 1301, 99th(us): 4619, 99.9th(us): 22575, 99.99th(us): 65919
+UPDATE_ERROR - Takes(s): 40.0, Count: 22089, OPS: 552.2, Avg(us): 498, Min(us): 30, Max(us): 135039, 50th(us): 368, 90th(us): 716, 95th(us): 865, 99th(us): 1928, 99.9th(us): 17951, 99.99th(us): 42879
+READ   - Takes(s): 50.0, Count: 1262812, OPS: 25254.5, Avg(us): 438, Min(us): 6, Max(us): 135295, 50th(us): 326, 90th(us): 659, 95th(us): 807, 99th(us): 1811, 99.9th(us): 14231, 99.99th(us): 54783
+TOTAL  - Takes(s): 50.0, Count: 2498514, OPS: 49966.5, Avg(us): 607, Min(us): 6, Max(us): 135807, 50th(us): 448, 90th(us): 912, 95th(us): 1129, 99th(us): 3071, 99.9th(us): 19951, 99.99th(us): 62655
+UPDATE - Takes(s): 50.0, Count: 1235703, OPS: 24713.3, Avg(us): 779, Min(us): 25, Max(us): 135807, 50th(us): 587, 90th(us): 1063, 95th(us): 1307, 99th(us): 4663, 99.9th(us): 23103, 99.99th(us): 78591
+UPDATE_ERROR - Takes(s): 50.0, Count: 27474, OPS: 549.5, Avg(us): 516, Min(us): 30, Max(us): 237055, 50th(us): 371, 90th(us): 722, 95th(us): 873, 99th(us): 1928, 99.9th(us): 19391, 99.99th(us): 97151
+badger 2026/07/05 11:53:38 INFO: Block cache metrics: hit: 7658089 miss: 8289571 keys-added: 2340536 keys-updated: 37342 keys-evicted: 2259620 cost-added: 7765038962 cost-evicted: 7496605259 sets-dropped: 166133 sets-rejected: 1023362 gets-dropped: 408192 gets-kept: 15466368 gets-total: 15947662 hit-ratio: 0.48
+READ   - Takes(s): 60.0, Count: 1521153, OPS: 25352.0, Avg(us): 436, Min(us): 5, Max(us): 135295, 50th(us): 326, 90th(us): 658, 95th(us): 804, 99th(us): 1727, 99.9th(us): 13671, 99.99th(us): 51839
+TOTAL  - Takes(s): 60.0, Count: 3010501, OPS: 50173.7, Avg(us): 604, Min(us): 5, Max(us): 135807, 50th(us): 447, 90th(us): 909, 95th(us): 1125, 99th(us): 3021, 99.9th(us): 19487, 99.99th(us): 58463
+UPDATE - Takes(s): 60.0, Count: 1489348, OPS: 24822.7, Avg(us): 776, Min(us): 25, Max(us): 135807, 50th(us): 585, 90th(us): 1062, 95th(us): 1305, 99th(us): 4807, 99.9th(us): 22351, 99.99th(us): 65855
+UPDATE_ERROR - Takes(s): 60.0, Count: 33340, OPS: 555.7, Avg(us): 512, Min(us): 26, Max(us): 237055, 50th(us): 371, 90th(us): 721, 95th(us): 872, 99th(us): 1837, 99.9th(us): 18671, 99.99th(us): 97151
+READ   - Takes(s): 70.0, Count: 1774303, OPS: 25346.2, Avg(us): 434, Min(us): 5, Max(us): 135295, 50th(us): 325, 90th(us): 655, 95th(us): 800, 99th(us): 1701, 99.9th(us): 13431, 99.99th(us): 52127
+TOTAL  - Takes(s): 70.0, Count: 3511808, OPS: 50165.9, Avg(us): 604, Min(us): 5, Max(us): 135807, 50th(us): 446, 90th(us): 908, 95th(us): 1123, 99th(us): 3143, 99.9th(us): 19311, 99.99th(us): 58847
+UPDATE - Takes(s): 70.0, Count: 1737505, OPS: 24821.3, Avg(us): 777, Min(us): 25, Max(us): 135807, 50th(us): 585, 90th(us): 1062, 95th(us): 1308, 99th(us): 4967, 99.9th(us): 22415, 99.99th(us): 65791
+UPDATE_ERROR - Takes(s): 70.0, Count: 38844, OPS: 554.9, Avg(us): 511, Min(us): 26, Max(us): 237055, 50th(us): 369, 90th(us): 717, 95th(us): 870, 99th(us): 1898, 99.9th(us): 18639, 99.99th(us): 97151
+badger 2026/07/05 11:53:54 INFO: [0] [E] LOG Compact 5->6 (1, 19 -> 18 tables with 5 splits). [97474 . 94213 94216 91565 91827 91858 91870 91829 91832 91733 91740 91804 91824 91836 91666 91702 91722 88602 94176 94181 .] -> [103129 103147 103157 103159 103131 103137 103145 103128 103139 103153 103158 103132 103140 103152 103130 103138 103150 103151 .], took 2.405s
+, deleted 4679 bytes
+READ   - Takes(s): 80.0, Count: 2028929, OPS: 25361.3, Avg(us): 435, Min(us): 5, Max(us): 135295, 50th(us): 328, 90th(us): 661, 95th(us): 806, 99th(us): 1597, 99.9th(us): 13207, 99.99th(us): 49343
+TOTAL  - Takes(s): 80.0, Count: 4015003, OPS: 50187.0, Avg(us): 603, Min(us): 5, Max(us): 135807, 50th(us): 449, 90th(us): 913, 95th(us): 1125, 99th(us): 2903, 99.9th(us): 18911, 99.99th(us): 59135
+UPDATE - Takes(s): 80.0, Count: 1986074, OPS: 24826.0, Avg(us): 776, Min(us): 25, Max(us): 135807, 50th(us): 588, 90th(us): 1066, 95th(us): 1306, 99th(us): 4759, 99.9th(us): 22319, 99.99th(us): 65791
+UPDATE_ERROR - Takes(s): 80.0, Count: 44578, OPS: 557.2, Avg(us): 511, Min(us): 26, Max(us): 237055, 50th(us): 372, 90th(us): 726, 95th(us): 878, 99th(us): 1798, 99.9th(us): 17999, 99.99th(us): 97151
+READ   - Takes(s): 90.0, Count: 2247659, OPS: 24973.4, Avg(us): 440, Min(us): 5, Max(us): 135295, 50th(us): 330, 90th(us): 665, 95th(us): 811, 99th(us): 1643, 99.9th(us): 13783, 99.99th(us): 52031
+TOTAL  - Takes(s): 90.0, Count: 4447620, OPS: 49416.1, Avg(us): 613, Min(us): 5, Max(us): 135807, 50th(us): 451, 90th(us): 921, 95th(us): 1139, 99th(us): 3269, 99.9th(us): 18895, 99.99th(us): 60959
+UPDATE - Takes(s): 90.0, Count: 2199961, OPS: 24442.4, Avg(us): 790, Min(us): 25, Max(us): 135807, 50th(us): 592, 90th(us): 1079, 95th(us): 1328, 99th(us): 5191, 99.9th(us): 22255, 99.99th(us): 78271
+UPDATE_ERROR - Takes(s): 90.0, Count: 49299, OPS: 547.8, Avg(us): 529, Min(us): 26, Max(us): 588799, 50th(us): 373, 90th(us): 732, 95th(us): 888, 99th(us): 2023, 99.9th(us): 18527, 99.99th(us): 97151
+READ   - Takes(s): 100.0, Count: 2534040, OPS: 25340.1, Avg(us): 434, Min(us): 5, Max(us): 135295, 50th(us): 328, 90th(us): 659, 95th(us): 803, 99th(us): 1574, 99.9th(us): 13327, 99.99th(us): 48223
+TOTAL  - Takes(s): 100.0, Count: 5013436, OPS: 50133.5, Avg(us): 604, Min(us): 5, Max(us): 135807, 50th(us): 448, 90th(us): 913, 95th(us): 1126, 99th(us): 3021, 99.9th(us): 17999, 99.99th(us): 59647
+UPDATE - Takes(s): 100.0, Count: 2479396, OPS: 24794.1, Avg(us): 777, Min(us): 25, Max(us): 135807, 50th(us): 588, 90th(us): 1069, 95th(us): 1311, 99th(us): 4843, 99.9th(us): 21455, 99.99th(us): 77759
+UPDATE_ERROR - Takes(s): 100.0, Count: 55723, OPS: 557.2, Avg(us): 520, Min(us): 26, Max(us): 588799, 50th(us): 371, 90th(us): 726, 95th(us): 882, 99th(us): 1924, 99.9th(us): 17887, 99.99th(us): 57151
+badger 2026/07/05 11:54:24 INFO: [3] [E] LOG Compact 98->99 (9, 17 -> 25 tables with 5 splits). [103521 103701 103826 103900 103917 103920 103923 104170 104367 . 103234 103271 103290 103307 103323 103233 103279 103297 103230 103254 103278 103293 103306 103231 103263 103296 103311 .] -> [104379 104387 104395 104405 104414 104418 104419 104380 104391 104398 104408 104413 104382 104392 104403 104409 104415 104417 104381 104389 104399 104406 104411 104378 104383 .], took 2.368s
+, deleted 183402076 bytes
+badger 2026/07/05 11:54:24 INFO: This Range (numTables: 9)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 31 33 37 35 37  35 33 32 32 31 37 32 33  |1001375753221723|
+00000020  37 00 00 00 00 00 00 00  00                       |7........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 37  |usertable:user97|
+00000010  39 39 34 39 38 30 36 32  31 38 30 38 36 31 34 34  |9949806218086144|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+badger 2026/07/05 11:54:24 INFO: Next Range (numTables: 17)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 32 36 35 39 32  36 31 30 32 34 31 37 34  |1002659261024174|
+00000020  34 00 00 00 00 00 00 00  00                       |4........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 37  |usertable:user97|
+00000010  39 35 39 36 35 32 30 39  34 37 39 35 37 36 33 33  |9596520947957633|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+READ   - Takes(s): 110.0, Count: 2780431, OPS: 25276.5, Avg(us): 434, Min(us): 5, Max(us): 135295, 50th(us): 328, 90th(us): 659, 95th(us): 802, 99th(us): 1552, 99.9th(us): 13415, 99.99th(us): 48191
+TOTAL  - Takes(s): 110.0, Count: 5499834, OPS: 49997.9, Avg(us): 605, Min(us): 5, Max(us): 135807, 50th(us): 448, 90th(us): 912, 95th(us): 1124, 99th(us): 3091, 99.9th(us): 18191, 99.99th(us): 62847
+UPDATE - Takes(s): 110.0, Count: 2719403, OPS: 24721.1, Avg(us): 780, Min(us): 25, Max(us): 135807, 50th(us): 587, 90th(us): 1068, 95th(us): 1310, 99th(us): 4975, 99.9th(us): 21919, 99.99th(us): 79679
+UPDATE_ERROR - Takes(s): 110.0, Count: 61227, OPS: 556.6, Avg(us): 519, Min(us): 26, Max(us): 588799, 50th(us): 372, 90th(us): 727, 95th(us): 883, 99th(us): 1914, 99.9th(us): 17791, 99.99th(us): 67647
+READ   - Takes(s): 120.0, Count: 3049032, OPS: 25408.6, Avg(us): 434, Min(us): 5, Max(us): 135295, 50th(us): 330, 90th(us): 664, 95th(us): 808, 99th(us): 1496, 99.9th(us): 13047, 99.99th(us): 46495
+TOTAL  - Takes(s): 120.0, Count: 6030898, OPS: 50257.5, Avg(us): 602, Min(us): 5, Max(us): 135807, 50th(us): 450, 90th(us): 915, 95th(us): 1125, 99th(us): 2849, 99.9th(us): 17535, 99.99th(us): 61503
+UPDATE - Takes(s): 120.0, Count: 2981867, OPS: 24848.8, Avg(us): 774, Min(us): 25, Max(us): 135807, 50th(us): 589, 90th(us): 1070, 95th(us): 1308, 99th(us): 4639, 99.9th(us): 21151, 99.99th(us): 68991
+UPDATE_ERROR - Takes(s): 120.0, Count: 67406, OPS: 561.7, Avg(us): 516, Min(us): 26, Max(us): 588799, 50th(us): 374, 90th(us): 731, 95th(us): 886, 99th(us): 1792, 99.9th(us): 16495, 99.99th(us): 57151
+badger 2026/07/05 11:54:46 INFO: [3] [E] LOG Compact 98->99 (9, 25 -> 28 tables with 5 splits). [104469 104528 104534 104537 104540 104543 104801 105018 105170 . 104379 104387 104395 104405 104414 104418 104419 104380 104391 104398 104408 104413 104382 104392 104403 104409 104415 104417 104381 104389 104399 104406 104411 104378 104383 .] -> [105178 105193 105199 105210 105232 105237 105179 105183 105192 105202 105206 105173 105181 105189 105196 105203 105205 105180 105188 105195 105201 105209 105217 105176 105187 105194 105200 105204 .], took 2.167s
+, deleted 155762793 bytes
+badger 2026/07/05 11:54:46 INFO: This Range (numTables: 9)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 31 35 36 30 32  33 36 33 37 38 33 33 32  |1001560236378332|
+00000020  39 00 00 00 00 00 00 00  00                       |9........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 34  |usertable:user94|
+00000010  39 39 36 39 34 33 37 32  36 37 31 38 33 30 39 32  |9969437267183092|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+badger 2026/07/05 11:54:46 INFO: Next Range (numTables: 25)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 31 33 37 35 37  35 33 32 32 31 37 32 33  |1001375753221723|
+00000020  37 00 00 00 00 00 00 00  00                       |7........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 37  |usertable:user97|
+00000010  39 39 34 39 38 30 36 32  31 38 30 38 36 31 34 34  |9949806218086144|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+READ   - Takes(s): 130.0, Count: 3273115, OPS: 25177.4, Avg(us): 437, Min(us): 5, Max(us): 135295, 50th(us): 331, 90th(us): 666, 95th(us): 810, 99th(us): 1511, 99.9th(us): 13551, 99.99th(us): 47263
+TOTAL  - Takes(s): 130.0, Count: 6474805, OPS: 49805.3, Avg(us): 607, Min(us): 5, Max(us): 704511, 50th(us): 451, 90th(us): 918, 95th(us): 1131, 99th(us): 3033, 99.9th(us): 17935, 99.99th(us): 61439
+UPDATE - Takes(s): 130.0, Count: 3201690, OPS: 24628.4, Avg(us): 782, Min(us): 25, Max(us): 704511, 50th(us): 590, 90th(us): 1076, 95th(us): 1318, 99th(us): 4951, 99.9th(us): 21231, 99.99th(us): 69119
+UPDATE_ERROR - Takes(s): 130.0, Count: 72575, OPS: 558.3, Avg(us): 517, Min(us): 26, Max(us): 588799, 50th(us): 375, 90th(us): 736, 95th(us): 896, 99th(us): 1833, 99.9th(us): 16087, 99.99th(us): 57151
+READ   - Takes(s): 140.0, Count: 3504227, OPS: 25029.6, Avg(us): 439, Min(us): 5, Max(us): 135295, 50th(us): 332, 90th(us): 669, 95th(us): 815, 99th(us): 1522, 99.9th(us): 13575, 99.99th(us): 47231
+TOTAL  - Takes(s): 140.0, Count: 6932317, OPS: 49514.9, Avg(us): 611, Min(us): 5, Max(us): 704511, 50th(us): 453, 90th(us): 924, 95th(us): 1139, 99th(us): 3125, 99.9th(us): 17999, 99.99th(us): 61631
+UPDATE - Takes(s): 140.0, Count: 3428090, OPS: 24486.1, Avg(us): 787, Min(us): 25, Max(us): 704511, 50th(us): 593, 90th(us): 1083, 95th(us): 1329, 99th(us): 5083, 99.9th(us): 21327, 99.99th(us): 69631
+UPDATE_ERROR - Takes(s): 140.0, Count: 77619, OPS: 554.4, Avg(us): 520, Min(us): 26, Max(us): 588799, 50th(us): 377, 90th(us): 740, 95th(us): 902, 99th(us): 1935, 99.9th(us): 17407, 99.99th(us): 55391
+badger 2026/07/05 11:55:06 INFO: This Range (numTables: 8)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 32 36 35 39 32  36 31 30 32 34 31 37 34  |1002659261024174|
+00000020  34 00 00 00 00 00 00 00  00                       |4........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 34  |usertable:user94|
+00000010  39 39 32 39 38 38 39 31  31 35 31 32 32 32 31 31  |9929889115122211|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+badger 2026/07/05 11:55:06 INFO: Next Range (numTables: 28)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 31 33 37 35 37  35 33 32 32 31 37 32 33  |1001375753221723|
+00000020  37 00 00 00 00 00 00 00  00                       |7........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 37  |usertable:user97|
+00000010  39 39 34 39 38 30 36 32  31 38 30 38 36 31 34 34  |9949806218086144|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+READ   - Takes(s): 150.0, Count: 3775025, OPS: 25166.5, Avg(us): 437, Min(us): 5, Max(us): 135295, 50th(us): 332, 90th(us): 669, 95th(us): 814, 99th(us): 1486, 99.9th(us): 13303, 99.99th(us): 46495
+TOTAL  - Takes(s): 150.0, Count: 7468102, OPS: 49786.5, Avg(us): 608, Min(us): 5, Max(us): 704511, 50th(us): 453, 90th(us): 922, 95th(us): 1136, 99th(us): 2973, 99.9th(us): 17615, 99.99th(us): 60959
+UPDATE - Takes(s): 150.0, Count: 3693077, OPS: 24620.5, Avg(us): 782, Min(us): 25, Max(us): 704511, 50th(us): 592, 90th(us): 1080, 95th(us): 1323, 99th(us): 4915, 99.9th(us): 21055, 99.99th(us): 67839
+UPDATE_ERROR - Takes(s): 150.0, Count: 83829, OPS: 558.9, Avg(us): 517, Min(us): 26, Max(us): 588799, 50th(us): 377, 90th(us): 740, 95th(us): 902, 99th(us): 1914, 99.9th(us): 16479, 99.99th(us): 55391
+READ   - Takes(s): 160.0, Count: 3995943, OPS: 24974.5, Avg(us): 440, Min(us): 5, Max(us): 209407, 50th(us): 333, 90th(us): 671, 95th(us): 817, 99th(us): 1505, 99.9th(us): 13599, 99.99th(us): 47391
+TOTAL  - Takes(s): 160.0, Count: 7905173, OPS: 49406.9, Avg(us): 612, Min(us): 5, Max(us): 704511, 50th(us): 454, 90th(us): 925, 95th(us): 1141, 99th(us): 3135, 99.9th(us): 17935, 99.99th(us): 61631
+UPDATE - Takes(s): 160.0, Count: 3909230, OPS: 24432.2, Avg(us): 788, Min(us): 25, Max(us): 704511, 50th(us): 594, 90th(us): 1085, 95th(us): 1331, 99th(us): 5143, 99.9th(us): 21247, 99.99th(us): 69439
+UPDATE_ERROR - Takes(s): 160.0, Count: 88642, OPS: 554.0, Avg(us): 523, Min(us): 26, Max(us): 588799, 50th(us): 378, 90th(us): 743, 95th(us): 907, 99th(us): 1999, 99.9th(us): 17951, 99.99th(us): 57151
+badger 2026/07/05 11:55:26 INFO: This Range (numTables: 8)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 30 33 33 39 37  35 36 39 36 39 31 33 35  |1000339756969135|
+00000020  38 00 00 00 00 00 00 00  00                       |8........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 34  |usertable:user94|
+00000010  39 39 39 38 30 32 34 35  36 39 35 31 36 35 37 38  |9998024569516578|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+badger 2026/07/05 11:55:26 INFO: Next Range (numTables: 32)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 31 33 37 35 37  35 33 32 32 31 37 32 33  |1001375753221723|
+00000020  37 00 00 00 00 00 00 00  00                       |7........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 37  |usertable:user97|
+00000010  39 39 34 39 38 30 36 32  31 38 30 38 36 31 34 34  |9949806218086144|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+READ   - Takes(s): 170.0, Count: 4253636, OPS: 25020.8, Avg(us): 440, Min(us): 5, Max(us): 209407, 50th(us): 335, 90th(us): 674, 95th(us): 819, 99th(us): 1484, 99.9th(us): 13343, 99.99th(us): 47551
+TOTAL  - Takes(s): 170.0, Count: 8413972, OPS: 49493.9, Avg(us): 611, Min(us): 5, Max(us): 704511, 50th(us): 455, 90th(us): 927, 95th(us): 1141, 99th(us): 3059, 99.9th(us): 17615, 99.99th(us): 61727
+UPDATE - Takes(s): 170.0, Count: 4160337, OPS: 24472.3, Avg(us): 786, Min(us): 25, Max(us): 704511, 50th(us): 595, 90th(us): 1086, 95th(us): 1329, 99th(us): 4995, 99.9th(us): 21055, 99.99th(us): 70335
+UPDATE_ERROR - Takes(s): 170.0, Count: 94397, OPS: 555.3, Avg(us): 522, Min(us): 26, Max(us): 588799, 50th(us): 380, 90th(us): 746, 95th(us): 909, 99th(us): 1910, 99.9th(us): 17519, 99.99th(us): 67647
+READ   - Takes(s): 180.0, Count: 4502588, OPS: 25014.2, Avg(us): 441, Min(us): 4, Max(us): 209407, 50th(us): 335, 90th(us): 675, 95th(us): 820, 99th(us): 1470, 99.9th(us): 13359, 99.99th(us): 47935
+TOTAL  - Takes(s): 180.0, Count: 8906013, OPS: 49477.4, Avg(us): 612, Min(us): 4, Max(us): 704511, 50th(us): 455, 90th(us): 927, 95th(us): 1141, 99th(us): 3021, 99.9th(us): 17631, 99.99th(us): 62975
+UPDATE - Takes(s): 180.0, Count: 4403425, OPS: 24463.5, Avg(us): 786, Min(us): 25, Max(us): 704511, 50th(us): 595, 90th(us): 1086, 95th(us): 1329, 99th(us): 4995, 99.9th(us): 21183, 99.99th(us): 72831
+UPDATE_ERROR - Takes(s): 180.0, Count: 99915, OPS: 555.1, Avg(us): 521, Min(us): 22, Max(us): 588799, 50th(us): 380, 90th(us): 748, 95th(us): 910, 99th(us): 1880, 99.9th(us): 17407, 99.99th(us): 67647
+badger 2026/07/05 11:55:45 INFO: [1] [E] LOG Compact 98->99 (8, 38 -> 42 tables with 5 splits). [106819 107113 107282 107394 107421 107423 107426 107429 . 106783 106787 106790 106796 106801 106805 106809 106814 106816 106780 106785 106794 106799 106803 106807 106810 106812 106779 106784 106791 106798 106802 106806 106815 106817 106782 106788 106792 106800 106804 106808 106811 106813 106781 106786 106789 106793 106797 .] -> [107430 107435 107443 107448 107454 107457 107463 107470 107471 107472 107433 107438 107441 107446 107451 107456 107462 107465 107466 107434 107437 107440 107445 107450 107455 107461 107468 107469 107431 107436 107442 107447 107453 107459 107464 107467 107432 107439 107444 107452 107458 107460 .], took 2.395s
+, deleted 155994175 bytes
+badger 2026/07/05 11:55:45 INFO: This Range (numTables: 8)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 30 32 34 30 33  33 35 34 34 32 31 31 30  |1000240335442110|
+00000020  32 00 00 00 00 00 00 00  00                       |2........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 34  |usertable:user94|
+00000010  39 39 39 31 39 31 34 31  31 37 32 36 36 32 36 ff  |999191411726626.|
+00000020  ff ff ff ff ff ff ff                              |.......|
+
+badger 2026/07/05 11:55:45 INFO: Next Range (numTables: 38)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  31 30 30 30 33 33 39 37  35 36 39 36 39 31 33 35  |1000339756969135|
+00000020  38 00 00 00 00 00 00 00  00                       |8........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 39 37  |usertable:user97|
+00000010  39 39 34 39 38 30 36 32  31 38 30 38 36 31 34 34  |9949806218086144|
+00000020  ff ff ff ff ff ff ff ff                           |........|
+
+READ   - Takes(s): 190.0, Count: 4780174, OPS: 25158.4, Avg(us): 439, Min(us): 4, Max(us): 209407, 50th(us): 335, 90th(us): 674, 95th(us): 819, 99th(us): 1456, 99.9th(us): 13047, 99.99th(us): 47263
+TOTAL  - Takes(s): 190.0, Count: 9456662, OPS: 49770.9, Avg(us): 608, Min(us): 4, Max(us): 704511, 50th(us): 455, 90th(us): 926, 95th(us): 1138, 99th(us): 2931, 99.9th(us): 17215, 99.99th(us): 61983
+UPDATE - Takes(s): 190.0, Count: 4676488, OPS: 24613.0, Avg(us): 781, Min(us): 25, Max(us): 704511, 50th(us): 594, 90th(us): 1084, 95th(us): 1325, 99th(us): 4827, 99.9th(us): 20751, 99.99th(us): 72447
+UPDATE_ERROR - Takes(s): 190.0, Count: 106056, OPS: 558.2, Avg(us): 518, Min(us): 22, Max(us): 588799, 50th(us): 379, 90th(us): 746, 95th(us): 908, 99th(us): 1819, 99.9th(us): 16095, 99.99th(us): 57151
+**********************************************
+Run finished, takes 3m19.295254063s
+READ   - Takes(s): 199.3, Count: 4999396, OPS: 25085.3, Avg(us): 440, Min(us): 4, Max(us): 209407, 50th(us): 335, 90th(us): 675, 95th(us): 821, 99th(us): 1463, 99.9th(us): 13103, 99.99th(us): 47263
+TOTAL  - Takes(s): 199.3, Count: 9889238, OPS: 49620.8, Avg(us): 609, Min(us): 4, Max(us): 704511, 50th(us): 454, 90th(us): 927, 95th(us): 1141, 99th(us): 2989, 99.9th(us): 17343, 99.99th(us): 63071
+UPDATE - Takes(s): 199.3, Count: 4889842, OPS: 24535.3, Avg(us): 782, Min(us): 25, Max(us): 704511, 50th(us): 594, 90th(us): 1086, 95th(us): 1330, 99th(us): 4923, 99.9th(us): 20783, 99.99th(us): 72127
+UPDATE_ERROR - Takes(s): 199.3, Count: 110762, OPS: 555.8, Avg(us): 517, Min(us): 22, Max(us): 588799, 50th(us): 379, 90th(us): 747, 95th(us): 909, 99th(us): 1820, 99.9th(us): 16095, 99.99th(us): 57151
+
+⏳ 等待 LSM-tree compaction 趋于健康 (最长 500 秒, 每 1s 检查一次)...
+✅ LSM-tree 已健康，总等待时间: 0.0 秒
+
+================ 🌳 heatLSM 热力树拓扑与覆写率全景图 🌳 ================
+🌲 [动态树结构监控] 当前母树最大深度 (Max Depth): Lv4
+🔥 当前共有 244 个连续的极热区间被 L98/L99 特区拦截保护：
+----------------------------------------------------------------
+  [001] 拦截范围: [usertable:user101, usertable:user102)
+  [002] 拦截范围: [usertable:user116, usertable:user117)
+  [003] 拦截范围: [usertable:user118, usertable:user119)
+  [004] 拦截范围: [usertable:user1231, usertable:user1232)
+  [005] 拦截范围: [usertable:user1234, usertable:user1236)
+  [006] 拦截范围: [usertable:user1237, usertable:user1239)
+  [007] 拦截范围: [usertable:user125, usertable:user126)
+  [008] 拦截范围: [usertable:user127, usertable:user128)
+  [009] 拦截范围: [usertable:user1280, usertable:user1286)
+  [010] 拦截范围: [usertable:user1287, usertable:user129)
+  [011] 拦截范围: [usertable:user1320, usertable:user1328)
+  [012] 拦截范围: [usertable:user1329, usertable:user132:)
+  [013] 拦截范围: [usertable:user1390, usertable:user13:)
+  [014] 拦截范围: [usertable:user1440, usertable:user1442)
+  [015] 拦截范围: [usertable:user1444, usertable:user144:)
+  [016] 拦截范围: [usertable:user145, usertable:user146)
+  [017] 拦截范围: [usertable:user147, usertable:user148)
+  [018] 拦截范围: [usertable:user1560, usertable:user156:)
+  [019] 拦截范围: [usertable:user160, usertable:user161)
+  [020] 拦截范围: [usertable:user1631, usertable:user1635)
+  [021] 拦截范围: [usertable:user1636, usertable:user1638)
+  [022] 拦截范围: [usertable:user1639, usertable:user163:)
+  [023] 拦截范围: [usertable:user1660, usertable:user1666)
+  [024] 拦截范围: [usertable:user1667, usertable:user1669)
+  [025] 拦截范围: [usertable:user167, usertable:user168)
+  [026] 拦截范围: [usertable:user1790, usertable:user179:)
+  [027] 拦截范围: [usertable:user181, usertable:user182)
+  [028] 拦截范围: [usertable:user187, usertable:user187:)
+  [029] 拦截范围: [usertable:user1880, usertable:user189)
+  [030] 拦截范围: [usertable:user191, usertable:user192)
+  [031] 拦截范围: [usertable:user2111, usertable:user212)
+  [032] 拦截范围: [usertable:user215, usertable:user216:)
+  [033] 拦截范围: [usertable:user223, usertable:user224)
+  [034] 拦截范围: [usertable:user2280, usertable:user2282)
+  [035] 拦截范围: [usertable:user2283, usertable:user2288)
+  [036] 拦截范围: [usertable:user2289, usertable:user229)
+  [037] 拦截范围: [usertable:user234, usertable:user235)
+  [038] 拦截范围: [usertable:user2350, usertable:user235:)
+  [039] 拦截范围: [usertable:user250, usertable:user251)
+  [040] 拦截范围: [usertable:user259, usertable:user25:)
+  [041] 拦截范围: [usertable:user2608, usertable:user2609)
+  [042] 拦截范围: [usertable:user267, usertable:user268)
+  [043] 拦截范围: [usertable:user2710, usertable:user271:)
+  [044] 拦截范围: [usertable:user2790, usertable:user2791)
+  [045] 拦截范围: [usertable:user2792, usertable:user2794)
+  [046] 拦截范围: [usertable:user2795, usertable:user27:)
+  [047] 拦截范围: [usertable:user2811, usertable:user281:)
+  [048] 拦截范围: [usertable:user2830, usertable:user2831)
+  [049] 拦截范围: [usertable:user2832, usertable:user283:)
+  [050] 拦截范围: [usertable:user284, usertable:user285)
+  [051] 拦截范围: [usertable:user286, usertable:user287)
+  [052] 拦截范围: [usertable:user288, usertable:user28:)
+  [053] 拦截范围: [usertable:user2950, usertable:user295:)
+  [054] 拦截范围: [usertable:user298, usertable:user2987)
+  [055] 拦截范围: [usertable:user2988, usertable:user298:)
+  [056] 拦截范围: [usertable:user299, usertable:user29:)
+  [057] 拦截范围: [usertable:user3007, usertable:user3009)
+  [058] 拦截范围: [usertable:user301, usertable:user302)
+  [059] 拦截范围: [usertable:user312, usertable:user313)
+  [060] 拦截范围: [usertable:user3140, usertable:user3144)
+  [061] 拦截范围: [usertable:user3145, usertable:user314:)
+  [062] 拦截范围: [usertable:user331, usertable:user332)
+  [063] 拦截范围: [usertable:user3320, usertable:user332:)
+badger 2026/07/05 11:55:58 INFO: 
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 1          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)    [Hot  🔥] FID: 2147483649 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%!
+(MISSING)=========================================================
+  [064] 拦截范围: [usertable:user3330, usertable:user3333)
+  [065] 拦截范围: [usertable:user3334, usertable:user333:)
+  [066] 拦截范围: [usertable:user339, usertable:user33:)
+  [067] 拦截范围: [usertable:user3400, usertable:user3404)
+  [068] 拦截范围: [usertable:user3406, usertable:user340:)
+  [069] 拦截范围: [usertable:user343, usertable:user344)
+  [070] 拦截范围: [usertable:user3450, usertable:user3457)
+  [071] 拦截范围: [usertable:user3458, usertable:user346)
+  [072] 拦截范围: [usertable:user348, usertable:user349)
+  [073] 拦截范围: [usertable:user3590, usertable:user3594)
+  [074] 拦截范围: [usertable:user3598, usertable:user3599)
+  [075] 拦截范围: [usertable:user3621, usertable:user3622)
+  [076] 拦截范围: [usertable:user3623, usertable:user3625)
+  [077] 拦截范围: [usertable:user3626, usertable:user3627)
+  [078] 拦截范围: [usertable:user3628, usertable:user3629)
+  [079] 拦截范围: [usertable:user3660, usertable:user3665)
+  [080] 拦截范围: [usertable:user3666, usertable:user366:)
+  [081] 拦截范围: [usertable:user368, usertable:user369)
+  [082] 拦截范围: [usertable:user371, usertable:user373)
+  [083] 拦截范围: [usertable:user374, usertable:user375)
+  [084] 拦截范围: [usertable:user379, usertable:user38)
+  [085] 拦截范围: [usertable:user384, usertable:user385)
+  [086] 拦截范围: [usertable:user3870, usertable:user3871)
+  [087] 拦截范围: [usertable:user3872, usertable:user3876)
+  [088] 拦截范围: [usertable:user3877, usertable:user388)
+  [089] 拦截范围: [usertable:user3890, usertable:user3892)
+  [090] 拦截范围: [usertable:user3893, usertable:user3894)
+  [091] 拦截范围: [usertable:user3895, usertable:user389:)
+  [092] 拦截范围: [usertable:user392, usertable:user3921)
+  [093] 拦截范围: [usertable:user3922, usertable:user393)
+  [094] 拦截范围: [usertable:user396, usertable:user398)
+  [095] 拦截范围: [usertable:user4040, usertable:user4047)
+  [096] 拦截范围: [usertable:user4050, usertable:user4051)
+  [097] 拦截范围: [usertable:user4055, usertable:user406)
+  [098] 拦截范围: [usertable:user407, usertable:user408)
+  [099] 拦截范围: [usertable:user409, usertable:user40:)
+  [100] 拦截范围: [usertable:user414, usertable:user415)
+  [101] 拦截范围: [usertable:user424, usertable:user425)
+  [102] 拦截范围: [usertable:user4300, usertable:user4302)
+  [103] 拦截范围: [usertable:user4309, usertable:user430:)
+  [104] 拦截范围: [usertable:user4331, usertable:user4333)
+  [105] 拦截范围: [usertable:user446, usertable:user447)
+  [106] 拦截范围: [usertable:user4510, usertable:user4511)
+  [107] 拦截范围: [usertable:user4512, usertable:user4513)
+  [108] 拦截范围: [usertable:user4514, usertable:user4516)
+  [109] 拦截范围: [usertable:user4517, usertable:user4518)
+  [110] 拦截范围: [usertable:user452, usertable:user4526)
+  [111] 拦截范围: [usertable:user4528, usertable:user453)
+  [112] 拦截范围: [usertable:user455, usertable:user456)
+  [113] 拦截范围: [usertable:user4620, usertable:user462:)
+  [114] 拦截范围: [usertable:user463, usertable:user464)
+  [115] 拦截范围: [usertable:user466, usertable:user467)
+  [116] 拦截范围: [usertable:user4670, usertable:user4674)
+  [117] 拦截范围: [usertable:user4675, usertable:user4677)
+  [118] 拦截范围: [usertable:user4678, usertable:user467:)
+  [119] 拦截范围: [usertable:user469, usertable:user46:)
+  [120] 拦截范围: [usertable:user4740, usertable:user4741)
+  [121] 拦截范围: [usertable:user4748, usertable:user4749)
+  [122] 拦截范围: [usertable:user475, usertable:user476)
+  [123] 拦截范围: [usertable:user4784, usertable:user479)
+  [124] 拦截范围: [usertable:user4790, usertable:user479:)
+  [125] 拦截范围: [usertable:user488, usertable:user489)
+  [126] 拦截范围: [usertable:user498, usertable:user4986)
+  [127] 拦截范围: [usertable:user4987, usertable:user498:)
+  [128] 拦截范围: [usertable:user499, usertable:user49:)
+  [129] 拦截范围: [usertable:user5081, usertable:user5082)
+  [130] 拦截范围: [usertable:user5083, usertable:user5084)
+  [131] 拦截范围: [usertable:user5085, usertable:user5087)
+  [132] 拦截范围: [usertable:user5088, usertable:user509)
+  [133] 拦截范围: [usertable:user512, usertable:user514)
+  [134] 拦截范围: [usertable:user5150, usertable:user515:)
+  [135] 拦截范围: [usertable:user519, usertable:user519:)
+  [136] 拦截范围: [usertable:user527, usertable:user5283)
+  [137] 拦截范围: [usertable:user5284, usertable:user5285)
+  [138] 拦截范围: [usertable:user5287, usertable:user529)
+  [139] 拦截范围: [usertable:user5430, usertable:user543:)
+  [140] 拦截范围: [usertable:user546, usertable:user547)
+  [141] 拦截范围: [usertable:user5500, usertable:user550:)
+  [142] 拦截范围: [usertable:user5620, usertable:user5624)
+  [143] 拦截范围: [usertable:user5627, usertable:user562:)
+  [144] 拦截范围: [usertable:user564, usertable:user565)
+  [145] 拦截范围: [usertable:user568, usertable:user569)
+  [146] 拦截范围: [usertable:user578, usertable:user579)
+  [147] 拦截范围: [usertable:user590, usertable:user591)
+  [148] 拦截范围: [usertable:user592, usertable:user593)
+  [149] 拦截范围: [usertable:user6070, usertable:user6076)
+  [150] 拦截范围: [usertable:user6077, usertable:user608)
+  [151] 拦截范围: [usertable:user612, usertable:user612:)
+  [152] 拦截范围: [usertable:user620, usertable:user621)
+  [153] 拦截范围: [usertable:user6231, usertable:user624)
+  [154] 拦截范围: [usertable:user6283, usertable:user6284)
+  [155] 拦截范围: [usertable:user628528309920524118, usertable:user628528309920524119)
+  [156] 拦截范围: [usertable:user633, usertable:user634)
+  [157] 拦截范围: [usertable:user6420, usertable:user6423)
+  [158] 拦截范围: [usertable:user6429, usertable:user642:)
+  [159] 拦截范围: [usertable:user644, usertable:user6442)
+  [160] 拦截范围: [usertable:user6443, usertable:user6449)
+  [161] 拦截范围: [usertable:user646, usertable:user647)
+  [162] 拦截范围: [usertable:user650, usertable:user651)
+  [163] 拦截范围: [usertable:user657, usertable:user658)
+  [164] 拦截范围: [usertable:user6600, usertable:user6601)
+  [165] 拦截范围: [usertable:user6602, usertable:user662)
+  [166] 拦截范围: [usertable:user6670, usertable:user667:)
+  [167] 拦截范围: [usertable:user669, usertable:user66:)
+  [168] 拦截范围: [usertable:user670, usertable:user671)
+  [169] 拦截范围: [usertable:user676, usertable:user677)
+  [170] 拦截范围: [usertable:user679, usertable:user67:)
+  [171] 拦截范围: [usertable:user680, usertable:user682)
+  [172] 拦截范围: [usertable:user689, usertable:user68:)
+  [173] 拦截范围: [usertable:user690, usertable:user691)
+  [174] 拦截范围: [usertable:user693, usertable:user694)
+  [175] 拦截范围: [usertable:user699, usertable:user69:)
+  [176] 拦截范围: [usertable:user7033, usertable:user7034)
+  [177] 拦截范围: [usertable:user707, usertable:user708)
+  [178] 拦截范围: [usertable:user7110, usertable:user7115)
+  [179] 拦截范围: [usertable:user7116, usertable:user711:)
+  [180] 拦截范围: [usertable:user715, usertable:user7152)
+  [181] 拦截范围: [usertable:user7153, usertable:user7154)
+  [182] 拦截范围: [usertable:user7155, usertable:user716)
+  [183] 拦截范围: [usertable:user721, usertable:user722)
+  [184] 拦截范围: [usertable:user723, usertable:user724)
+  [185] 拦截范围: [usertable:user726, usertable:user727)
+  [186] 拦截范围: [usertable:user7271, usertable:user7277)
+  [187] 拦截范围: [usertable:user7278, usertable:user727:)
+  [188] 拦截范围: [usertable:user728, usertable:user729)
+  [189] 拦截范围: [usertable:user731, usertable:user732)
+  [190] 拦截范围: [usertable:user7330, usertable:user735)
+  [191] 拦截范围: [usertable:user7413, usertable:user7414)
+  [192] 拦截范围: [usertable:user7417, usertable:user7418)
+  [193] 拦截范围: [usertable:user7421, usertable:user7422)
+  [194] 拦截范围: [usertable:user7450, usertable:user745:)
+  [195] 拦截范围: [usertable:user756, usertable:user757)
+  [196] 拦截范围: [usertable:user761, usertable:user762)
+  [197] 拦截范围: [usertable:user7630, usertable:user7638)
+  [198] 拦截范围: [usertable:user7639, usertable:user763:)
+  [199] 拦截范围: [usertable:user765, usertable:user766)
+  [200] 拦截范围: [usertable:user771, usertable:user772)
+  [201] 拦截范围: [usertable:user7720, usertable:user7727)
+  [202] 拦截范围: [usertable:user7728, usertable:user772:)
+  [203] 拦截范围: [usertable:user773, usertable:user774)
+  [204] 拦截范围: [usertable:user778, usertable:user7782)
+  [205] 拦截范围: [usertable:user7783, usertable:user7784)
+  [206] 拦截范围: [usertable:user7786, usertable:user7789)
+  [207] 拦截范围: [usertable:user7800, usertable:user7809)
+  [208] 拦截范围: [usertable:user783, usertable:user785)
+  [209] 拦截范围: [usertable:user7950, usertable:user7954)
+  [210] 拦截范围: [usertable:user7955, usertable:user7957)
+  [211] 拦截范围: [usertable:user7958, usertable:user795:)
+  [212] 拦截范围: [usertable:user8071, usertable:user8072)
+  [213] 拦截范围: [usertable:user8074, usertable:user807:)
+  [214] 拦截范围: [usertable:user809, usertable:user8093)
+  [215] 拦截范围: [usertable:user8094, usertable:user8095)
+  [216] 拦截范围: [usertable:user8097, usertable:user809:)
+  [217] 拦截范围: [usertable:user812, usertable:user814)
+  [218] 拦截范围: [usertable:user817, usertable:user818)
+  [219] 拦截范围: [usertable:user8250, usertable:user8254)
+  [220] 拦截范围: [usertable:user8255, usertable:user8257)
+  [221] 拦截范围: [usertable:user8258, usertable:user8259)
+  [222] 拦截范围: [usertable:user8291, usertable:user8295)
+  [223] 拦截范围: [usertable:user8296, usertable:user829:)
+  [224] 拦截范围: [usertable:user831, usertable:user832)
+  [225] 拦截范围: [usertable:user835, usertable:user836)
+  [226] 拦截范围: [usertable:user841, usertable:user842)
+  [227] 拦截范围: [usertable:user8440, usertable:user8443)
+  [228] 拦截范围: [usertable:user8444, usertable:user8446)
+  [229] 拦截范围: [usertable:user8448, usertable:user8449)
+  [230] 拦截范围: [usertable:user862, usertable:user863)
+  [231] 拦截范围: [usertable:user871, usertable:user872)
+  [232] 拦截范围: [usertable:user883, usertable:user884)
+  [233] 拦截范围: [usertable:user8870, usertable:user8871)
+  [234] 拦截范围: [usertable:user8872, usertable:user888)
+  [235] 拦截范围: [usertable:user8880, usertable:user889)
+  [236] 拦截范围: [usertable:user891, usertable:user892)
+  [237] 拦截范围: [usertable:user893, usertable:user894)
+  [238] 拦截范围: [usertable:user898, usertable:user899)
+  [239] 拦截范围: [usertable:user9011, usertable:user9018)
+  [240] 拦截范围: [usertable:user9019, usertable:user901:)
+  [241] 拦截范围: [usertable:user902, usertable:user904)
+  [242] 拦截范围: [usertable:user9211, usertable:user9218)
+  [243] 拦截范围: [usertable:user9219, usertable:user921:)
+  [244] 拦截范围: [usertable:user94, usertable:user95)
+----------------------------------------------------------------
+========================================================================
+📊 [系统内存雷达] 活跃区块数: 1802, 回收站空洞数: 1
+💾 [总物理内存开销] 15.60 MB
+
+badger 2026/07/05 11:55:58 INFO: Lifetime L0 stalled for: 0s
+badger 2026/07/05 11:55:59 INFO: 
+Level 0 [ ]: NumTables: 00. Size: 0 B of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 2 [B]: NumTables: 94. Size: 176 MiB of 10 MiB. Score: 17.62->18.10 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 3 [ ]: NumTables: 24. Size: 47 MiB of 49 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 4 [ ]: NumTables: 85. Size: 485 MiB of 487 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 5 [ ]: NumTables: 477. Size: 4.8 GiB of 4.8 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 6 [ ]: NumTables: 2188. Size: 48 GiB of 48 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 98 [H]: NumTables: 07. Size: 148 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 107474] Size: 24 MiB Range: [usertable:user1010071684741026720] ~ [usertable:user949840816519208795]
+    -> [SST 107750] Size: 24 MiB Range: [usertable:user1010500371955629810] ~ [usertable:user949413074643660936]
+    -> [SST 107965] Size: 23 MiB Range: [usertable:user1010368504004428665] ~ [usertable:user949925483784404737]
+    -> [SST 108103] Size: 23 MiB Range: [usertable:user1010026592610241744] ~ [usertable:user949911793434820445]
+    -> [SST 108203] Size: 24 MiB Range: [usertable:user1010021048590266599] ~ [usertable:user94994793365213782]
+    -> [SST 108264] Size: 23 MiB Range: [usertable:user1010614799478971624] ~ [usertable:user949856214551827444]
+    -> [SST 108267] Size: 7.3 MiB Range: [usertable:user1010192523309391040] ~ [usertable:user949956238257820865]
+Level 99 [H]: NumTables: 42. Size: 583 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 107430] Size: 15 MiB Range: [usertable:user1010002403354421102] ~ [usertable:user1280939018198900292]
+    -> [SST 107435] Size: 15 MiB Range: [usertable:user1280945615268669558] ~ [usertable:user1474437224228997928]
+    -> [SST 107443] Size: 15 MiB Range: [usertable:user1474438677932316469] ~ [usertable:user1769292610159024892]
+    -> [SST 107448] Size: 15 MiB Range: [usertable:user1769455330595795490] ~ [usertable:user1903324177123082503]
+    -> [SST 107454] Size: 15 MiB Range: [usertable:user1903343963462566606] ~ [usertable:user2287530920883853867]
+    -> [SST 107457] Size: 15 MiB Range: [usertable:user2287540711192149811] ~ [usertable:user2597544259096380378]
+    -> [SST 107463] Size: 15 MiB Range: [usertable:user2597545358608008589] ~ [usertable:user2819812831689492525]
+    -> [SST 107470] Size: 15 MiB Range: [usertable:user2819813931201120736] ~ [usertable:user2951430274186282585]
+    -> [SST 107471] Size: 15 MiB Range: [usertable:user295143278445766621] ~ [usertable:user312605668156907503]
+    -> [SST 107472] Size: 449 KiB Range: [usertable:user312605726991431368] ~ [usertable:user3127966720073384739]
+    -> [SST 107433] Size: 15 MiB Range: [usertable:user3127967465393322620] ~ [usertable:user3356100634612740356]
+    -> [SST 107438] Size: 15 MiB Range: [usertable:user3356102291583319127] ~ [usertable:user3475676387435073304]
+    -> [SST 107441] Size: 15 MiB Range: [usertable:user3475735289420920088] ~ [usertable:user3687295991513606856]
+    -> [SST 107446] Size: 15 MiB Range: [usertable:user3687297091025235067] ~ [usertable:user3798318105620984355]
+    -> [SST 107451] Size: 15 MiB Range: [usertable:user3798342907918034838] ~ [usertable:user4004537724891370896]
+    -> [SST 107456] Size: 15 MiB Range: [usertable:user4004540905975869249] ~ [usertable:user4099534820952127615]
+    -> [SST 107462] Size: 15 MiB Range: [usertable:user409953786430806481] ~ [usertable:user4356920199221623806]
+    -> [SST 107465] Size: 15 MiB Range: [usertable:user4356931653825954201] ~ [usertable:user4620796847488493030]
+    -> [SST 107466] Size: 11 KiB Range: [usertable:user4620801848836588325] ~ [usertable:user4620856169566097189]
+    -> [SST 107434] Size: 15 MiB Range: [usertable:user4620856228400621054] ~ [usertable:user4715841838004873598]
+    -> [SST 107437] Size: 15 MiB Range: [usertable:user4715860070214504900] ~ [usertable:user4848187487256292491]
+    -> [SST 107440] Size: 15 MiB Range: [usertable:user484819545334962246] ~ [usertable:user5136231940703554536]
+    -> [SST 107445] Size: 15 MiB Range: [usertable:user5136234709381040893] ~ [usertable:user5434206763442458407]
+    -> [SST 107450] Size: 15 MiB Range: [usertable:user5434207364329659923] ~ [usertable:user5629188660407035127]
+    -> [SST 107455] Size: 15 MiB Range: [usertable:user5629194096716271382] ~ [usertable:user5926591052450285048]
+    -> [SST 107461] Size: 15 MiB Range: [usertable:user592660132278913071] ~ [usertable:user6236418038470421929]
+    -> [SST 107468] Size: 15 MiB Range: [usertable:user6236418070322595709] ~ [usertable:user6446073621838563555]
+    -> [SST 107469] Size: 1.2 MiB Range: [usertable:user6446085716466473876] ~ [usertable:user6450268747625272750]
+    -> [SST 107431] Size: 15 MiB Range: [usertable:user6450306030594097664] ~ [usertable:user6606261900971089785]
+    -> [SST 107436] Size: 15 MiB Range: [usertable:user6606265272950158593] ~ [usertable:user6764046931102423105]
+    -> [SST 107442] Size: 15 MiB Range: [usertable:user6764048030614051316] ~ [usertable:user6996992061830372747]
+    -> [SST 107447] Size: 15 MiB Range: [usertable:user6996994319688153034] ~ [usertable:user7209235878546903372]
+    -> [SST 107453] Size: 15 MiB Range: [usertable:user7209294621890894230] ~ [usertable:user7284522041806723544]
+    -> [SST 107459] Size: 15 MiB Range: [usertable:user7284522696658625230] ~ [usertable:user7428437717226447115]
+    -> [SST 107464] Size: 15 MiB Range: [usertable:user7428438181584319095] ~ [usertable:user7632140410566892186]
+    -> [SST 107467] Size: 15 MiB Range: [usertable:user763214071693706964] ~ [usertable:user7780968100638933929]
+    -> [SST 107432] Size: 15 MiB Range: [usertable:user7780977886077406178] ~ [usertable:user8092535613566150373]
+    -> [SST 107439] Size: 15 MiB Range: [usertable:user8092537230781148535] ~ [usertable:user8229204442112403758]
+    -> [SST 107444] Size: 15 MiB Range: [usertable:user8229215901586557848] ~ [usertable:user8449965945780573859]
+    -> [SST 107452] Size: 15 MiB Range: [usertable:user8449968039507472326] ~ [usertable:user8885728679611759213]
+    -> [SST 107458] Size: 15 MiB Range: [usertable:user888573338243923788] ~ [usertable:user9073244538430606713]
+    -> [SST 107460] Size: 5.7 MiB Range: [usertable:user9073282386183837867] ~ [usertable:user979949806218086144]
+Level Done
+HeatTree统计因为阻塞丢弃的key个数（DropCount）: 0.
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 5091.58 MB
+💿 [分子] OS内核级物理写入: 69001.33 MB  (72353140736 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 13.55 x
+>>> [PHYSICAL_IO_RESULT] 69001.33
+=======================================================
+
+>>> --- GC Phase ---
+Using request distribution 'uniform' a keyrange of [0 2147483646]
+
+╔══════════════════════════════════════════════════╗
+║          🧹 BadgerDB Vlog GC 分析工具           ║
+╠══════════════════════════════════════════════════╣
+║  GC 轮次: 3         丢弃阈值: 10%                ║
+║  Vlog 目录: ./zzl_badger_data  ║
+╚══════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 【GC 前】 快照
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Cold 🧊] FID: 3          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+    [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Hot  🔥] FID: 2147483651 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%
+=========================================================
+📊 Badger.Size() 报告: LSM=55010 MB | Vlog=2048 MB
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔥 开始执行 3 轮 GC (discardRatio=0.10)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+--- 🔄 GC 第 1/3 轮 ---
+   ⏱️  耗时: 7µs
+   ⚠️  状态: 错误 — Value log GC attempt didn't result in any cleanup
+
+--- 🔄 GC 第 2/3 轮 ---
+   ⏱️  耗时: 3µs
+   ⚠️  状态: 错误 — Value log GC attempt didn't result in any cleanup
+
+--- 🔄 GC 第 3/3 轮 ---
+   ⏱️  耗时: 4µs
+   ⚠️  状态: 错误 — Value log GC attempt didn't result in any cleanup
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 【GC 后】 快照
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+badger 2026/07/05 11:56:03 INFO: All 2917 tables opened in 498ms
+badger 2026/07/05 11:56:03 INFO: 成功从磁盘恢复了 7 个热点 SSTable 到 HotTier！
+badger 2026/07/05 11:56:03 INFO: 成功从磁盘恢复了 42 个热点 SSTable 到 hotTierOrd！
+badger 2026/07/05 11:56:03 INFO: Discard stats nextEmptySlot: 0
+badger 2026/07/05 11:56:03 INFO: Set nextTxnTs to 54889842
+badger 2026/07/05 11:56:03 INFO: Deleting empty file: ./zzl_badger_data/000001.vlog
+badger 2026/07/05 11:56:03 INFO: Deleting empty file: ./zzl_badger_data/2147483649.vlog
+
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Cold 🧊] FID: 3          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+    [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Hot  🔥] FID: 2147483651 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%
+=========================================================
+📊 Badger.Size() 报告: LSM=55010 MB | Vlog=2048 MB
+
+╔══════════════════════════════════════════════════╗
+║              📊 GC 汇总报告                      ║
+╠══════════════════════════════════════════════════╣
+║  实际执行轮次: 3 / 3                             ║
+║  总耗时: 0s                                ║
+╠──────────────────────────────────────────────────╣
+║  📏 空间变化 (Badger 逻辑视角)                    ║
+║    GC 前总逻辑数据 (LSM+Vlog): 57058 MB              ║
+║    GC 后总逻辑数据 (LSM+Vlog): 57058 MB              ║
+║    逻辑数据变化: -0.00 MB (数据被搬到 LSM 紧凑存储)║
+║    ✅ Vlog 目录实际磁盘占用减少: 0.00 MB           ║
+╠──────────────────────────────────────────────────╣
+║  💿 GC 造成的额外磁盘写入                         ║
+║    (无法获取进程 I/O 统计)                        ║
+╠──────────────────────────────────────────────────╣
+║  🔍 逐轮明细                                     ║
+║  R1 ⚠️  耗时:       7µs | 物理写:   0.00 MB | 回收:   0.00 MB ║
+║  R2 ⚠️  耗时:       3µs | 物理写:   0.00 MB | 回收:   0.00 MB ║
+║  R3 ⚠️  耗时:       4µs | 物理写:   0.00 MB | 回收:   0.00 MB ║
+╚══════════════════════════════════════════════════╝
+>>> [GC_SUMMARY] rounds=3 total_time_ms=0 phys_write_mb=0.00 space_reclaimed_mb=0.00
+╚═════════════════════✅✅✅GC已经结束✅✅✅═════════════════════════════╝
+╚═════════════════════✅✅✅GC已经结束✅✅✅═════════════════════════════╝
+╚═════════════════════✅✅✅GC已经结束✅✅✅═════════════════════════════╝
+
+⏳ 等待 LSM-tree compaction 趋于健康 (最长 10 秒, 每 1s 检查一次)...
+   当前 LSM-tree 结构 (仍有 compaction 待完成):
+
+Level 0 [ ]: NumTables: 00. Size: 0 B of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 2 [B]: NumTables: 94. Size: 176 MiB of 10 MiB. Score: 17.62->18.10 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 3 [ ]: NumTables: 24. Size: 47 MiB of 49 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 4 [ ]: NumTables: 85. Size: 485 MiB of 487 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 5 [ ]: NumTables: 477. Size: 4.8 GiB of 4.8 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 6 [ ]: NumTables: 2188. Size: 48 GiB of 48 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 98 [H]: NumTables: 07. Size: 148 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 107474] Size: 24 MiB Range: [usertable:user1010071684741026720] ~ [usertable:user949840816519208795]
+    -> [SST 107750] Size: 24 MiB Range: [usertable:user1010500371955629810] ~ [usertable:user949413074643660936]
+    -> [SST 107965] Size: 23 MiB Range: [usertable:user1010368504004428665] ~ [usertable:user949925483784404737]
+    -> [SST 108103] Size: 23 MiB Range: [usertable:user1010026592610241744] ~ [usertable:user949911793434820445]
+    -> [SST 108203] Size: 24 MiB Range: [usertable:user1010021048590266599] ~ [usertable:user94994793365213782]
+    -> [SST 108264] Size: 23 MiB Range: [usertable:user1010614799478971624] ~ [usertable:user949856214551827444]
+    -> [SST 108267] Size: 7.3 MiB Range: [usertable:user1010192523309391040] ~ [usertable:user949956238257820865]
+Level 99 [H]: NumTables: 42. Size: 583 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 107430] Size: 15 MiB Range: [usertable:user1010002403354421102] ~ [usertable:user1280939018198900292]
+    -> [SST 107435] Size: 15 MiB Range: [usertable:user1280945615268669558] ~ [usertable:user1474437224228997928]
+    -> [SST 107443] Size: 15 MiB Range: [usertable:user1474438677932316469] ~ [usertable:user1769292610159024892]
+    -> [SST 107448] Size: 15 MiB Range: [usertable:user1769455330595795490] ~ [usertable:user1903324177123082503]
+    -> [SST 107454] Size: 15 MiB Range: [usertable:user1903343963462566606] ~ [usertable:user2287530920883853867]
+    -> [SST 107457] Size: 15 MiB Range: [usertable:user2287540711192149811] ~ [usertable:user2597544259096380378]
+    -> [SST 107463] Size: 15 MiB Range: [usertable:user2597545358608008589] ~ [usertable:user2819812831689492525]
+    -> [SST 107470] Size: 15 MiB Range: [usertable:user2819813931201120736] ~ [usertable:user2951430274186282585]
+    -> [SST 107471] Size: 15 MiB Range: [usertable:user295143278445766621] ~ [usertable:user312605668156907503]
+    -> [SST 107472] Size: 449 KiB Range: [usertable:user312605726991431368] ~ [usertable:user3127966720073384739]
+    -> [SST 107433] Size: 15 MiB Range: [usertable:user3127967465393322620] ~ [usertable:user3356100634612740356]
+    -> [SST 107438] Size: 15 MiB Range: [usertable:user3356102291583319127] ~ [usertable:user3475676387435073304]
+    -> [SST 107441] Size: 15 MiB Range: [usertable:user3475735289420920088] ~ [usertable:user3687295991513606856]
+    -> [SST 107446] Size: 15 MiB Range: [usertable:user3687297091025235067] ~ [usertable:user3798318105620984355]
+    -> [SST 107451] Size: 15 MiB Range: [usertable:user3798342907918034838] ~ [usertable:user4004537724891370896]
+    -> [SST 107456] Size: 15 MiB Range: [usertable:user4004540905975869249] ~ [usertable:user4099534820952127615]
+    -> [SST 107462] Size: 15 MiB Range: [usertable:user409953786430806481] ~ [usertable:user4356920199221623806]
+    -> [SST 107465] Size: 15 MiB Range: [usertable:user4356931653825954201] ~ [usertable:user4620796847488493030]
+    -> [SST 107466] Size: 11 KiB Range: [usertable:user4620801848836588325] ~ [usertable:user4620856169566097189]
+    -> [SST 107434] Size: 15 MiB Range: [usertable:user4620856228400621054] ~ [usertable:user4715841838004873598]
+    -> [SST 107437] Size: 15 MiB Range: [usertable:user4715860070214504900] ~ [usertable:user4848187487256292491]
+    -> [SST 107440] Size: 15 MiB Range: [usertable:user484819545334962246] ~ [usertable:user5136231940703554536]
+    -> [SST 107445] Size: 15 MiB Range: [usertable:user5136234709381040893] ~ [usertable:user5434206763442458407]
+    -> [SST 107450] Size: 15 MiB Range: [usertable:user5434207364329659923] ~ [usertable:user5629188660407035127]
+    -> [SST 107455] Size: 15 MiB Range: [usertable:user5629194096716271382] ~ [usertable:user5926591052450285048]
+    -> [SST 107461] Size: 15 MiB Range: [usertable:user592660132278913071] ~ [usertable:user6236418038470421929]
+    -> [SST 107468] Size: 15 MiB Range: [usertable:user6236418070322595709] ~ [usertable:user6446073621838563555]
+    -> [SST 107469] Size: 1.2 MiB Range: [usertable:user6446085716466473876] ~ [usertable:user6450268747625272750]
+    -> [SST 107431] Size: 15 MiB Range: [usertable:user6450306030594097664] ~ [usertable:user6606261900971089785]
+    -> [SST 107436] Size: 15 MiB Range: [usertable:user6606265272950158593] ~ [usertable:user6764046931102423105]
+    -> [SST 107442] Size: 15 MiB Range: [usertable:user6764048030614051316] ~ [usertable:user6996992061830372747]
+    -> [SST 107447] Size: 15 MiB Range: [usertable:user6996994319688153034] ~ [usertable:user7209235878546903372]
+    -> [SST 107453] Size: 15 MiB Range: [usertable:user7209294621890894230] ~ [usertable:user7284522041806723544]
+    -> [SST 107459] Size: 15 MiB Range: [usertable:user7284522696658625230] ~ [usertable:user7428437717226447115]
+    -> [SST 107464] Size: 15 MiB Range: [usertable:user7428438181584319095] ~ [usertable:user7632140410566892186]
+    -> [SST 107467] Size: 15 MiB Range: [usertable:user763214071693706964] ~ [usertable:user7780968100638933929]
+    -> [SST 107432] Size: 15 MiB Range: [usertable:user7780977886077406178] ~ [usertable:user8092535613566150373]
+    -> [SST 107439] Size: 15 MiB Range: [usertable:user8092537230781148535] ~ [usertable:user8229204442112403758]
+    -> [SST 107444] Size: 15 MiB Range: [usertable:user8229215901586557848] ~ [usertable:user8449965945780573859]
+    -> [SST 107452] Size: 15 MiB Range: [usertable:user8449968039507472326] ~ [usertable:user8885728679611759213]
+    -> [SST 107458] Size: 15 MiB Range: [usertable:user888573338243923788] ~ [usertable:user9073244538430606713]
+    -> [SST 107460] Size: 5.7 MiB Range: [usertable:user9073282386183837867] ~ [usertable:user979949806218086144]
+Level Done
+HeatTree统计因为阻塞丢弃的key个数（DropCount）: 0.✅ LSM-tree 已健康，总等待时间: 9.0 秒
+
+================ 🌳 heatLSM 热力树拓扑与覆写率全景图 🌳 ================
+🌲 [动态树结构监控] 当前母树最大深度 (Max Depth): Lv0
+⚠️ 当前快照层 (L98/L99 拦截名单) 为空。没有识别到符合标准的热区。
+========================================================================
+📊 [系统内存雷达] 活跃区块数: 1, 回收站空洞数: 0
+💾 [总物理内存开销] 88.26 KB
+
+badger 2026/07/05 11:56:12 INFO: 
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Cold 🧊] FID: 3          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)    [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Hot  🔥] FID: 2147483651 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%!
+(MISSING)=========================================================
+badger 2026/07/05 11:56:12 INFO: Lifetime L0 stalled for: 0s
+badger 2026/07/05 11:56:12 INFO: 
+Level 0 [ ]: NumTables: 00. Size: 0 B of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 2 [B]: NumTables: 05. Size: 9.5 MiB of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 3 [ ]: NumTables: 23. Size: 48 MiB of 49 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 4 [ ]: NumTables: 86. Size: 486 MiB of 488 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 5 [ ]: NumTables: 478. Size: 4.8 GiB of 4.8 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 6 [ ]: NumTables: 2197. Size: 48 GiB of 48 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 98 [H]: NumTables: 07. Size: 148 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 107474] Size: 24 MiB Range: [usertable:user1010071684741026720] ~ [usertable:user949840816519208795]
+    -> [SST 107750] Size: 24 MiB Range: [usertable:user1010500371955629810] ~ [usertable:user949413074643660936]
+    -> [SST 107965] Size: 23 MiB Range: [usertable:user1010368504004428665] ~ [usertable:user949925483784404737]
+    -> [SST 108103] Size: 23 MiB Range: [usertable:user1010026592610241744] ~ [usertable:user949911793434820445]
+    -> [SST 108203] Size: 24 MiB Range: [usertable:user1010021048590266599] ~ [usertable:user94994793365213782]
+    -> [SST 108264] Size: 23 MiB Range: [usertable:user1010614799478971624] ~ [usertable:user949856214551827444]
+    -> [SST 108267] Size: 7.3 MiB Range: [usertable:user1010192523309391040] ~ [usertable:user949956238257820865]
+Level 99 [H]: NumTables: 42. Size: 583 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 107430] Size: 15 MiB Range: [usertable:user1010002403354421102] ~ [usertable:user1280939018198900292]
+    -> [SST 107435] Size: 15 MiB Range: [usertable:user1280945615268669558] ~ [usertable:user1474437224228997928]
+    -> [SST 107443] Size: 15 MiB Range: [usertable:user1474438677932316469] ~ [usertable:user1769292610159024892]
+    -> [SST 107448] Size: 15 MiB Range: [usertable:user1769455330595795490] ~ [usertable:user1903324177123082503]
+    -> [SST 107454] Size: 15 MiB Range: [usertable:user1903343963462566606] ~ [usertable:user2287530920883853867]
+    -> [SST 107457] Size: 15 MiB Range: [usertable:user2287540711192149811] ~ [usertable:user2597544259096380378]
+    -> [SST 107463] Size: 15 MiB Range: [usertable:user2597545358608008589] ~ [usertable:user2819812831689492525]
+    -> [SST 107470] Size: 15 MiB Range: [usertable:user2819813931201120736] ~ [usertable:user2951430274186282585]
+    -> [SST 107471] Size: 15 MiB Range: [usertable:user295143278445766621] ~ [usertable:user312605668156907503]
+    -> [SST 107472] Size: 449 KiB Range: [usertable:user312605726991431368] ~ [usertable:user3127966720073384739]
+    -> [SST 107433] Size: 15 MiB Range: [usertable:user3127967465393322620] ~ [usertable:user3356100634612740356]
+    -> [SST 107438] Size: 15 MiB Range: [usertable:user3356102291583319127] ~ [usertable:user3475676387435073304]
+    -> [SST 107441] Size: 15 MiB Range: [usertable:user3475735289420920088] ~ [usertable:user3687295991513606856]
+    -> [SST 107446] Size: 15 MiB Range: [usertable:user3687297091025235067] ~ [usertable:user3798318105620984355]
+    -> [SST 107451] Size: 15 MiB Range: [usertable:user3798342907918034838] ~ [usertable:user4004537724891370896]
+    -> [SST 107456] Size: 15 MiB Range: [usertable:user4004540905975869249] ~ [usertable:user4099534820952127615]
+    -> [SST 107462] Size: 15 MiB Range: [usertable:user409953786430806481] ~ [usertable:user4356920199221623806]
+    -> [SST 107465] Size: 15 MiB Range: [usertable:user4356931653825954201] ~ [usertable:user4620796847488493030]
+    -> [SST 107466] Size: 11 KiB Range: [usertable:user4620801848836588325] ~ [usertable:user4620856169566097189]
+    -> [SST 107434] Size: 15 MiB Range: [usertable:user4620856228400621054] ~ [usertable:user4715841838004873598]
+    -> [SST 107437] Size: 15 MiB Range: [usertable:user4715860070214504900] ~ [usertable:user4848187487256292491]
+    -> [SST 107440] Size: 15 MiB Range: [usertable:user484819545334962246] ~ [usertable:user5136231940703554536]
+    -> [SST 107445] Size: 15 MiB Range: [usertable:user5136234709381040893] ~ [usertable:user5434206763442458407]
+    -> [SST 107450] Size: 15 MiB Range: [usertable:user5434207364329659923] ~ [usertable:user5629188660407035127]
+    -> [SST 107455] Size: 15 MiB Range: [usertable:user5629194096716271382] ~ [usertable:user5926591052450285048]
+    -> [SST 107461] Size: 15 MiB Range: [usertable:user592660132278913071] ~ [usertable:user6236418038470421929]
+    -> [SST 107468] Size: 15 MiB Range: [usertable:user6236418070322595709] ~ [usertable:user6446073621838563555]
+    -> [SST 107469] Size: 1.2 MiB Range: [usertable:user6446085716466473876] ~ [usertable:user6450268747625272750]
+    -> [SST 107431] Size: 15 MiB Range: [usertable:user6450306030594097664] ~ [usertable:user6606261900971089785]
+    -> [SST 107436] Size: 15 MiB Range: [usertable:user6606265272950158593] ~ [usertable:user6764046931102423105]
+    -> [SST 107442] Size: 15 MiB Range: [usertable:user6764048030614051316] ~ [usertable:user6996992061830372747]
+    -> [SST 107447] Size: 15 MiB Range: [usertable:user6996994319688153034] ~ [usertable:user7209235878546903372]
+    -> [SST 107453] Size: 15 MiB Range: [usertable:user7209294621890894230] ~ [usertable:user7284522041806723544]
+    -> [SST 107459] Size: 15 MiB Range: [usertable:user7284522696658625230] ~ [usertable:user7428437717226447115]
+    -> [SST 107464] Size: 15 MiB Range: [usertable:user7428438181584319095] ~ [usertable:user7632140410566892186]
+    -> [SST 107467] Size: 15 MiB Range: [usertable:user763214071693706964] ~ [usertable:user7780968100638933929]
+    -> [SST 107432] Size: 15 MiB Range: [usertable:user7780977886077406178] ~ [usertable:user8092535613566150373]
+    -> [SST 107439] Size: 15 MiB Range: [usertable:user8092537230781148535] ~ [usertable:user8229204442112403758]
+    -> [SST 107444] Size: 15 MiB Range: [usertable:user8229215901586557848] ~ [usertable:user8449965945780573859]
+    -> [SST 107452] Size: 15 MiB Range: [usertable:user8449968039507472326] ~ [usertable:user8885728679611759213]
+    -> [SST 107458] Size: 15 MiB Range: [usertable:user888573338243923788] ~ [usertable:user9073244538430606713]
+    -> [SST 107460] Size: 5.7 MiB Range: [usertable:user9073282386183837867] ~ [usertable:user979949806218086144]
+Level Done
+HeatTree统计因为阻塞丢弃的key个数（DropCount）: 0.
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 0.00 MB
+💿 [分子] OS内核级物理写入: 3985.44 MB  (4179038208 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 0.00 x
+>>> [PHYSICAL_IO_RESULT] 3985.44
+=======================================================
+
