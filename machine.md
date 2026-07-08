@@ -44,6 +44,12 @@ ECC	72bit = 64bit 数据 + 8bit ECC
 INTEL SSDPE2KX040T8
 英特尔 DC P4510 4TB 企业级 NVMe 固态硬盘
 
+操作系统
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.6 LTS
+Release:	20.04
+Codename:	focal
+
 
 
 我的小主机

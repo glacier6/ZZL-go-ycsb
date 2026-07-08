@@ -191,9 +191,9 @@ run_single_test() {
  
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-RECORD_COUNTS=(30000000)
+RECORD_COUNTS=(50000000)
 THREAD_COUNTS=(8)
-OPCOUNT=30000000
+OPCOUNT=50000000
 # 稳定等待时间数组: [0]=Load阶段等待秒数, [1]=Run阶段等待秒数
 STABILIZE_TIMES=(500 500)
 
