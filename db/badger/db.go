@@ -135,7 +135,7 @@ func getOptions(p *properties.Properties) badger.Options {
 	// opts.MemTableSize = 4 << 20
 	// opts.BaseLevelSize = 8 << 20 // 这个调整的是到base的条件,即倒立漏斗的拐弯处大小
 	// opts.LevelSizeMultiplier = 2 // 这个调整的是倒立漏斗的倾斜程度,越大则越倾斜,底层容纳的数据量也就越大!层级倍率调整为5倍的话,10G的数据即可让BASE到1层(1层为3mb,2层为16mb).为3倍的话,1G的数据就可以
-	opts.ValueThreshold = 1 << 10 // NOTE:2026062200 修改分裂阈值
+	opts.ValueThreshold = 1 << 20 // NOTE:2026062200 修改分裂阈值
 	// zzlHACK:END
 
 	// if b := p.GetString(badgerTableLoadingMode, "LoadToRAM"); len(b) > 0 {
