@@ -1,0 +1,337 @@
+=== 【heatLSM_Badger_NL98M】 Threads: 8, Round: 3 测试报告 ===
+>>> --- Load Phase (skipped, using template: heatLSM_Badger_NL98M_RC70000000_T8) ---
+>>> --- Run Phase ---
+Using request distribution 'zipfian' a keyrange of [0 70000000]
+badger 2026/07/08 21:23:40 INFO: All 3378 tables opened in 822ms
+badger 2026/07/08 21:23:40 INFO: Discard stats nextEmptySlot: 0
+badger 2026/07/08 21:23:40 INFO: Set nextTxnTs to 70000000
+***************** properties *****************
+"badger.dir"="./zzl_badger_data"
+"badger.valuedir"="./zzl_badger_data"
+"workload"="core"
+"threadcount"="8"
+"dotransactions"="true"
+"fieldlength"="1024"
+"insertproportion"="0"
+"badger.sync_writes"="false"
+"stabilization_time"="500"
+"recordcount"="70000000"
+"readproportion"="0.95"
+"command"="run"
+"operationcount"="10000000"
+"updateproportion"="0.05"
+"requestdistribution"="zipfian"
+"table"="usertable"
+"readallfields"="true"
+"fieldcount"="1"
+"scanproportion"="0"
+"badger.num_compactors"="4"
+**********************************************
+READ   - Takes(s): 10.0, Count: 975208, OPS: 97513.4, Avg(us): 68, Min(us): 3, Max(us): 24655, 50th(us): 49, 90th(us): 116, 95th(us): 161, 99th(us): 396, 99.9th(us): 1373, 99.99th(us): 2875
+TOTAL  - Takes(s): 10.0, Count: 1026619, OPS: 102650.0, Avg(us): 71, Min(us): 3, Max(us): 24719, 50th(us): 51, 90th(us): 124, 95th(us): 169, 99th(us): 401, 99.9th(us): 1393, 99.99th(us): 2981
+UPDATE - Takes(s): 10.0, Count: 51411, OPS: 5141.2, Avg(us): 126, Min(us): 23, Max(us): 24719, 50th(us): 101, 90th(us): 195, 95th(us): 245, 99th(us): 497, 99.9th(us): 1769, 99.99th(us): 16911
+UPDATE_ERROR - Takes(s): 9.8, Count: 35, OPS: 3.6, Avg(us): 92, Min(us): 20, Max(us): 429, 50th(us): 51, 90th(us): 229, 95th(us): 244, 99th(us): 429, 99.9th(us): 429, 99.99th(us): 429
+badger 2026/07/08 21:23:56 INFO: [3] [E] LOG Compact 0->4 (5, 89 -> 128 tables with 5 splits). [73754 73896 74002 74003 74004 . 73167 73171 73177 73180 73183 73185 73187 73190 73192 73193 73195 73197 73199 73201 73202 73113 73115 73120 73125 73132 73139 73140 73145 73148 73153 73159 73164 73168 73172 73174 73178 73182 73184 73186 73188 73189 73191 73194 73196 73198 73200 73203 73204 73205 73206 73670 73671 73672 73673 73674 73675 73676 73677 73678 73679 73680 73681 73682 73683 73684 73685 73686 73687 73688 73689 73690 73691 73692 73693 73694 73695 73696 73697 73698 73699 73700 73701 73702 73703 73704 73705 73706 73707 73708 73709 73710 73711 73712 73713 .] -> [74006 74011 74017 74022 74026 74033 74039 74044 74050 74056 74060 74066 74075 74082 74087 74092 74097 74100 74102 74103 74010 74015 74021 74029 74034 74038 74043 74048 74053 74058 74063 74067 74070 74077 74081 74084 74089 74093 74098 74009 74013 74019 74024 74027 74031 74036 74041 74047 74049 74054 74062 74068 74072 74076 74079 74083 74091 74096 74007 74012 74018 74023 74028 74032 74037 74042 74046 74051 74055 74059 74064 74069 74073 74078 74086 74088 74094 74099 74008 74014 74016 74020 74025 74030 74035 74040 74045 74052 74057 74061 74065 74071 74074 74080 74085 74090 74095 74101 74104 74105 74106 74107 74108 74109 74110 74111 74112 74113 74114 74115 74116 74117 74118 74119 74120 74121 74122 74123 74124 74125 74126 74127 74128 74129 74130 74131 74132 74133 .], took 3.238s
+, deleted 12297576 bytes
+badger 2026/07/08 21:23:59 INFO: [0] [E] LOG Compact 4->5 (1, 83 -> 67 tables with 5 splits). [74006 . 73252 73257 73268 73270 73254 73258 73264 73271 73253 73256 73273 73279 73241 73717 73720 73732 73736 73737 73722 73735 73739 73730 73727 73718 73721 73723 73598 73603 73659 73566 73715 73716 73714 73729 73731 73745 73753 73761 73763 73746 73757 73758 73774 73780 73782 73775 73781 73785 73776 73777 73759 73770 73772 73751 73740 73733 73734 73741 73742 73743 73744 73738 73788 73789 73799 73800 73826 73828 73853 73854 73861 73815 73818 73819 73806 73810 73814 73764 73779 73784 73787 73771 73773 .] -> [74136 74141 74145 74150 74155 74160 74166 74172 74178 74183 74190 74194 74197 74199 74200 74137 74142 74148 74152 74156 74161 74165 74170 74175 74177 74182 74187 74188 74134 74139 74143 74147 74153 74159 74163 74169 74174 74181 74185 74192 74195 74198 74138 74144 74149 74154 74158 74164 74168 74171 74176 74180 74186 74191 74135 74140 74146 74151 74157 74162 74167 74173 74179 74184 74189 74193 74196 .], took 4.235s
+, deleted 407745 bytes
+badger 2026/07/08 21:23:59 INFO: This Range (numTables: 1)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  30 30 30 37 32 30 37 38  36 38 38 31 38 33 35 38  |0007207868818358|
+00000020  30 00 00 00 00 00 00 00  00                       |0........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 32 33  |usertable:user23|
+00000010  30 31 31 30 37 34 38 34  37 34 33 34 36 31 39 33  |0110748474346193|
+00000020  30 ff ff ff ff ff ff ff  ff                       |0........|
+
+badger 2026/07/08 21:23:59 INFO: Next Range (numTables: 83)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  30 30 30 30 30 30 36 32  38 39 30 36 34 36 33 32  |0000006289064632|
+00000020  30 00 00 00 00 00 00 00  00                       |0........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 32 33  |usertable:user23|
+00000010  30 33 31 38 30 38 32 34  33 31 30 35 32 30 38 35  |0318082431052085|
+00000020  36 ff ff ff ff ff ff ff  ff                       |6........|
+
+READ   - Takes(s): 20.0, Count: 1684353, OPS: 84209.1, Avg(us): 79, Min(us): 3, Max(us): 928255, 50th(us): 52, 90th(us): 128, 95th(us): 174, 99th(us): 397, 99.9th(us): 1872, 99.99th(us): 12975
+TOTAL  - Takes(s): 20.0, Count: 1772984, OPS: 88635.4, Avg(us): 83, Min(us): 3, Max(us): 928255, 50th(us): 54, 90th(us): 136, 95th(us): 184, 99th(us): 410, 99.9th(us): 2015, 99.99th(us): 14287
+UPDATE - Takes(s): 20.0, Count: 88631, OPS: 4431.5, Avg(us): 160, Min(us): 22, Max(us): 43391, 50th(us): 107, 90th(us): 222, 95th(us): 287, 99th(us): 605, 99.9th(us): 10223, 99.99th(us): 24463
+UPDATE_ERROR - Takes(s): 19.8, Count: 68, OPS: 3.4, Avg(us): 86, Min(us): 20, Max(us): 429, 50th(us): 54, 90th(us): 185, 95th(us): 244, 99th(us): 268, 99.9th(us): 429, 99.99th(us): 429
+badger 2026/07/08 21:24:06 INFO: [1] [E] LOG Compact 5->6 (1, 16 -> 14 tables with 4 splits). [72815 . 73870 73872 70328 70331 70314 70322 70324 70315 70318 70313 70373 70376 70377 70374 70379 70381 .] -> [74423 74432 74434 74422 74435 74445 74447 74427 74440 74448 74451 74433 74446 74453 .], took 2.037s
+, deleted 16249 bytes
+READ   - Takes(s): 30.0, Count: 2536862, OPS: 84558.8, Avg(us): 78, Min(us): 3, Max(us): 928255, 50th(us): 52, 90th(us): 128, 95th(us): 172, 99th(us): 367, 99.9th(us): 1845, 99.99th(us): 14495
+TOTAL  - Takes(s): 30.0, Count: 2670457, OPS: 89009.6, Avg(us): 82, Min(us): 3, Max(us): 928255, 50th(us): 54, 90th(us): 135, 95th(us): 182, 99th(us): 383, 99.9th(us): 2065, 99.99th(us): 15311
+UPDATE - Takes(s): 30.0, Count: 133595, OPS: 4453.2, Avg(us): 163, Min(us): 16, Max(us): 43391, 50th(us): 108, 90th(us): 223, 95th(us): 289, 99th(us): 593, 99.9th(us): 10975, 99.99th(us): 24543
+UPDATE_ERROR - Takes(s): 29.8, Count: 96, OPS: 3.2, Avg(us): 82, Min(us): 20, Max(us): 429, 50th(us): 53, 90th(us): 166, 95th(us): 229, 99th(us): 269, 99.9th(us): 429, 99.99th(us): 429
+READ   - Takes(s): 40.0, Count: 3540843, OPS: 88518.9, Avg(us): 75, Min(us): 3, Max(us): 928255, 50th(us): 52, 90th(us): 124, 95th(us): 167, 99th(us): 330, 99.9th(us): 1608, 99.99th(us): 12847
+TOTAL  - Takes(s): 40.0, Count: 3727318, OPS: 93179.2, Avg(us): 79, Min(us): 3, Max(us): 928255, 50th(us): 53, 90th(us): 131, 95th(us): 176, 99th(us): 346, 99.9th(us): 1719, 99.99th(us): 13959
+UPDATE - Takes(s): 40.0, Count: 186475, OPS: 4661.9, Avg(us): 150, Min(us): 16, Max(us): 52735, 50th(us): 105, 90th(us): 214, 95th(us): 272, 99th(us): 524, 99.9th(us): 8735, 99.99th(us): 20367
+UPDATE_ERROR - Takes(s): 39.8, Count: 134, OPS: 3.4, Avg(us): 81, Min(us): 20, Max(us): 429, 50th(us): 54, 90th(us): 166, 95th(us): 194, 99th(us): 270, 99.9th(us): 429, 99.99th(us): 429
+READ   - Takes(s): 50.0, Count: 4514415, OPS: 90285.7, Avg(us): 74, Min(us): 3, Max(us): 928255, 50th(us): 53, 90th(us): 123, 95th(us): 163, 99th(us): 306, 99.9th(us): 1415, 99.99th(us): 11823
+TOTAL  - Takes(s): 50.0, Count: 4752221, OPS: 95040.0, Avg(us): 77, Min(us): 3, Max(us): 928255, 50th(us): 54, 90th(us): 130, 95th(us): 172, 99th(us): 321, 99.9th(us): 1524, 99.99th(us): 12671
+UPDATE - Takes(s): 50.0, Count: 237807, OPS: 4756.1, Avg(us): 144, Min(us): 16, Max(us): 52735, 50th(us): 105, 90th(us): 208, 95th(us): 261, 99th(us): 482, 99.9th(us): 6971, 99.99th(us): 18351
+UPDATE_ERROR - Takes(s): 49.8, Count: 176, OPS: 3.5, Avg(us): 80, Min(us): 20, Max(us): 429, 50th(us): 57, 90th(us): 156, 95th(us): 193, 99th(us): 269, 99.9th(us): 429, 99.99th(us): 429
+badger 2026/07/08 21:24:39 INFO: Block cache metrics: hit: 8562050 miss: 7587204 keys-added: 1694917 keys-updated: 5401 keys-evicted: 1613984 cost-added: 5621499880 cost-evicted: 5353065235 sets-dropped: 343947 sets-rejected: 3176506 gets-dropped: 182208 gets-kept: 15865472 gets-total: 16149272 hit-ratio: 0.53
+READ   - Takes(s): 60.0, Count: 5510042, OPS: 91831.7, Avg(us): 72, Min(us): 2, Max(us): 928255, 50th(us): 53, 90th(us): 120, 95th(us): 160, 99th(us): 289, 99.9th(us): 1301, 99.99th(us): 10871
+TOTAL  - Takes(s): 60.0, Count: 5800569, OPS: 96672.4, Avg(us): 76, Min(us): 2, Max(us): 928255, 50th(us): 55, 90th(us): 127, 95th(us): 168, 99th(us): 303, 99.9th(us): 1391, 99.99th(us): 11719
+UPDATE - Takes(s): 60.0, Count: 290527, OPS: 4842.1, Avg(us): 139, Min(us): 16, Max(us): 68159, 50th(us): 103, 90th(us): 203, 95th(us): 253, 99th(us): 455, 99.9th(us): 5695, 99.99th(us): 18127
+UPDATE_ERROR - Takes(s): 59.8, Count: 219, OPS: 3.7, Avg(us): 96, Min(us): 20, Max(us): 3349, 50th(us): 57, 90th(us): 163, 95th(us): 194, 99th(us): 348, 99.9th(us): 3349, 99.99th(us): 3349
+READ   - Takes(s): 70.0, Count: 6439384, OPS: 91989.7, Avg(us): 73, Min(us): 2, Max(us): 928255, 50th(us): 54, 90th(us): 120, 95th(us): 158, 99th(us): 281, 99.9th(us): 1255, 99.99th(us): 9911
+TOTAL  - Takes(s): 70.0, Count: 6779224, OPS: 96843.6, Avg(us): 76, Min(us): 2, Max(us): 928255, 50th(us): 56, 90th(us): 127, 95th(us): 166, 99th(us): 295, 99.9th(us): 1338, 99.99th(us): 11007
+UPDATE - Takes(s): 70.0, Count: 339840, OPS: 4854.9, Avg(us): 137, Min(us): 16, Max(us): 74367, 50th(us): 103, 90th(us): 200, 95th(us): 250, 99th(us): 444, 99.9th(us): 4579, 99.99th(us): 17967
+UPDATE_ERROR - Takes(s): 69.8, Count: 258, OPS: 3.7, Avg(us): 93, Min(us): 20, Max(us): 3349, 50th(us): 57, 90th(us): 156, 95th(us): 193, 99th(us): 270, 99.9th(us): 3349, 99.99th(us): 3349
+READ   - Takes(s): 80.0, Count: 7377709, OPS: 92220.2, Avg(us): 73, Min(us): 2, Max(us): 928255, 50th(us): 55, 90th(us): 119, 95th(us): 157, 99th(us): 274, 99.9th(us): 1169, 99.99th(us): 8879
+TOTAL  - Takes(s): 80.0, Count: 7766881, OPS: 97084.1, Avg(us): 76, Min(us): 2, Max(us): 928255, 50th(us): 57, 90th(us): 126, 95th(us): 165, 99th(us): 286, 99.9th(us): 1247, 99.99th(us): 10239
+UPDATE - Takes(s): 80.0, Count: 389172, OPS: 4864.7, Avg(us): 135, Min(us): 16, Max(us): 74367, 50th(us): 103, 90th(us): 198, 95th(us): 246, 99th(us): 429, 99.9th(us): 3997, 99.99th(us): 17711
+UPDATE_ERROR - Takes(s): 79.8, Count: 306, OPS: 3.8, Avg(us): 92, Min(us): 20, Max(us): 3349, 50th(us): 62, 90th(us): 150, 95th(us): 193, 99th(us): 312, 99.9th(us): 3349, 99.99th(us): 3349
+READ   - Takes(s): 90.0, Count: 8167646, OPS: 90750.5, Avg(us): 74, Min(us): 2, Max(us): 928255, 50th(us): 56, 90th(us): 121, 95th(us): 159, 99th(us): 276, 99.9th(us): 1190, 99.99th(us): 9647
+TOTAL  - Takes(s): 90.0, Count: 8598132, OPS: 95533.0, Avg(us): 77, Min(us): 2, Max(us): 928255, 50th(us): 58, 90th(us): 128, 95th(us): 167, 99th(us): 288, 99.9th(us): 1279, 99.99th(us): 10663
+UPDATE - Takes(s): 90.0, Count: 430486, OPS: 4783.2, Avg(us): 137, Min(us): 16, Max(us): 78719, 50th(us): 104, 90th(us): 200, 95th(us): 249, 99th(us): 435, 99.9th(us): 4639, 99.99th(us): 17663
+UPDATE_ERROR - Takes(s): 89.8, Count: 332, OPS: 3.7, Avg(us): 91, Min(us): 20, Max(us): 3349, 50th(us): 64, 90th(us): 150, 95th(us): 189, 99th(us): 312, 99.9th(us): 3349, 99.99th(us): 3349
+badger 2026/07/08 21:25:10 INFO: [0] [E] LOG Compact 0->4 (5, 90 -> 118 tables with 5 splits). [74503 74499 74501 74497 74504 . 74011 74017 74022 74033 74039 74044 74056 74066 74075 74082 74087 74092 74097 74100 74102 74015 74021 74038 74048 74053 74058 74063 74070 74077 74081 74089 74093 74031 74036 74047 74049 74054 74062 74083 74091 74096 74007 74023 74028 74032 74042 74051 74055 74059 74064 74073 74078 74094 74099 74008 74016 74025 74030 74035 74045 74052 74057 74061 74065 74074 74080 74085 74095 74101 74104 74105 74107 74108 74109 74110 74111 74113 74114 74115 74116 74117 74118 74119 74120 74121 74122 74123 74125 74126 74127 74128 74129 74130 74132 74133 .] -> [74506 74513 74519 74521 74530 74535 74539 74546 74551 74556 74561 74569 74573 74579 74584 74589 74595 74598 74604 74609 74615 74618 74621 74622 74623 74509 74514 74516 74520 74525 74529 74534 74538 74543 74547 74554 74559 74564 74566 74571 74575 74580 74585 74590 74596 74602 74607 74611 74617 74619 74508 74512 74518 74524 74528 74533 74541 74545 74549 74552 74557 74562 74567 74572 74577 74582 74586 74591 74594 74599 74603 74608 74613 74614 74507 74510 74517 74523 74527 74531 74537 74542 74548 74553 74558 74563 74568 74574 74578 74581 74588 74593 74600 74605 74612 74616 74620 74511 74515 74522 74526 74532 74536 74540 74544 74550 74555 74560 74565 74570 74576 74583 74587 74592 74597 74601 74606 74610 .], took 2.872s
+, deleted 64766325 bytes
+badger 2026/07/08 21:25:10 INFO: This Range (numTables: 1)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  30 30 32 30 34 36 30 38  37 37 35 34 39 31 30 34  |0020460877549104|
+00000020  31 00 00 00 00 00 00 00  00                       |1........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 32  |usertable:user12|
+00000010  36 37 38 33 31 31 39 34  39 39 35 33 38 35 33 32  |6783119499538532|
+00000020  36 ff ff ff ff ff ff ff  ff                       |6........|
+
+badger 2026/07/08 21:25:10 INFO: Next Range (numTables: 22)
+Left:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 30  |usertable:user10|
+00000010  30 30 30 30 30 30 36 32  38 39 30 36 34 36 33 32  |0000006289064632|
+00000020  30 00 00 00 00 00 00 00  00                       |0........|
+
+Right:
+00000000  75 73 65 72 74 61 62 6c  65 3a 75 73 65 72 31 32  |usertable:user12|
+00000010  38 38 38 38 30 34 34 31  33 36 36 30 38 37 39 31  |8888044136608791|
+00000020  30 ff ff ff ff ff ff ff  ff                       |0........|
+
+READ   - Takes(s): 100.0, Count: 9066957, OPS: 90668.6, Avg(us): 74, Min(us): 2, Max(us): 928255, 50th(us): 56, 90th(us): 121, 95th(us): 159, 99th(us): 274, 99.9th(us): 1153, 99.99th(us): 9871
+TOTAL  - Takes(s): 100.0, Count: 9544712, OPS: 95445.6, Avg(us): 77, Min(us): 2, Max(us): 928255, 50th(us): 58, 90th(us): 128, 95th(us): 167, 99th(us): 287, 99.9th(us): 1255, 99.99th(us): 10783
+UPDATE - Takes(s): 100.0, Count: 477756, OPS: 4777.6, Avg(us): 137, Min(us): 16, Max(us): 78719, 50th(us): 103, 90th(us): 199, 95th(us): 248, 99th(us): 435, 99.9th(us): 4991, 99.99th(us): 16911
+UPDATE_ERROR - Takes(s): 99.8, Count: 367, OPS: 3.7, Avg(us): 94, Min(us): 20, Max(us): 3349, 50th(us): 65, 90th(us): 163, 95th(us): 206, 99th(us): 312, 99.9th(us): 3349, 99.99th(us): 3349
+**********************************************
+Run finished, takes 1m44.745709106s
+READ   - Takes(s): 104.7, Count: 9498740, OPS: 90682.1, Avg(us): 73, Min(us): 2, Max(us): 928255, 50th(us): 56, 90th(us): 121, 95th(us): 158, 99th(us): 271, 99.9th(us): 1118, 99.99th(us): 9671
+TOTAL  - Takes(s): 104.7, Count: 9999612, OPS: 95462.8, Avg(us): 77, Min(us): 2, Max(us): 928255, 50th(us): 57, 90th(us): 127, 95th(us): 166, 99th(us): 284, 99.9th(us): 1220, 99.99th(us): 10631
+UPDATE - Takes(s): 104.7, Count: 500872, OPS: 4781.8, Avg(us): 136, Min(us): 16, Max(us): 78719, 50th(us): 103, 90th(us): 198, 95th(us): 247, 99th(us): 429, 99.9th(us): 4719, 99.99th(us): 16911
+UPDATE_ERROR - Takes(s): 104.5, Count: 388, OPS: 3.7, Avg(us): 92, Min(us): 20, Max(us): 3349, 50th(us): 65, 90th(us): 158, 95th(us): 197, 99th(us): 312, 99.9th(us): 3349, 99.99th(us): 3349
+
+⏳ 等待 LSM-tree compaction 趋于健康 (最长 500 秒, 每 1s 检查一次)...
+✅ LSM-tree 已健康，总等待时间: 0.0 秒
+
+================ 🌳 heatLSM 热力树拓扑与覆写率全景图 🌳 ================
+🌲 [动态树结构监控] 当前母树最大深度 (Max Depth): Lv3
+🔥 当前共有 14 个连续的极热区间被 L98/L99 特区拦截保护：
+----------------------------------------------------------------
+  [001] 拦截范围: [usertable:user203, usertable:user204)
+  [002] 拦截范围: [usertable:user206, usertable:user20:)
+  [003] 拦截范围: [usertable:user212, usertable:user214)
+  [004] 拦截范围: [usertable:user215, usertable:user216)
+  [005] 拦截范围: [usertable:user22, usertable:user226)
+  [006] 拦截范围: [usertable:user430, usertable:user43:)
+  [007] 拦截范围: [usertable:user500, usertable:user505)
+  [008] 拦截范围: [usertable:user509, usertable:user50:)
+  [009] 拦截范围: [usertable:user550, usertable:user56)
+  [010] 拦截范围: [usertable:user560, usertable:user56:)
+  [011] 拦截范围: [usertable:user669, usertable:user66:)
+  [012] 拦截范围: [usertable:user686, usertable:user687)
+  [013] 拦截范围: [usertable:user850, usertable:user85:)
+  [014] 拦截范围: [usertable:user97, usertable:user98)
+----------------------------------------------------------------
+========================================================================
+📊 [系统内存雷达] 活跃区块数: 892, 回收站空洞数: 1
+💾 [总物理内存开销] 6.91 MB
+
+badger 2026/07/08 21:25:25 INFO: 
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 1          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)    [Hot  🔥] FID: 2147483649 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%!
+(MISSING)=========================================================
+badger 2026/07/08 21:25:25 INFO: Lifetime L0 stalled for: 0s
+badger 2026/07/08 21:25:25 INFO: 
+Level 0 [ ]: NumTables: 02. Size: 67 MiB of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 2 [ ]: NumTables: 00. Size: 0 B of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 3 [ ]: NumTables: 00. Size: 0 B of 66 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 4 [B]: NumTables: 92. Size: 654 MiB of 662 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 5 [ ]: NumTables: 537. Size: 6.5 GiB of 6.5 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 6 [ ]: NumTables: 2777. Size: 65 GiB of 65 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 98 [H]: NumTables: 01. Size: 3.9 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 74786] Size: 3.9 MiB Range: [usertable:user2030351850146936924] ~ [usertable:user979365616221828693]
+Level 99 [H]: NumTables: 04. Size: 47 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 74781] Size: 15 MiB Range: [usertable:user1000143050733971535] ~ [usertable:user229282477964284076]
+    -> [SST 74782] Size: 15 MiB Range: [usertable:user2292888308114947485] ~ [usertable:user5645704311990613148]
+    -> [SST 74783] Size: 15 MiB Range: [usertable:user5645705404218036729] ~ [usertable:user8569460871925273149]
+    -> [SST 74784] Size: 1.4 MiB Range: [usertable:user856954042334124560] ~ [usertable:user979872481342597349]
+Level Done
+HeatTree统计因为阻塞丢弃的key个数（DropCount）: 0.
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 508.92 MB
+💿 [分子] OS内核级物理写入: 11698.40 MB  (12266659840 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 22.99 x
+>>> [PHYSICAL_IO_RESULT] 11698.40
+=======================================================
+
+>>> --- GC Phase ---
+Using request distribution 'uniform' a keyrange of [0 2147483646]
+
+╔══════════════════════════════════════════════════╗
+║          🧹 BadgerDB Vlog GC 分析工具           ║
+╠══════════════════════════════════════════════════╣
+║  GC 轮次: 3         丢弃阈值: 10%                ║
+║  Vlog 目录: ./zzl_badger_data  ║
+╚══════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 【GC 前】 快照
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Cold 🧊] FID: 3          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+    [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Hot  🔥] FID: 2147483651 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%
+=========================================================
+📊 Badger.Size() 报告: LSM=73539 MB | Vlog=2048 MB
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔥 开始执行 3 轮 GC (discardRatio=0.10)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+--- 🔄 GC 第 1/3 轮 ---
+badger 2026/07/08 21:25:30 INFO: All 3413 tables opened in 588ms
+badger 2026/07/08 21:25:30 INFO: 成功从磁盘恢复了 1 个热点 SSTable 到 HotTier！
+badger 2026/07/08 21:25:30 INFO: 成功从磁盘恢复了 4 个热点 SSTable 到 hotTierOrd！
+badger 2026/07/08 21:25:30 INFO: Discard stats nextEmptySlot: 0
+badger 2026/07/08 21:25:30 INFO: Set nextTxnTs to 70500872
+badger 2026/07/08 21:25:30 INFO: Deleting empty file: ./zzl_badger_data/000001.vlog
+badger 2026/07/08 21:25:30 INFO: Deleting empty file: ./zzl_badger_data/2147483649.vlog
+   ⏱️  耗时: 3µs
+   ⚠️  状态: 错误 — Value log GC attempt didn't result in any cleanup
+
+--- 🔄 GC 第 2/3 轮 ---
+   ⏱️  耗时: 4µs
+   ⚠️  状态: 错误 — Value log GC attempt didn't result in any cleanup
+
+--- 🔄 GC 第 3/3 轮 ---
+   ⏱️  耗时: 2µs
+   ⚠️  状态: 错误 — Value log GC attempt didn't result in any cleanup
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 【GC 后】 快照
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Cold 🧊] FID: 3          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+    [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+(*) [Hot  🔥] FID: 2147483651 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%
+---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%
+=========================================================
+📊 Badger.Size() 报告: LSM=73539 MB | Vlog=2048 MB
+
+╔══════════════════════════════════════════════════╗
+║              📊 GC 汇总报告                      ║
+╠══════════════════════════════════════════════════╣
+║  实际执行轮次: 3 / 3                             ║
+║  总耗时: 0s                                ║
+╠──────────────────────────────────────────────────╣
+║  📏 空间变化 (Badger 逻辑视角)                    ║
+║    GC 前总逻辑数据 (LSM+Vlog): 75587 MB              ║
+║    GC 后总逻辑数据 (LSM+Vlog): 75587 MB              ║
+║    逻辑数据变化: -0.00 MB (数据被搬到 LSM 紧凑存储)║
+║    ✅ Vlog 目录实际磁盘占用减少: 0.00 MB           ║
+╠──────────────────────────────────────────────────╣
+║  💿 GC 造成的额外磁盘写入                         ║
+║    (无法获取进程 I/O 统计)                        ║
+╠──────────────────────────────────────────────────╣
+║  🔍 逐轮明细                                     ║
+║  R1 ⚠️  耗时:       3µs | 物理写:   0.00 MB | 回收:   0.00 MB ║
+║  R2 ⚠️  耗时:       4µs | 物理写:   0.00 MB | 回收:   0.00 MB ║
+║  R3 ⚠️  耗时:       2µs | 物理写:   0.00 MB | 回收:   0.00 MB ║
+╚══════════════════════════════════════════════════╝
+>>> [GC_SUMMARY] rounds=3 total_time_ms=0 phys_write_mb=0.00 space_reclaimed_mb=0.00
+╚═════════════════════✅✅✅GC已经结束✅✅✅═════════════════════════════╝
+╚═════════════════════✅✅✅GC已经结束✅✅✅═════════════════════════════╝
+╚═════════════════════✅✅✅GC已经结束✅✅✅═════════════════════════════╝
+
+⏳ 等待 LSM-tree compaction 趋于健康 (最长 10 秒, 每 1s 检查一次)...
+✅ LSM-tree 已健康，总等待时间: 0.0 秒
+
+================ 🌳 heatLSM 热力树拓扑与覆写率全景图 🌳 ================
+🌲 [动态树结构监控] 当前母树最大深度 (Max Depth): Lv0
+⚠️ 当前快照层 (L98/L99 拦截名单) 为空。没有识别到符合标准的热区。
+========================================================================
+📊 [系统内存雷达] 活跃区块数: 1, 回收站空洞数: 0
+💾 [总物理内存开销] 88.26 KB
+
+badger 2026/07/08 21:25:31 INFO: 
+=========================================================
+📊 关机前 Vlog 物理大盘 (冷热双轨与垃圾存活率)
+=========================================================
+    [Cold 🧊] FID: 2          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Cold 🧊] FID: 3          | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)    [Hot  🔥] FID: 2147483650 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)(*) [Hot  🔥] FID: 2147483651 | Size:    0.00 MB | Discard(垃圾):    0.00 MB | Garbage Ratio:  0.00%!
+(MISSING)---------------------------------------------------------
+📈 汇总: 共 2 个冷大巴, 2 个热大巴
+总容量: 0.00 MB | 总垃圾: 0.00 MB | 整体垃圾率: 0.00%!
+(MISSING)=========================================================
+badger 2026/07/08 21:25:31 INFO: Lifetime L0 stalled for: 0s
+badger 2026/07/08 21:25:31 INFO: 
+Level 0 [ ]: NumTables: 02. Size: 67 MiB of 0 B. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 64 MiB
+Level 1 [ ]: NumTables: 00. Size: 0 B of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 2 [ ]: NumTables: 00. Size: 0 B of 10 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 2.0 MiB
+Level 3 [ ]: NumTables: 00. Size: 0 B of 66 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 4.0 MiB
+Level 4 [B]: NumTables: 92. Size: 654 MiB of 662 MiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 8.0 MiB
+Level 5 [ ]: NumTables: 537. Size: 6.5 GiB of 6.5 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 16 MiB
+Level 6 [ ]: NumTables: 2777. Size: 65 GiB of 65 GiB. Score: 0.00->0.00 StaleData: 0 B Target FileSize: 32 MiB
+Level 98 [H]: NumTables: 01. Size: 3.9 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 74786] Size: 3.9 MiB Range: [usertable:user2030351850146936924] ~ [usertable:user979365616221828693]
+Level 99 [H]: NumTables: 04. Size: 47 MiB of ∞. Score: 0.00->0.00 StaleData: 0 B Target FileSize: ∞
+    -> [SST 74781] Size: 15 MiB Range: [usertable:user1000143050733971535] ~ [usertable:user229282477964284076]
+    -> [SST 74782] Size: 15 MiB Range: [usertable:user2292888308114947485] ~ [usertable:user5645704311990613148]
+    -> [SST 74783] Size: 15 MiB Range: [usertable:user5645705404218036729] ~ [usertable:user8569460871925273149]
+    -> [SST 74784] Size: 1.4 MiB Range: [usertable:user856954042334124560] ~ [usertable:user979872481342597349]
+Level Done
+HeatTree统计因为阻塞丢弃的key个数（DropCount）: 0.
+
+=======================================================
+🏆 [YCSB 终极结算] 压测及引擎落盘已全部完成
+=======================================================
+🎯 [分母] 纯应用层逻辑写入: 0.00 MB
+💿 [分子] OS内核级物理写入: 0.03 MB  (28672 Bytes)
+🔥 [核弹级数据] 最终系统级写放大 (System WA): 0.00 x
+>>> [PHYSICAL_IO_RESULT] 0.03
+=======================================================
+
