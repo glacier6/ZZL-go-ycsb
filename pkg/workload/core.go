@@ -705,7 +705,12 @@ func (coreCreator) Create(p *properties.Properties) (ycsb.Workload, error) {
 		c.keyChooser = generator.NewExponential(percentile, float64(c.recordCount)*frac)
 	// zzlHACK:
 	case "mixgraph":
-		numRegions := p.GetInt64(prop.MixGraphNumRegions, prop.MixGraphNumRegionsDefault)
+		// 方案C: 区间数直接由 recordCount 推导，regionSize 恒为 10万(10^5)，
+		// 使桶号 = key数字高位，前缀语义干净。舍弃 mixgraph.num_regions 参数。
+		numRegions := c.recordCount / 100000
+		if numRegions < 10 {
+			numRegions = 10 // 小数据量保底，避免区间过少失去局部性
+		}
 		expA := p.GetFloat64(prop.MixGraphExpA, prop.MixGraphExpADefault)
 		expB := p.GetFloat64(prop.MixGraphExpB, prop.MixGraphExpBDefault)
 		expC := p.GetFloat64(prop.MixGraphExpC, prop.MixGraphExpCDefault)

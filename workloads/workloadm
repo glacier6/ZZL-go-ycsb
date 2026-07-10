@@ -2,6 +2,8 @@ workload=core
 readallfields=true
 
 # 按照原论文，每30个区间对应500w的kv对
+# 注意共有前缀的各个桶是按照数字计算的，比如user0007800000可以表示前缀是user00078这个桶，
+# 所以recordcount是mixgraph.num_regions整10倍的才能正确模拟前缀
 recordcount=50000000
 operationcount=30000000
 
@@ -12,7 +14,9 @@ insertorder=ordered
 # 因为太倾斜了,所以就算改mixgraph.num_regions也没什么太大意义,而如果只是平缓貌似,也效果不好?
 
 requestdistribution=mixgraph
-mixgraph.num_regions=300
+# 这个参数现在根据recordcount自动计算，为recordcount/100000，设置也不会生效！
+mixgraph.num_regions=500 
+
 
 # ==========================================
 #  前缀热度分布 (Bimodal Exponential Decay 双项指数衰减，exp_a、b、c、d控制)
@@ -34,34 +38,34 @@ mixgraph.key_dist_b=0.3467
 # 下面是自己写的参数
 
 
-# 前缀补0
+# 前缀补0，补零补的是 user 后面的数字部分,不是整个 key
 zeropadding=10
 fieldcount=1
 
 # ==========================================
 #  控制各个key的value长度
 # ==========================================
-# 启用GPD分布(论文中模拟的真实的zippyDB，已确定，V均值为34.5)
-mixgraph.gpd_value=true
-# k决定“长尾到底有多畸变、多厚,即巨无霸数据的量
-mixgraph.value_k=0.2615
-# sigma决定绝大多数“普通数据”的波动范围（胖瘦）,改动这个则是决定绝大多数普通数据的波动范围。
-mixgraph.value_sigma=25.45
-# mu设为 0 意味着这个分布在数学计算上可以生成的理论最小值是 0
-mixgraph.value_mu=0
-# fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
-fieldlength=43 
-
-# # 启用GPD分布(UDB论文没有说明应该是多长，下面是自己写的，V均值为1216字节，大于1KB的约20%)
+# 启用GPD分布(论文中模拟的真实的zippyDB，已确定，V均值为34.5，5000w的key仅2.2G)
 # mixgraph.gpd_value=true
 # # k决定“长尾到底有多畸变、多厚,即巨无霸数据的量
-# mixgraph.value_k=0.75
+# mixgraph.value_k=0.2615
 # # sigma决定绝大多数“普通数据”的波动范围（胖瘦）,改动这个则是决定绝大多数普通数据的波动范围。
-# mixgraph.value_sigma=300
+# mixgraph.value_sigma=25.45
 # # mu设为 0 意味着这个分布在数学计算上可以生成的理论最小值是 0
-# mixgraph.value_mu=16
+# mixgraph.value_mu=0
 # # fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
-# fieldlength=1000 
+# fieldlength=43 
+
+# # 启用GPD分布(UDB论文没有说明应该是多长，下面是自己写的，V均值为1216字节，大于1KB的约20%)
+mixgraph.gpd_value=true
+# k决定“长尾到底有多畸变、多厚,即巨无霸数据的量
+mixgraph.value_k=0.75
+# sigma决定绝大多数“普通数据”的波动范围（胖瘦）,改动这个则是决定绝大多数普通数据的波动范围。
+mixgraph.value_sigma=300
+# mu设为 0 意味着这个分布在数学计算上可以生成的理论最小值是 0
+mixgraph.value_mu=16
+# fieldlength参数最好还要保留,指初始化value时初始的分配空间大小,虽然不会影响最终生成value的大小,但是设置为均值的话还是比较好的
+fieldlength=1000 
 
 
 

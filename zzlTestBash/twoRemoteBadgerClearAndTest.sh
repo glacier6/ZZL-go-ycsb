@@ -150,7 +150,7 @@ run_single_test() {
         echo "📥 未发现模板 [${TEMPLATE_NAME}]，执行完整远程 Load 阶段..."
         echo ">>> --- Load Phase ---" >> ${LOG_FILE}
         sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
-            "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloadb -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p stabilization_time=${STABILIZE_TIMES[0]}" >> ${LOG_FILE} 2>&1
+            "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb load badger -P workloads/workloadm -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p stabilization_time=${STABILIZE_TIMES[0]}" >> ${LOG_FILE} 2>&1
         if [ $? -ne 0 ]; then
             echo "❌ Load 阶段报错，请查看本地 ${LOG_FILE}！"
             exit 1
@@ -175,7 +175,7 @@ run_single_test() {
     echo "🔥 执行远程 Run 阶段..."
     echo ">>> --- Run Phase ---" >> ${LOG_FILE}
     sshpass -p "$remote_password" ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10 ${remote_user}@${REMOTE_IP} \
-        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb run badger -P workloads/workloadb -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p operationcount=${OPCOUNT} -p stabilization_time=${STABILIZE_TIMES[1]}" >> ${LOG_FILE} 2>&1
+        "cd ${REMOTE_WORKSPACE} && ./bin/go-ycsb run badger -P workloads/workloadm -P zzl_badger.properties -p threadcount=${THREADS} -p recordcount=${RC} -p operationcount=${OPCOUNT} -p stabilization_time=${STABILIZE_TIMES[1]}" >> ${LOG_FILE} 2>&1
 
     echo "✅ 远程 Run 阶段完成。"
 
@@ -191,9 +191,9 @@ run_single_test() {
  
 # ================= 主执行流程 =================
 START_TIME=$(date +%s)
-RECORD_COUNTS=(30000000 50000000 70000000 90000000)
-THREAD_COUNTS=(4 8 16 32)
-OPCOUNT=10000000
+RECORD_COUNTS=(50000000)
+THREAD_COUNTS=(16)
+OPCOUNT=30000000
 # 稳定等待时间数组: [0]=Load阶段等待秒数, [1]=Run阶段等待秒数
 STABILIZE_TIMES=(500 500)
 
@@ -219,10 +219,10 @@ for RC in "${RECORD_COUNTS[@]}"; do
             echo "🔔 [数据量: ${RC}] [线程数: ${TC}] 正在开始第 【${i} / ${ROUNDS}】 轮对照测试"
 
             # 跑魔改版 (heatLSM) Badger
-            run_single_test "heatLSM_Badger_NL98M" ${PRIZZL_BADGER_PATH} $i $TC $RC
+            run_single_test "heatLSM_Badger_NL98M_M" ${PRIZZL_BADGER_PATH} $i $TC $RC
 
             # 跑原版 Badger
-            run_single_test "Normal_Badger" ${NORMAL_BADGER_PATH} $i $TC $RC
+            run_single_test "Normal_Badger_M" ${NORMAL_BADGER_PATH} $i $TC $RC
         done
     done
 done
